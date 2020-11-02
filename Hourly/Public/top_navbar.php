@@ -27,6 +27,10 @@
             </ul>
         </nav>
 
-    <?php include_once "../View/add_module.php" ?>
+    <?php
+    include_once "../View/add_module.php";
+    include_once "../View/assign_task.php"
+    ?>
+
 </body>
 </html>

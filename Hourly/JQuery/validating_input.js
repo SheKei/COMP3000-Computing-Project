@@ -9,7 +9,7 @@ $(function(){
 
         //Which input field is being typed into
         let theId = this.id;
-        
+
         if(theId == "moduleCode"){
             $("#codeChars").html(message);
         }

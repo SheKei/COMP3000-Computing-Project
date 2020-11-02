@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../JQuery/add_module.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
@@ -46,7 +47,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Add Module</button>
+                    <button type="button" class="btn btn-primary" disabled>Add Module</button>
                 </div>
 
             </div>

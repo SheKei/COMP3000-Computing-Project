@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../JQuery/assign_task.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
@@ -102,6 +103,7 @@
                                 <label for="dueDate" class="col-form-label">Due Date: </label>
                                 <div class="col-auto">
                                     <input class="form-control" type="date" id="dueDate" name="dueDate">
+                                    <p id="deadlineMessage"></p>
                                 </div>
 
                             </div>
@@ -110,6 +112,7 @@
                                 <label for="dueTime" class="col-form-label">Due Time: </label>
                                 <div class="col-auto">
                                     <input class="form-control" type="time" id="dueTime" name="dueTime">
+                                    <p id="timeMessage"></p>
                                 </div>
                             </div>
                         </section>
@@ -117,7 +120,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Add Task</button>
+                    <button type="button" class="btn btn-primary" disabled>Add Task</button>
                 </div>
             </div>
         </div>

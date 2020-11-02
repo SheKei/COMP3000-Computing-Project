@@ -26,5 +26,7 @@
                 </li>
             </ul>
         </nav>
+
+    <?php include_once "../View/add_module.php" ?>
 </body>
 </html>

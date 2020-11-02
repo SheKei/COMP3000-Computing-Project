@@ -2,6 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="../JQuery/add_module.js"></script>
+    <style>
+        #blue{color:#0E86D4;}
+        #pink{color:#FFAEBC;}
+        #green{color:#B4F8C8;}
+        #purple{color:#C26DBC;}
+        #yellow{color:#F8EA8C;}
+        #orange{color:#FF9636;}
+        #red{color:#FF5C4D;}
+    </style>
 </head>
 <body>
     <div class="modal fade" id="moduleModal">

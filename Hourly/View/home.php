@@ -5,5 +5,10 @@
     <title>Home</title>
 </head>
 <body>
+
+<?php
+    include_once "../Public/top_navbar.php";
+?>
+
 </body>
 </html>

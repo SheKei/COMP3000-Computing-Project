@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="19bfde86-22d7-4498-b57e-665b8d8c804b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JQuery/add_module.js" beforeDir="false" afterPath="$PROJECT_DIR$/JQuery/add_module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/add_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/add_module.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JQuery/assign_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/JQuery/assign_task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/assign_task.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/assign_task.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604321475831</updated>
       <workItem from="1604321476863" duration="793000" />
-      <workItem from="1604322410791" duration="6843000" />
+      <workItem from="1604322410791" duration="8791000" />
     </task>
     <servers />
   </component>

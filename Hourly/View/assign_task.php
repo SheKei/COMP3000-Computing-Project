@@ -34,7 +34,7 @@
                         <div class="form-group row">
                             <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p></label>
                             <div class="col-10">
-                                <input class="form-control userInput" type="text" id="taskName" maxlength="150">
+                                <input class="form-control userInput taskInput" type="text" id="taskName" maxlength="150">
                             </div>
                         </div>
 
@@ -88,11 +88,11 @@
                             <label class="col-form-label">Due Deadline: <label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="dueDeadline" id="dueAnytime" value="dueAnytime" checked>
-                                    <label class="form-check-label" for="dueDeadline">Due Anytime</label>
+                                    <label class="form-check-label taskInput" for="dueDeadline">Due Anytime</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="dueDeadline" id="setDeadline">
+                                    <input class="form-check-input taskInput" type="radio" name="dueDeadline" id="setDeadline">
                                     <label class="form-check-label" for="dueDeadline">Set a Deadline</label>
                                 </div>
                         </div>
@@ -116,11 +116,13 @@
                                 </div>
                             </div>
                         </section>
+
+                        <p id="requiredMessageTask"></p>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" disabled>Add Task</button>
+                    <button type="button" class="btn btn-primary" id="addTaskBtn" disabled>Add Task</button>
                 </div>
             </div>
         </div>

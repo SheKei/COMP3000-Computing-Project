@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="../JQuery/assign_task.js"></script>
+    <script src="../JQuery/validating_input.js"></script>
     <style>
         #taskCategory, #moduleCode,  #moduleLabel{
             margin: 10px;
@@ -30,9 +31,9 @@
 
                         <!-- INPUT TASK NAME -->
                         <div class="form-group row">
-                            <label for="taskName" class="col-form-label">Task Name: </label>
+                            <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p></label>
                             <div class="col-10">
-                                <input class="form-control" type="text" id="taskName">
+                                <input class="form-control userInput" type="text" id="taskName" maxlength="150">
                             </div>
                         </div>
 

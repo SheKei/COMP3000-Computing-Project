@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="../JQuery/add_module.js"></script>
+    <script src="../JQuery/validating_input.js"></script>
     <style>
         #blue{color:#0E86D4;}
         #pink{color:#FFAEBC;}
@@ -26,8 +27,8 @@
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
                         <!-- Form to create module -->
-                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput" type="text" id="moduleCode"><br>
-                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput" type="text" id="moduleName"><br>
+                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput" type="text" id="moduleCode" maxlength="50"><br>
+                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput" type="text" id="moduleName" maxlength="50"><br>
                         <label>Expected Hours: </label><input class="form-control" type="number" id="hours"><br>
                         <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i> </label><br><br>
 

@@ -9,4 +9,23 @@ $(function(){
         //Display the chosen colour in input box
         $("#keyColour").css("color", colour);
     });
+
+    //Check if all fields have been filled in before creating a module
+    $(".moduleInput").change(function(){
+
+        $("#requiredMessage").html("")
+
+        let moduleCode = $("#moduleCode").val();
+        let moduleName = $("#moduleName").val();
+        let moduleHours = $("#hours").val();
+
+        if(moduleCode == "" || moduleName == "" || moduleHours == ""){
+            $("#requiredMessage").html("All fields are required to create a module!");
+            $("#addModuleBtn").prop("disabled", true); //Keep btn disabled
+        }
+        else
+        {
+            $("#addModuleBtn").prop("disabled", false); //Enable create btn
+        }
+    });
 });

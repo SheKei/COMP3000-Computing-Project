@@ -2,6 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="../JQuery/assign_task.js"></script>
+    <style>
+        #taskCategory, #moduleCode,  #moduleLabel{
+            margin: 10px;
+        }
+
+        #categoryLabel, #taskCategory{margin-right:10px;}
+
+        #categoryLabel{padding:10px;}
+
+        .hidden{display: none;}
+    </style>
 </head>
 <body>
     <div class="modal fade" id="taskModal">
@@ -84,7 +96,7 @@
                         </div>
 
                         <!-- SET THE DATE OF DEADLINE -->
-                        <section class="deadline">
+                        <section class="deadline hidden">
                             <div class="form-group row">
                                 <label for="dueDate" class="col-form-label">Due Date: </label>
                                 <div class="col-auto">

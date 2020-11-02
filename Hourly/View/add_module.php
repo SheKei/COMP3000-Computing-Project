@@ -26,8 +26,8 @@
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
                         <!-- Form to create module -->
-                        <label>Module Code: </label><input class="form-control" type="text" id="moduleCode"><br>
-                        <label>Module Name: </label><input class="form-control" type="text" id="moduleName"><br>
+                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput" type="text" id="moduleCode"><br>
+                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput" type="text" id="moduleName"><br>
                         <label>Expected Hours: </label><input class="form-control" type="number" id="hours"><br>
                         <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i> </label><br><br>
 

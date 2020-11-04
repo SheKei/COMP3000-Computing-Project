@@ -10,5 +10,13 @@
     include_once "../Public/top_navbar.php";
 ?>
 
+<?php
+
+if (isset($_POST['addModuleBtn']) == True) {
+    echo "hello!";
+}
+
+?>
+
 </body>
 </html>

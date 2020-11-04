@@ -1,4 +1,4 @@
-DELIMITTER //
+DELIMITER //
 
 CREATE PROCEDURE COMP3000_STong.add_task(IN username VARCHAR(20), IN moduleCode VARCHAR(50), IN taskName VARCHAR(150), IN dueDate DATE, IN dueTime TIME, priorityLevel VARCHAR(6) )
 	BEGIN
@@ -8,5 +8,5 @@ CREATE PROCEDURE COMP3000_STong.add_task(IN username VARCHAR(20), IN moduleCode 
 	
 	END	//
 	
-DELIMITTER ;
+DELIMITER ;
 	

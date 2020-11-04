@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+
     <div class="modal fade" id="moduleModal">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
@@ -27,13 +28,15 @@
 
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
+
                         <!-- Form to create module -->
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput" type="text" id="moduleCode" maxlength="50"><br>
                         <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput" type="text" id="moduleName" maxlength="50"><br>
                         <label>Expected Hours: </label><input class="form-control moduleInput" type="number" id="hours" value="200" min="1" max="999"><br>
                         <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i> </label><br><br>
                         <p id="requiredMessage"></p>
-
+                        </form>
                         <div id="colourPicker">
                             <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
                             <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>
@@ -48,7 +51,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="addModuleBtn" disabled>Add Module</button>
+                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <input type="submit" class="btn btn-primary" name="addModuleBtn" id="addModuleBtn" disabled value="Add Module">
+                    </form>
                 </div>
 
             </div>

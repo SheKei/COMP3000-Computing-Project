@@ -51,7 +51,7 @@ CREATE TABLE COMP3000_STong.task(
 	due_date DATE,
 	due_time TIME,
 	priority_level VARCHAR(6),
-	CONSTRAINT FK_module FOREIGN KEY(user_id, module_code)
+	CONSTRAINT FK_module_user FOREIGN KEY(user_id, module_code)
 	REFERENCES COMP3000_STong.module(user_id, module_code)
 );
 

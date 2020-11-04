@@ -30,12 +30,12 @@
 
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
-
+                        <form method="post" action="../Controller/create_task.php">
                         <!-- INPUT TASK NAME -->
                         <div class="form-group row">
                             <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p></label>
                             <div class="col-10">
-                                <input class="form-control userInput taskInput" type="text" id="taskName" maxlength="150">
+                                <input class="form-control userInput taskInput" type="text" name="taskName" id="taskName" maxlength="150">
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@
                             <div class="form-group row">
                                 <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
                                         <div class="col-auto">
-                                            <select class="form-control" id="moduleCode">
+                                            <select class="form-control" name="moduleCode" id="moduleCode">
                                                 <?php
                                                 $controller = new task_controller("dummy");
                                                 $controller->displayModuleChoices();
@@ -57,7 +57,7 @@
                             <div class="form-group row">
                                 <label for="taskCategory" id="categoryLabel" class="col-form-label">Task Category: <label>
                                     <div class="col-auto">
-                                        <select class="form-control" id="taskCategory">
+                                        <select class="form-control" name="taskCategory" id="taskCategory">
                                             <option value="General">General</option>
                                             <option value="Revision">Revision</option>
                                             <option value="Coursework">Coursework</option>
@@ -94,7 +94,7 @@
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input taskInput" type="radio" name="dueDeadline" id="setDeadline">
+                                    <input class="form-check-input taskInput" type="radio" name="dueDeadline" id="setDeadline" value="dueDeadline">
                                     <label class="form-check-label" for="dueDeadline">Set a Deadline</label>
                                 </div>
                         </div>
@@ -118,14 +118,12 @@
                                 </div>
                             </div>
                         </section>
-
-                        <p id="requiredMessageTask"></p>
+                            <p id="requiredMessageTask"></p>
+                            <input type="submit" class="btn btn-primary" id="addTaskBtn" name="addTaskBtn" value="Create Task" disabled>
+                        </form>
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="addTaskBtn" disabled>Add Task</button>
-                </div>
             </div>
         </div>
     </div>

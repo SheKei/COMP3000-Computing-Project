@@ -28,5 +28,10 @@ class task_controller
         }
     }
 
+    public function assignTask($moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel)
+    {
+        $this->database->assignTask($moduleCode, $this->username, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
+    }
+
 
 }

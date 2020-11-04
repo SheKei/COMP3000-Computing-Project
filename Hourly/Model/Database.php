@@ -51,7 +51,7 @@ class Database
     //Assign a task to a module
     public function assignTask($module_code, $user, $task_name, $task_category, $due_date, $due_time, $priority_level)
     {
-        $sql = $this->procedure."add_task('".$module_code."','".$user."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
+        $sql = $this->procedure."add_task('".$user."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
         $this->executeStatementNoOutput($sql);
     }
 

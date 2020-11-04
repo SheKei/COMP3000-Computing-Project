@@ -9,6 +9,7 @@ class Database
     private $db_server = 'proj-mysql.uopnet.plymouth.ac.uk';
     private $dataSourceName;
     private $connection;
+    private $procedure = "CALL COMP3000_STong.";
 
     public function __construct(PDO $connection = null)
     {
@@ -43,19 +44,20 @@ class Database
     //Create a module
     public function addModule($user, $module_code, $module_name, $colour_key, $expected_hours)
     {
-        $sql = "CALL COMP3000_STong.add_module('".$user."','".$module_code."','".$module_name."','".$colour_key."',".$expected_hours.")";
+        $sql = $this->procedure."add_module('".$user."','".$module_code."','".$module_name."','".$colour_key."',".$expected_hours.")";
         $this->executeStatementNoOutput($sql);
     }
 
     //Assign a task to a module
     public function assignTask($module_code, $user, $task_name, $task_category, $due_date, $due_time, $priority_level)
     {
-        $sql = "CALL COMP3000_STong.add_task('".$module_code."','".$user."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
+        $sql = $this->procedure."add_task('".$module_code."','".$user."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
         $this->executeStatementNoOutput($sql);
     }
 
     //Return all modules user has made
     public function getModuleCodes($user){
-        
+        $sql = $this->procedure."get_modules('".$user."')";
+        return $this->executeStatement($sql);
     }
 }

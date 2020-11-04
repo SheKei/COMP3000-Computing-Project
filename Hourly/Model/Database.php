@@ -53,4 +53,9 @@ class Database
         $sql = "CALL COMP3000_STong.add_task('".$module_code."','".$user."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
         $this->executeStatementNoOutput($sql);
     }
+
+    //Return all modules user has made
+    public function getModuleCodes($user){
+        
+    }
 }

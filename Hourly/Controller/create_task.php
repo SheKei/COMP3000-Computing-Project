@@ -23,8 +23,8 @@ if(isset($_POST['addTaskBtn'])){
     $controller = new task_controller("dummy");
     $controller->assignTask($module_code, $task_name, $task_category, $due_date, $due_time, $priority);
 
-    //Replace with module page once view module implemented
-    header('Location: ../View/home.php');
+    //Go to module page once created
+    header('Location: ../View/module.php?code='.$module_code);
 
 
 }

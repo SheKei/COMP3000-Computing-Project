@@ -16,7 +16,7 @@ if (isset($_POST['addModuleBtn'])) {
     $controller = new module_controller($user);
     $controller->createModule($moduleCode, $moduleName, $defaultColour, $hours);
 
-    //Replace with module page once view module implemented
-    header('Location: ../View/home.php');
+    //Go to module page once created
+    header('Location: ../View/module.php?code='.$moduleCode);
 }
 

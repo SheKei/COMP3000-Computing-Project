@@ -60,4 +60,11 @@ class Database
         $sql = $this->procedure."get_modules('".$user."')";
         return $this->executeStatement($sql);
     }
+
+    //Return all details for one module
+    public function getModuleDetails($user, $module_code){
+        $sql = $this->procedure."view_module('".$user."','".$module_code."')";
+        return $this->executeStatement($sql);
+    }
+
 }

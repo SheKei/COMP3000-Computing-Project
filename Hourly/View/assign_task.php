@@ -1,3 +1,4 @@
+<?php include_once '../Controller/task_controller.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,9 +45,10 @@
                                 <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
                                         <div class="col-auto">
                                             <select class="form-control" id="moduleCode">
-                                                <option>COMP3000</option>
-                                                <option>COMP3005</option>
-                                                <option>COMP3006</option>
+                                                <?php
+                                                $controller = new task_controller("dummy");
+                                                $controller->displayModuleChoices();
+                                                ?>
                                             </select>
                                         </div>
                             </div>

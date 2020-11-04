@@ -1,13 +1,17 @@
 $(function(){
     $(".colourBtn").click(function(){
+
+        console.log("here");
         //Find the id of the button that was clicked
-        let theId = event.target.id;
+        let theId = this.id;
+        theId = "#" + theId;
 
         //Use id to extract colour value
-        let colour = $("#" + theId).css("color");
+        let colour = $(theId).css("color");
 
         //Display the chosen colour in input box
         $("#keyColour").css("color", colour);
+        //$("#colour").val("here");
     });
 
     //Check if all fields have been filled in before creating a module
@@ -18,7 +22,7 @@ $(function(){
         let moduleCode = $("#moduleCode").val();
         let moduleName = $("#moduleName").val();
         let moduleHours = $("#hours").val();
-
+        console.log(moduleCode);
         if(moduleCode == "" || moduleName == "" || moduleHours == ""){
             $("#requiredMessage").html("All fields are required to create a module!");
             $("#addModuleBtn").prop("disabled", true); //Keep btn disabled

@@ -30,30 +30,26 @@
                     <div class="container" id="moduleContainer">
 
                         <!-- Form to create module -->
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput" type="text" id="moduleCode" maxlength="50"><br>
-                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput" type="text" id="moduleName" maxlength="50"><br>
-                        <label>Expected Hours: </label><input class="form-control moduleInput" type="number" id="hours" value="200" min="1" max="999"><br>
-                        <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i> </label><br><br>
+                        <form method="post" action="../Controller/create_module.php">
+                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleCode" id="moduleCode" maxlength="50"><br>
+                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleName" id="moduleName" maxlength="50"><br>
+                        <label>Expected Hours: </label><input class="form-control moduleInput" type="number" name="hours" id="hours" value="200" min="1" max="999"><br>
+                        <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label><input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
+                            <div id="colourPicker">
+                                <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="blue"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="green"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="orange"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="purple"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="pink"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
+                            </div>
                         <p id="requiredMessage"></p>
+                            <input type="submit" class="btn btn-primary" name="addModuleBtn" id="addModuleBtn" disabled value="Add Module">
                         </form>
-                        <div id="colourPicker">
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="blue"></i></button>
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="green"></i></button>
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="orange"></i></button>
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="purple"></i></button>
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="pink"></i></button>
-                            <button class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="modal-footer">
-                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                    <input type="submit" class="btn btn-primary" name="addModuleBtn" id="addModuleBtn" disabled value="Add Module">
-                    </form>
+                    </div>
                 </div>
 
             </div>

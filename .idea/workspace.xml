@@ -20,15 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71a2b593-7389-424d-b421-2fa320c9b745" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Hourly/Controller/create_module.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/MySQL statements/addTask.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/MySQL statements/addTask.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/MySQL statements/add_module.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/MySQL statements/add_module.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/MySQL statements/tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/MySQL statements/tables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/MySQL statements/viewModule.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/MySQL statements/viewModule.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/Public/top_navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Public/top_navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hourly/Controller/create_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Controller/create_module.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hourly/JQuery/add_module.js" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/JQuery/add_module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hourly/Model/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Model/Database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hourly/View/add_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/View/add_module.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/View/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/View/home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +46,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

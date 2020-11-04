@@ -4,7 +4,7 @@
 class Database
 {
     private $username = 'COMP3000_STong';
-    private $password = 'SmjU850';
+    private $password = 'SmjU850*';
     private $database = 'COMP3000_STong';
     private $db_server = 'proj-mysql.uopnet.plymouth.ac.uk';
     private $dataSourceName;
@@ -43,7 +43,7 @@ class Database
     //Create a module
     public function addModule($user, $module_code, $module_name, $colour_key, $expected_hours)
     {
-        $sql = "CALL COMP3000_STong.add_module('".$user."','".$module_code."','".$module_name.",'".$colour_key."',".$expected_hours.")";
+        $sql = "CALL COMP3000_STong.add_module('".$user."','".$module_code."','".$module_name."','".$colour_key."',".$expected_hours.")";
         $this->executeStatementNoOutput($sql);
     }
 

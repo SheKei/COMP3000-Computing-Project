@@ -10,7 +10,7 @@ include_once '../Controller/module_controller.php';
 </head>
 <body>
 
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%;">
     <h3 class="w3-bar-item">Welcome</h3>
     <?php
         $controller = new module_controller("dummy");

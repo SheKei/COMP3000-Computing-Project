@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="71a2b593-7389-424d-b421-2fa320c9b745" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/Controller/create_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Controller/create_module.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/Controller/create_task.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Controller/create_task.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hourly/Public/side_navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Public/side_navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hourly/View/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/View/home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604486424713</updated>
       <workItem from="1604486426020" duration="575000" />
+      <workItem from="1604604650748" duration="1385000" />
     </task>
     <servers />
   </component>
@@ -77,6 +78,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1604497869916">

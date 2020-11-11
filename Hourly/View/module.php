@@ -8,6 +8,8 @@
         #heading, #buttonDisplay{
             margin-left: 20%;
         }
+
+        #moduleCodeCurrent{display:none;}
     </style>
 </head>
 <body>
@@ -50,6 +52,7 @@
                     <div class="container" id="moduleContainer">
                     <!-- Form to create module -->
                         <form>
+                            <input class="form-control userInput moduleInput" type="text" name="moduleCodeCurrent" id="moduleCodeCurrent" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleCode" id="moduleCode" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleName" id="moduleName" maxlength="50" value="<?php echo $name; ?>"><br>
                             <label>Expected Hours: </label><input class="form-control moduleInput" type="number" name="hours" id="hours" value="200" min="1" max="999" value="<?php echo $hours; ?>"><br>

@@ -19,11 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="71a2b593-7389-424d-b421-2fa320c9b745" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hourly/Controller/edit_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Controller/edit_module.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hourly/View/module.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/View/module.php" afterDir="false" />
     </list>
+=======
+    <list default="true" id="71a2b593-7389-424d-b421-2fa320c9b745" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -1,5 +1,6 @@
 <?php
 include_once '../Model/Database.php';
+include_once '../Model/Task.php';
 
 class task_controller
 {
@@ -44,6 +45,21 @@ class task_controller
                 echo "<option value='".$row['task_id']."'>".$row['task_name']."(".$row['module_code'].")"."</option>";
             }
         }
+    }
+
+    //Get all ongoing tasks for one module
+    public function getAllOngoingModuleTasks($moduleCode){
+        $result= $this->database->getModuleOngoingTasks($this->username, $moduleCode);
+
+        if($result){
+            $allTasks = [];
+            foreach($result as $row){
+                $task = new Task($row['task_id'], $row['task_name'], $row['task_category'], $row['due_date'], $row['due_time'], $row['priority_level']);
+                $allTasks[] = $task;
+            }
+        }
+
+        return $allTasks;
     }
 
 

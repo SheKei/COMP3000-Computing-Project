@@ -28,9 +28,22 @@ class task_controller
         }
     }
 
+    //Create a task and assign to a module
     public function assignTask($moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel)
     {
         $this->database->assignTask($moduleCode, $this->username, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
+    }
+
+    //Display all ongoing tasks in a drop down menu for add time pop up page
+    public function displayOngoingTasks()
+    {
+        $tasks = $this->database->getAllOngoingTasks($this->username);
+
+        if($tasks){
+            foreach($tasks as $row){
+                echo "<option value='".$row['task_id']."'>".$row['task_name']."(".$row['module_code'].")"."</option>";
+            }
+        }
     }
 
 

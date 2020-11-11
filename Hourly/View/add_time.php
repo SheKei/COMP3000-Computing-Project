@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include_once '../Controller/task_controller.php';?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,6 +20,59 @@
                 <div class="container" id="timeContainer">
 
                     <form>
+
+                        <!-- DROP DOWN MENU TO SELECT ONGOING TASK-->
+                        <div class="form-row">
+                            <div class="form-group row">
+                                <label for="taskName" class="col-form-label">Task: <label>
+                                        <div class="col-auto">
+                                            <select class="form-control" name="taskName" id="taskName">
+                                                <?php
+                                                $controller = new task_controller('dummy');
+                                                $controller->displayOngoingTasks();
+                                                ?>
+                                            </select>
+                                        </div>
+                            </div>
+                        </div>
+
+                        <!-- SECTION TO INPUT TIME SPENT ON TASK -->
+                        <div class="form-row">
+                            <div class="form-group row">
+                                <div class="col-auto">
+                                <label for="time" class="col-form-label">Time spent: </label>
+                                <input class="form-control" type ="number" id="hour" name="hour"> <label for="hour">hour(s) </label>
+                                <input class="form-control" type="number" id="minute" name="minute"><label for="minute">minutes</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DESCRIPTION BOX -->
+                        <div class="form-group">
+                            <label for="description">Description (Optional):</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+
+                        <!-- TIME STAMP -->
+                        <div class="form-group row">
+                            <label class="col-form-label">Date of Studying: <label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="todayDate" id="todayDate" value="today" checked>
+                                        <label class="form-check-label taskInput" for="todayDate">Today</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input taskInput" type="radio" name="anotherDate" id="anotherDate" value="another">
+                                        <label class="form-check-label" for="anotherDate">Another Date</label>
+                                    </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="date" class="col-form-label">Date of Studying: </label>
+                            <div class="col-auto">
+                                <input class="form-control" type="date" id="date" name="date">
+                            </div>
+                        </div>
 
                         <input type="submit" class="btn btn-primary" name="addTimeBtn" id="addTimeBtn" value="Add Time">
                     </form>

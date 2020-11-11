@@ -19,7 +19,7 @@
             <div class="modal-body">
                 <div class="container" id="timeContainer">
 
-                    <form>
+                    <form method="post" action="../Controller/add_time.php">
 
                         <!-- DROP DOWN MENU TO SELECT ONGOING TASK-->
                         <div class="form-row">
@@ -74,6 +74,7 @@
                             </div>
                         </div>
 
+                        <!-- SUBMIT BTN -->
                         <input type="submit" class="btn btn-primary" name="addTimeBtn" id="addTimeBtn" value="Add Time">
                     </form>
 

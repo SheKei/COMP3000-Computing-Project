@@ -73,4 +73,10 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //Get all ongoing tasks user has made
+    public function getAllOngoingTasks($user){
+        $sql = $this->procedure."get_tasks('".$user."')";
+        return $this->executeStatement($sql);
+    }
+
 }

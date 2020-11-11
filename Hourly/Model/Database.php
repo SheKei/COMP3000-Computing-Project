@@ -67,4 +67,10 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Edit Module
+    public function editModuleDetails($user, $moduleCode, $moduleName, $colour, $expectedHours, $currentCode){
+        $sql = $this->procedure."edit_module('".$user."','".$moduleCode."','".$moduleName."','".$colour."',".$expectedHours.",'".$currentCode."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
 }

@@ -19,7 +19,7 @@ class module_controller
         $this->database->addModule($this->username,$moduleCode, $moduleName, $colour, $expectedHours);
     }
 
-    //Display all available modules to view in nav bar
+    //Display modules as navigation items
     public function displaySideBar()
     {
         $modules = $this->database->getModuleCodes($this->username);
@@ -38,6 +38,7 @@ class module_controller
         return $this->database->getModuleDetails($this->username, $moduleCode);
     }
 
+    //Display module name and code as page heading
     public function displayPageHeading($moduleCode, $moduleName)
     {
         echo "<div id='heading' class='jumbotron jumbotron-fluid'>";
@@ -45,5 +46,10 @@ class module_controller
         echo "<p class='lead'>".$moduleName."</p>";
         echo "<button class='btn' data-toggle='modal' data-target='#viewModule'>VIEW MODULE DETAILS</button>";
         echo "</div>";
+    }
+
+    //Update module details
+    public function updateModuleDetails($module_code, $module_name, $colour_key, $expected_hours, $current_code){
+        $this->database->editModuleDetails($this->username, $module_code, $module_name, $colour_key, $expected_hours, $current_code);
     }
 }

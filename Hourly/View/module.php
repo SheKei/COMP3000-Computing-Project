@@ -51,11 +51,11 @@
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
                     <!-- Form to create module -->
-                        <form>
+                        <form method="post" action="../Controller/edit_module.php">
                             <input class="form-control userInput moduleInput" type="text" name="moduleCodeCurrent" id="moduleCodeCurrent" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleCode" id="moduleCode" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleName" id="moduleName" maxlength="50" value="<?php echo $name; ?>"><br>
-                            <label>Expected Hours: </label><input class="form-control moduleInput" type="number" name="hours" id="hours" value="200" min="1" max="999" value="<?php echo $hours; ?>"><br>
+                            <label>Expected Hours: </label><input class="form-control moduleInput" type="number" name="hours" id="hours" min="1" max="999" value="<?php echo $hours; ?>"><br>
                             <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label><input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
                             <div id="colourPicker">
                                 <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
@@ -68,7 +68,7 @@
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
                             </div>
                             <p id="requiredMessage"></p>
-                            <input type="submit" class="btn btn-primary" name="saveBtn" id="saveBtn" disabled value="Save Changes">
+                            <input type="submit" class="btn btn-primary" name="saveBtn" id="saveBtn" value="Save Changes">
                         </form>
 
                     </div>

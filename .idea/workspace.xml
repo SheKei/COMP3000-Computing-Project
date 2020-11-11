@@ -20,11 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71a2b593-7389-424d-b421-2fa320c9b745" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Hourly/Controller/edit_module.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/Controller/module_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Controller/module_controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/Model/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Model/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hourly/MySQL statements/editModule.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/MySQL statements/editModule.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hourly/Controller/edit_module.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/Controller/edit_module.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hourly/View/module.php" beforeDir="false" afterPath="$PROJECT_DIR$/Hourly/View/module.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +62,7 @@
       <updated>1604486424713</updated>
       <workItem from="1604486426020" duration="575000" />
       <workItem from="1604604650748" duration="1385000" />
-      <workItem from="1605098577331" duration="760000" />
+      <workItem from="1605098577331" duration="1289000" />
     </task>
     <servers />
   </component>

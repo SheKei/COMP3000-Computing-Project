@@ -79,10 +79,4 @@ class Database
         return $this->executeStatement($sql);
     }
 
-    //Insert time for a task
-    public function addTime($taskId, $theDuration, $theDescription, $theTimeStamp){
-        $sql = $this->procedure."add_time(".$taskId.",'".$theDuration."','".$theDescription."','".$theTimeStamp."')";
-        $this->executeStatementNoOutput($sql);
-    }
-
 }

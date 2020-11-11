@@ -73,4 +73,16 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //Get all ongoing tasks user has made
+    public function getAllOngoingTasks($user){
+        $sql = $this->procedure."get_tasks('".$user."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Insert time for a task
+    public function addTime($taskId, $theDuration, $theDescription, $theTimeStamp){
+        $sql = $this->procedure."add_time(".$taskId.",'".$theDuration."','".$theDescription."','".$theTimeStamp."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
 }

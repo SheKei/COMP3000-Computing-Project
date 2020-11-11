@@ -10,6 +10,8 @@ CREATE PROCEDURE COMP3000_STong.get_tasks(IN username VARCHAR(20))
 		COMP3000_STong.task
 		WHERE
 		user_id = username
+        AND
+        task_status = "Ongoing";
 	END //
 	
 DELIMITER

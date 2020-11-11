@@ -24,12 +24,16 @@
                 <li class="nav-item">
                     <button class="btn" data-toggle="modal" data-target="#taskModal">Add Task</button>
                 </li>
+                <li class="nav-item">
+                    <button class="btn" data-toggle="modal" data-target="#timeModal">Add Time</button>
+                </li>
             </ul>
         </nav>
 
     <?php
     include_once "../View/add_module.php";
-    include_once "../View/assign_task.php"
+    include_once "../View/assign_task.php";
+    include_once '../View/add_time.php';
     ?>
 
 

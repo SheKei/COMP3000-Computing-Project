@@ -77,7 +77,7 @@ class task_controller
                 //Colour code priority
                 $priority = $this->sortPriority($task->getPriorityLevel());
 
-                $checkbox = ' <input type="checkbox" value="'.$task->getTaskId().'" id="'.$task->getTaskId().'">';
+                $checkbox = ' <input class="complete" type="checkbox" value="'.$task->getTaskId().'" id="'.$task->getTaskId().'">';
 
                 $jQuery = "";
 

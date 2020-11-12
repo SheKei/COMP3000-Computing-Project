@@ -21,10 +21,9 @@ class task_controller
         //Get all modules user has made
         $modules = $this->database->getModuleCodes($this->username);
 
-        if($modules){
-            foreach($modules as $row)
-            {
-                echo "<option value='".$row['module_code']."'>".$row['module_code']." - ".$row['module_name']."</option>";
+        if ($modules) {
+            foreach ($modules as $row) {
+                echo "<option value='" . $row['module_code'] . "'>" . $row['module_code'] . " - " . $row['module_name'] . "</option>";
             }
         }
     }
@@ -40,20 +39,21 @@ class task_controller
     {
         $tasks = $this->database->getAllOngoingTasks($this->username);
 
-        if($tasks){
-            foreach($tasks as $row){
-                echo "<option value='".$row['task_id']."'>".$row['task_name']."(".$row['module_code'].")"."</option>";
+        if ($tasks) {
+            foreach ($tasks as $row) {
+                echo "<option value='" . $row['task_id'] . "'>" . $row['task_name'] . "(" . $row['module_code'] . ")" . "</option>";
             }
         }
     }
 
     //Get all ongoing tasks for one module
-    public function getAllOngoingModuleTasks($moduleCode){
-        $result= $this->database->getModuleOngoingTasks($this->username, $moduleCode);
+    public function getAllOngoingModuleTasks($moduleCode)
+    {
+        $result = $this->database->getModuleOngoingTasks($this->username, $moduleCode);
 
-        if($result){
+        if ($result) {
             $allTasks = [];
-            foreach($result as $row){
+            foreach ($result as $row) {
                 $task = new Task($row['task_id'], $row['task_name'], $row['task_category'], $row['due_date'], $row['due_time'], $row['priority_level']);
                 $allTasks[] = $task;
             }
@@ -63,26 +63,29 @@ class task_controller
     }
 
     //Sort tasks by their categories
-    public function sortTasks($module){
+    public function sortTasks($module)
+    {
         //Return array full of task objects
         $allTasks = $this->getAllOngoingModuleTasks($module);
 
-        if($allTasks){
-            foreach($allTasks as $task){
+        if ($allTasks) {
+            foreach ($allTasks as $task) {
                 //$this->appendToOngoing($task, $task->getTaskCategory());
                 $taskName = $task->getTaskName();
+                $date = $this->formatDate($task->getDueDate(), $task->getDueTime());
+
                 $jQuery = "";
 
                 switch ($task->getTaskCategory()) {
                     case "General":
                         //echo "Your favorite color is red!";
-                        $jQuery = "$('#generalTasks').append('<br><p>".$taskName."</p>');";
+                        $jQuery = "$('#generalTasks').append('<br><p>" . $taskName.$date. "</p>');";
                         break;
                     case "Revision":
-                        $jQuery = "$('#revisionTasks').append('<br><p>".$taskName."</p>');";
+                        $jQuery = "$('#revisionTasks').append('<br><p>" . $taskName.$date. "</p>');";
                         break;
                     default:
-                        $jQuery = "$('#courseworkTasks').append('<br><p>".$taskName."</p>');";
+                        $jQuery = "$('#courseworkTasks').append('<br><p>" . $taskName.$date. "</p>');";
                 }
 
                 echo $jQuery;
@@ -91,13 +94,18 @@ class task_controller
         }
     }
 
-    //Add CATEGORY tasks to CATEGORY section
-    public function appendToOngoing($task, $category){
-        $taskName = $task->getTaskName();
-        $id = "#".$category;
-        echo "<br>".$id;
-        $jquery = "$(".$id.").append('<br><p>".$taskName."</p>');";
-        echo $jquery;
+    public function formatDate($date, $time){
+        $d = date("Y", strtotime($date));
+        $icon = '<i class="far fa-calendar-alt"></i>';
+
+        if($d == "9999"){
+            $due = "<br>".$icon." anytime";
+        }else
+        {
+            $due = "<br> ".$icon." ".date("d/m h:m", strtotime($date." ".$time));
+        }
+
+        return $due;
     }
 
 

@@ -7,6 +7,7 @@ include_once '../Controller/task_controller.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
         #heading, #buttonDisplay{
             margin-left: 20%;
@@ -75,6 +76,7 @@ include_once '../Controller/task_controller.php';
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="pink"></i></button>
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
                             </div>
+
                             <p id="requiredMessage"></p>
                             <input type="submit" class="btn btn-primary" name="saveBtn" id="saveBtn" value="Save Changes">
                         </form>

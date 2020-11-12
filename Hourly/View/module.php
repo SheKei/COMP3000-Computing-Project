@@ -1,4 +1,7 @@
-<?php include_once '../Controller/module_controller.php'; ?>
+<?php
+include_once '../Controller/module_controller.php';
+include_once '../Controller/task_controller.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +23,12 @@
         include_once '../Public/side_navbar.php';
 
         $controller = new module_controller("dummy");
+        $taskControl = new task_controller('dummy');
+
+        //Get module details
         $result = $controller->displayModulePage($_GET['code']);
 
+        //If module details are returned
         if(isset($result))
         {
             foreach($result as $row){
@@ -31,6 +38,7 @@
                 //$code = $row['module_code']; FIX COLOUR ISSUE
 
                 $controller->displayPageHeading($code, $name);
+
             }
         }
 
@@ -77,6 +85,13 @@
             </div>
         </div>
     </div>
+
+    <?php include_once 'ongoing_tasks.php';?>
+    <script>
+        $(function(){
+            <?php $taskControl->sortTasks($_GET['code']); ?>
+        });
+    </script>
 
 </body>
 </html>

@@ -62,5 +62,46 @@ class task_controller
         return $allTasks;
     }
 
+    //Sort tasks by their categories
+    public function sortTasks($module){
+        //Return array full of task objects
+        $allTasks = $this->getAllOngoingModuleTasks($module);
+
+        if($allTasks){
+            foreach($allTasks as $task){
+                //$this->appendToOngoing($task, $task->getTaskCategory());
+                $taskName = $task->getTaskName();
+                $jQuery = "";
+
+                switch ($task->getTaskCategory()) {
+                    case "General":
+                        //echo "Your favorite color is red!";
+                        $jQuery = "$('#generalTasks').append('<br><p>".$taskName."</p>');";
+                        break;
+                    case "Revision":
+                        $jQuery = "$('#revisionTasks').append('<br><p>".$taskName."</p>');";
+                        break;
+                    default:
+                        $jQuery = "$('#courseworkTasks').append('<br><p>".$taskName."</p>');";
+                }
+
+                echo $jQuery;
+            }
+
+        }
+    }
+
+    //Add CATEGORY tasks to CATEGORY section
+    public function appendToOngoing($task, $category){
+        $taskName = $task->getTaskName();
+        $id = "#".$category;
+        echo "<br>".$id;
+        $jquery = "$(".$id.").append('<br><p>".$taskName."</p>');";
+        echo $jquery;
+    }
+
+
+
+
 
 }

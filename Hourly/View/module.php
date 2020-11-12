@@ -1,9 +1,13 @@
-<?php include_once '../Controller/module_controller.php'; ?>
+<?php
+include_once '../Controller/module_controller.php';
+include_once '../Controller/task_controller.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
         #heading, #buttonDisplay{
             margin-left: 20%;
@@ -20,8 +24,12 @@
         include_once '../Public/side_navbar.php';
 
         $controller = new module_controller("dummy");
+        $taskControl = new task_controller('dummy');
+
+        //Get module details
         $result = $controller->displayModulePage($_GET['code']);
 
+        //If module details are returned
         if(isset($result))
         {
             foreach($result as $row){
@@ -31,6 +39,7 @@
                 //$code = $row['module_code']; FIX COLOUR ISSUE
 
                 $controller->displayPageHeading($code, $name);
+
             }
         }
 
@@ -67,6 +76,7 @@
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="pink"></i></button>
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
                             </div>
+
                             <p id="requiredMessage"></p>
                             <input type="submit" class="btn btn-primary" name="saveBtn" id="saveBtn" value="Save Changes">
                         </form>
@@ -77,6 +87,13 @@
             </div>
         </div>
     </div>
+
+    <?php include_once 'ongoing_tasks.php';?>
+    <script>
+        $(function(){
+            <?php $taskControl->sortTasks($_GET['code']); ?>
+        });
+    </script>
 
 </body>
 </html>

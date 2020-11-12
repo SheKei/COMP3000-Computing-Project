@@ -85,4 +85,11 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //Get all ongoing tasks for one module
+    public function getModuleOngoingTasks($user, $module)
+    {
+        $sql = $this->procedure."get_ongoing_module_tasks('".$user."','".$module."')";
+        return $this->executeStatement($sql);
+    }
+
 }

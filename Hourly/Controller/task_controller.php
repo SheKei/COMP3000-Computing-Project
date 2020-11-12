@@ -70,16 +70,18 @@ class task_controller
 
         if ($allTasks) {
             foreach ($allTasks as $task) {
-                //$this->appendToOngoing($task, $task->getTaskCategory());
                 $taskName = $task->getTaskName();
+                //Format date
                 $date = $this->formatDate($task->getDueDate(), $task->getDueTime());
+
+                //Colour code priority
+                $priority = $this->sortPriority($task->getPriorityLevel());
 
                 $jQuery = "";
 
                 switch ($task->getTaskCategory()) {
                     case "General":
-                        //echo "Your favorite color is red!";
-                        $jQuery = "$('#generalTasks').append('<br><p>" . $taskName.$date. "</p>');";
+                        $jQuery = "$('#generalTasks').append('<br><p>" .$priority. $taskName.$date. "</p>');";
                         break;
                     case "Revision":
                         $jQuery = "$('#revisionTasks').append('<br><p>" . $taskName.$date. "</p>');";
@@ -94,18 +96,37 @@ class task_controller
         }
     }
 
+    //Display deadline date or state it is due anytime
     public function formatDate($date, $time){
         $d = date("Y", strtotime($date));
-        $icon = '<i class="far fa-calendar-alt"></i>';
+        $icon = '<i class="far fa-calendar-alt"></i>'; //Calender icon
 
         if($d == "9999"){
-            $due = "<br>".$icon." anytime";
+            $due = "<br>".$icon." Anytime";
         }else
         {
             $due = "<br> ".$icon." ".date("d/m h:m", strtotime($date." ".$time));
         }
 
         return $due;
+    }
+
+    //Colour code priority level
+    public function sortPriority($priority)
+    {
+        $colour = '';
+        switch ($priority) {
+            case "Low":
+                $colour = 'green';
+                break;
+            case "Medium":
+                $colour = 'orange';
+                break;
+            default:
+                $colour = 'red';
+
+        }
+        return $style = '<i style="color:'.$colour.'" class="fas fa-exclamation"></i> ';
     }
 
 

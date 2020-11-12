@@ -8,6 +8,8 @@ include_once '../Controller/task_controller.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../JQuery/complete_task.js"></script>
     <style>
         #heading, #buttonDisplay{
             margin-left: 20%;

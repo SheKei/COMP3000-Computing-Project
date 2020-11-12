@@ -150,7 +150,9 @@ class task_controller
         echo "</div>";//id=task->getTaskId()
     }
 
-
+    public function completeTask($taskId){
+        $this->database->completeTask($this->username, $taskId);
+    }
 
 
 

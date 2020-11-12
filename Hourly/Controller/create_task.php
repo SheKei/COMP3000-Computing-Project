@@ -28,3 +28,9 @@ if(isset($_POST['addTaskBtn'])){
 
 
 }
+
+if(isset($_GET['task'])){
+    $controller = new task_controller('dummy');
+    $controller->completeTask($_GET['task']);
+    header('Location: ../View/home.php');
+}

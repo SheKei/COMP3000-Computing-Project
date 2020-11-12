@@ -5,7 +5,7 @@ $(function(){
         //Get the id of the checkbox to find the task
         let theId = this.id;
 
-        
+
 
 
     });

@@ -92,4 +92,11 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Mark an ongoing task as complete
+    public function completeTask($user, $taskId)
+    {
+        $sql = $this->procedure."complete_task('".$user."',".$taskId.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
 }

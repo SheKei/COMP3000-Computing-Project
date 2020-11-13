@@ -14,6 +14,7 @@ $(function(){
         //Find which input field is being typed into
         let theId = event.target.id;
 
+        //Find location to output message to
         switch (theId) {
             case "moduleCode": //If adding module
                 $("#codeChars").html(message);

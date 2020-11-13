@@ -7,9 +7,14 @@ $(function(){
         //Use id to extract colour value
         let colour = $("#" + theId).css("color");
 
-        //Display the chosen colour in input box
-        $("#keyColour").css("color", colour);
-        $("#thisColour").val(colour);
+        //Check if on add module page or edit module page and output to appropriate page
+        if($("#"+theId).hasClass("fas fa-circle fa-3x edit")){
+            $("#theKeyColour").css("color", colour);
+            $("#theColour").val(colour);
+        }else{
+            $("#keyColour").css("color", colour);
+            $("#thisColour").val(colour);
+        }
     });
 
     //Check if all fields have been filled in before creating a module

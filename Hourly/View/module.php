@@ -69,16 +69,16 @@ include_once '../Controller/task_controller.php';
                             <label>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Name: <p id="editNameChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="name" id="name" maxlength="50" value="<?php echo $name; ?>"><br>
                             <label>Expected Hours: </label><input class="form-control moduleInput viewModule" type="number" name="hour" id="hour" min="1" max="999" value="<?php echo $hours; ?>"><br>
-                            <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label><input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
+                            <label>Module Colour: <i class="fas fa-circle" id="theKeyColour"></i></label><input type="text" class="form-control" name="theColour" id="theColour"><br><br>
                             <div id="colourPicker">
-                                <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="blue"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="green"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="orange"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="purple"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="pink"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
+                                <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="blackC"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="redC"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="blueC"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="greenC"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="orangeC"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="purpleC"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="pinkC"></i></button>
+                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="yellowC"></i></button>
                             </div>
 
                             <p id="requiredMessage"></p>

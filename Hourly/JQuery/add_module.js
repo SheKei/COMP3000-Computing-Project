@@ -2,15 +2,14 @@ $(function(){
     $(".colourBtn").click(function(){
 
         //Find the id of the button that was clicked
-        let theId = this.id;
-        theId = "#" + theId;
+        let theId = event.target.id;
 
         //Use id to extract colour value
-        let colour = $(theId).css("color");
+        let colour = $("#" + theId).css("color");
 
         //Display the chosen colour in input box
         $("#keyColour").css("color", colour);
-        //$("#colour").val("here");
+        $("#thisColour").val("here");
     });
 
     //Check if all fields have been filled in before creating a module

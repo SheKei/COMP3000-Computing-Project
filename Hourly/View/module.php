@@ -1,6 +1,35 @@
 <?php
 include_once '../Controller/module_controller.php';
 include_once '../Controller/task_controller.php';
+
+if(isset($_GET['code']))
+{
+    include_once '../Public/top_navbar.php';
+    include_once '../Public/side_navbar.php';
+
+    $controller = new module_controller("dummy");
+    $taskControl = new task_controller('dummy');
+
+    //Get module details
+    $result = $controller->displayModulePage($_GET['code']);
+
+    //If module details are returned
+    if(isset($result))
+    {
+        foreach($result as $row){
+            $code = $row['module_code'];
+            $name = $row['module_name'];
+            $hours = $row['expected_hours'];
+            $colour = $row['colour_key'];
+
+            $controller->displayPageHeading($code, $name);
+
+        }
+    }
+
+}else{
+    header('Location: home.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,41 +46,12 @@ include_once '../Controller/task_controller.php';
             margin-left: 20%;
         }
 
+        #theKeyColour{color: <?php echo $colour; ?>}
+
         #moduleCodeCurrent{display:none;}
     </style>
 </head>
 <body>
-<?php
-    if(isset($_GET['code']))
-    {
-        include_once '../Public/top_navbar.php';
-        include_once '../Public/side_navbar.php';
-
-        $controller = new module_controller("dummy");
-        $taskControl = new task_controller('dummy');
-
-        //Get module details
-        $result = $controller->displayModulePage($_GET['code']);
-
-        //If module details are returned
-        if(isset($result))
-        {
-            foreach($result as $row){
-                $code = $row['module_code'];
-                $name = $row['module_name'];
-                $hours = $row['expected_hours'];
-                //$code = $row['module_code']; FIX COLOUR ISSUE
-
-                $controller->displayPageHeading($code, $name);
-
-            }
-        }
-
-    }else{
-        header('Location: home.php');
-    }
-?>
-
         <div class="modal fade" id="viewModule">
             <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">

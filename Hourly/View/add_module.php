@@ -13,6 +13,8 @@
         #yellow, #yellowC{color:#F8EA8C;}
         #orange, #orangeC{color:#FF9636;}
         #red, #redC{color:#FF5C4D;}
+
+        #theColour, #thisColour{display: none;}
     </style>
 </head>
 <body>

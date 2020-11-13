@@ -12,18 +12,25 @@ $(function(){
         let message = "("+ remaining +" Characters Remaining)";
 
         //Find which input field is being typed into
-        let theId = this.id;
+        let theId = event.target.id;
 
-        //Output chars remaining message below field
-        if(theId == "moduleCode"){
-            $("#codeChars").html(message);
-        }
-        else if(theId == "moduleName"){
-            $("#nameChars").html(message);
-        }
-        else if(theId == "taskName")
-        {
-            $("#taskNameChars").html(message);
+        switch (theId) {
+            case "moduleCode": //If adding module
+                $("#codeChars").html(message);
+                break;
+            case "moduleName":
+                $("#nameChars").html(message);
+                break;
+            case "taskName":
+                $("#taskNameChars").html(message);
+                break;
+            case "code": //If viewing module details
+                $("#editCodeChars").html(message);
+                break;
+            case "name":
+                $("#editNameChars").html(message);
+                break;
+
         }
     });
 });

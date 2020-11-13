@@ -10,6 +10,8 @@ include_once '../Controller/task_controller.php';
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JQuery/complete_task.js"></script>
+    <script src="../JQuery/add_module.js"></script>
+    <script src="../JQuery/validating_input.js"></script>
     <style>
         #heading, #buttonDisplay{
             margin-left: 20%;
@@ -64,9 +66,9 @@ include_once '../Controller/task_controller.php';
                     <!-- Form to create module -->
                         <form method="post" action="../Controller/edit_module.php">
                             <input class="form-control userInput moduleInput" type="text" name="moduleCodeCurrent" id="moduleCodeCurrent" maxlength="50" value="<?php echo $code; ?>"><br>
-                            <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleCode" id="moduleCode" maxlength="50" value="<?php echo $code; ?>"><br>
-                            <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleName" id="moduleName" maxlength="50" value="<?php echo $name; ?>"><br>
-                            <label>Expected Hours: </label><input class="form-control moduleInput" type="number" name="hours" id="hours" min="1" max="999" value="<?php echo $hours; ?>"><br>
+                            <label>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $code; ?>"><br>
+                            <label>Module Name: <p id="editNameChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="name" id="name" maxlength="50" value="<?php echo $name; ?>"><br>
+                            <label>Expected Hours: </label><input class="form-control moduleInput viewModule" type="number" name="hour" id="hour" min="1" max="999" value="<?php echo $hours; ?>"><br>
                             <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label><input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
                             <div id="colourPicker">
                                 <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
@@ -80,7 +82,7 @@ include_once '../Controller/task_controller.php';
                             </div>
 
                             <p id="requiredMessage"></p>
-                            <input type="submit" class="btn btn-primary" name="saveBtn" id="saveBtn" value="Save Changes">
+                            <input type="submit" class="btn btn-primary submitBtn" name="saveBtn" id="saveBtn" value="Save Changes">
                         </form>
 
                     </div>

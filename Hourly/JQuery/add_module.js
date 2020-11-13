@@ -14,7 +14,7 @@ $(function(){
 
     //Check if all fields have been filled in before creating a module
     $(".moduleInput").change(function(){
-
+        console.log("here");
         $("#requiredMessage").html("")
 
         let moduleCode = $("#moduleCode").val();
@@ -23,11 +23,11 @@ $(function(){
 
         if(moduleCode == "" || moduleName == "" || moduleHours == ""){
             $("#requiredMessage").html("All fields are required to create a module!");
-            $("#addModuleBtn").prop("disabled", true); //Keep btn disabled
+            $(".submitBtn").prop("disabled", true); //Keep btn disabled
         }
         else
         {
-            $("#addModuleBtn").prop("disabled", false); //Enable create btn
+            $(".submitBtn").prop("disabled", false); //Enable create btn
         }
     });
 });

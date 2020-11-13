@@ -1,4 +1,3 @@
-<script>
 $(function(){
 
     //If set deadline option is clicked

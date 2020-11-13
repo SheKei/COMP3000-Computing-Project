@@ -1,7 +1,6 @@
 $(function(){
     $(".colourBtn").click(function(){
 
-        console.log("here");
         //Find the id of the button that was clicked
         let theId = this.id;
         theId = "#" + theId;
@@ -22,7 +21,7 @@ $(function(){
         let moduleCode = $("#moduleCode").val();
         let moduleName = $("#moduleName").val();
         let moduleHours = $("#hours").val();
-        console.log(moduleCode);
+
         if(moduleCode == "" || moduleName == "" || moduleHours == ""){
             $("#requiredMessage").html("All fields are required to create a module!");
             $("#addModuleBtn").prop("disabled", true); //Keep btn disabled

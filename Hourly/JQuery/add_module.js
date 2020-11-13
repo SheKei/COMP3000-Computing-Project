@@ -19,20 +19,37 @@ $(function(){
 
     //Check if all fields have been filled in before creating a module
     $(".moduleInput").change(function(){
-        console.log("here");
-        $("#requiredMessage").html("")
 
-        let moduleCode = $("#moduleCode").val();
-        let moduleName = $("#moduleName").val();
-        let moduleHours = $("#hours").val();
+        $("#requiredMessage").html("");
+        $("#requiredMsg").html("");
+        let moduleCode, moduleName, moduleHours, msgId, btnId;
 
-        if(moduleCode == "" || moduleName == "" || moduleHours == ""){
-            $("#requiredMessage").html("All fields are required to create a module!");
-            $(".submitBtn").prop("disabled", true); //Keep btn disabled
+        let id = event.target.id;
+        if($("#"+id).hasClass("form-control userInput moduleInput viewModule")){
+            moduleCode = $("#code").val();
+            moduleName = $("#name").val();
+            moduleHours = $("#hour").val();
+            msgId = "requiredMsg";
+            btnId = "saveModuleBtn"
+        }
+        else{
+            moduleCode = $("#moduleCode").val();
+            moduleName = $("#moduleName").val();
+            moduleHours = $("#hours").val();
+            msgId = "requiredMessage";
+            btnId = "addModuleBtn";
+        }
+        console.log("hour " + moduleHours);
+
+        if(moduleCode == "" || moduleName == ""){
+            $("#" + msgId).html("All fields are required to create a module!");
+            $("#" + btnId).prop("disabled", true); //Keep btn disabled
+            console.log("empty");
         }
         else
         {
-            $(".submitBtn").prop("disabled", false); //Enable create btn
+            console.log("here");
+            $("#"+ btnId).prop("disabled", false); //Enable create btn
         }
     });
 });

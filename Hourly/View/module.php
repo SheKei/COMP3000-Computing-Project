@@ -68,7 +68,7 @@ if(isset($_GET['code']))
                             <input class="form-control userInput moduleInput" type="text" name="moduleCodeCurrent" id="moduleCodeCurrent" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Name: <p id="editNameChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="name" id="name" maxlength="50" value="<?php echo $name; ?>"><br>
-                            <label>Expected Hours: </label><input class="form-control moduleInput viewModule" type="number" name="hour" id="hour" min="1" max="999" value="<?php echo $hours; ?>"><br>
+                            <label>Expected Hours: </label><input class="form-control userInput moduleInput viewModule" type="number" name="hour" id="hour" min="1" max="999" value="<?php echo $hours; ?>"><br>
                             <label>Module Colour: <i class="fas fa-circle" id="theKeyColour"></i></label><input type="text" class="form-control" name="theColour" id="theColour"><br><br>
                             <div id="colourPicker">
                                 <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="blackC"></i></button>
@@ -81,8 +81,8 @@ if(isset($_GET['code']))
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="yellowC"></i></button>
                             </div>
 
-                            <p id="requiredMessage"></p>
-                            <input type="submit" class="btn btn-primary submitBtn" name="saveBtn" id="saveBtn" value="Save Changes">
+                            <p id="requiredMsg"></p>
+                            <input type="submit" class="btn btn-primary submitBtn" name="saveModuleBtn" id="saveModuleBtn" value="Save Changes">
                         </form>
 
                     </div>

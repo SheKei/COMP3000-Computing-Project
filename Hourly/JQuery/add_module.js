@@ -9,7 +9,7 @@ $(function(){
 
         //Display the chosen colour in input box
         $("#keyColour").css("color", colour);
-        $("#thisColour").val("here");
+        $("#thisColour").val(colour);
     });
 
     //Check if all fields have been filled in before creating a module

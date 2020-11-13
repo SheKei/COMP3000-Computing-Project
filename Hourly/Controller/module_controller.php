@@ -26,8 +26,8 @@ class module_controller
         //<a href="#" class="w3-bar-item w3-button">Link 1</a>
         if($modules){
             foreach($modules as $row){
-                $code = '"'.$row['module_code'].'"';
-                echo $link = '<a href="module.php?code=COMP3000'.$code.'" class="w3-bar-item w3-button">'.$row['module_code'].'-'.$row['module_name'].'</a>';
+                $code = $row['module_code'];
+                echo $link = '<a href="module.php?code='.$code.'" class="w3-bar-item w3-button">'.$row['module_code'].'-'.$row['module_name'].'</a>';
             }
         }
     }

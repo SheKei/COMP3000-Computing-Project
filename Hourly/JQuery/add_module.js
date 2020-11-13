@@ -1,8 +1,9 @@
+<script>
 $(function(){
     $(".colourBtn").click(function(){
 
         //Find the id of the button that was clicked
-        let theId = this.id;
+        let theId = event.target.id;
         theId = "#" + theId;
 
         //Use id to extract colour value

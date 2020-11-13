@@ -1,3 +1,4 @@
+<script>
 $(function(){
 
     //Inform user how many characters they have left
@@ -13,7 +14,7 @@ $(function(){
         let message = "("+ remaining +" Characters Remaining)";
 
         //Find which input field is being typed into
-        let theId = this.id;
+        let theId = event.target.id;
 
         //Output chars remaining message below field
         if(theId == "moduleCode"){

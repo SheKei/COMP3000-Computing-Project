@@ -99,4 +99,10 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //View further details of an individual task
+    public function getTaskDetails($taskId){
+        $sql = $this->procedure."get_task_details('".$taskId."')";
+        return $this->executeStatement($sql);
+    }
+
 }

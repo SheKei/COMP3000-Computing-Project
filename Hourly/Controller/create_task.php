@@ -42,6 +42,24 @@ if(isset($_GET['taskId'])){
     $task = $controller->getTaskDetails($_GET['taskId']);
 
     if($task){
-        echo $task->getTaskName();
+
+        echo //TASK NAME
+        '<div class="form-group row">
+         <label for="tName" class="col-form-label">Task Name: <p id="tNameChars"></p></label>
+         <div class="col-10">
+         <input class="form-control userInput taskInput" type="text" name="tName" id="tName" maxlength="150" value="'.$task->getTaskName().'">
+         </div>
+         </div>';
+
+        echo //MODULE ASSIGNMENT
+        '<div class="form-row">
+         <div class="form-group row">
+         <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
+         <div class="col-auto">
+         <select class="form-control" name="moduleCode" id="moduleCode">';
+         $controller->displayModuleChoices();
+         echo '</select></div></div>';
+
+
     }
 }

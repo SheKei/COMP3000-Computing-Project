@@ -57,6 +57,7 @@ if(isset($_GET['taskId'])){
          <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
          <div class="col-auto">
          <select class="form-control" name="moduleCode" id="moduleCode">';
+         echo '<option value="'.$task->getTaskCategory().'">'.$task->getTaskCategory().'</option>';
          $controller->displayModuleChoices();
          echo '</select></div></div>';
 

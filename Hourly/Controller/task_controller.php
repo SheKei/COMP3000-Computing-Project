@@ -65,7 +65,7 @@ class task_controller
     //Sort tasks by their categories
     public function sortTasks($module)
     {
-        //Return array full of task objects
+        //Return array full of task objects for a module
         $allTasks = $this->getAllOngoingModuleTasks($module);
 
         if ($allTasks) {
@@ -77,19 +77,24 @@ class task_controller
                 //Colour code priority
                 $priority = $this->sortPriority($task->getPriorityLevel());
 
+                //For marking a task complete
                 $checkbox = ' <input class="complete" type="checkbox" value="'.$task->getTaskId().'" id="'.$task->getTaskId().'">';
 
                 $jQuery = "";
 
+                //Output task under a category box
                 switch ($task->getTaskCategory()) {
                     case "General":
-                        $jQuery = "$('#generalTasks').append('<br><label>" .$priority. $taskName.$checkbox.$date. "</label>');";
+                        $jQuery = "$('#generalTasks').append('<br><label>" .$priority.'<button class="btn '.$module.'" data-toggle="modal" data-target="#viewTask">'.
+                            $taskName.'</button>'.$checkbox.$date. "</label>');";
                         break;
                     case "Revision":
-                        $jQuery = "$('#revisionTasks').append('<br><label>" .$priority. $taskName.$checkbox.$date. "</label>');";
+                        $jQuery = "$('#revisionTasks').append('<br><label>" .$priority.'<button class="btn '.$module.'" data-toggle="modal" data-target="#viewTask">'.
+                            $taskName.'</button>'.$checkbox.$date. "</label>');";
                         break;
                     default:
-                        $jQuery = "$('#courseworkTasks').append('<br><label>" .$priority. $taskName.$checkbox.$date. "</>');";
+                        $jQuery = "$('#courseworkTasks').append('<br><label>" .$priority.'<button class="btn '.$module.'" data-toggle="modal" data-target="#viewTask">'.
+                            $taskName.'</button>'.$checkbox.$date. "</>');";
                 }
 
                 echo $jQuery;
@@ -129,25 +134,6 @@ class task_controller
 
         }
         return $style = '<i style="color:'.$colour.'" class="fas fa-exclamation"></i> ';
-    }
-
-    public function viewTaskDetails($task)
-    {
-        echo '<div class="modal fade" id="'.$task->getTaskId().'">';
-            echo '<div class="modal-dialog modal-dialog-centered modal-xl">';
-                echo '<div class="modal-content">';
-
-                    echo '<div class="modal-body">';
-                        echo '<div class="container">';
-
-                        //SECTION TO DISPLAY TASK DETAILS
-
-
-                        echo "</div>"; //class='modal-body
-                    echo "</div>"; //class='container'
-                echo "</div>"; //class='modal-content'
-            echo "</div>";//class='modal-dialog'
-        echo "</div>";//id=task->getTaskId()
     }
 
     public function completeTask($taskId){

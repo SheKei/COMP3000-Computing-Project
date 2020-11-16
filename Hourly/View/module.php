@@ -1,6 +1,7 @@
 <?php
 include_once '../Controller/module_controller.php';
 include_once '../Controller/task_controller.php';
+include_once 'view_task.php'; //Pop-up page for viewing task details
 
 if(isset($_GET['code']))
 {

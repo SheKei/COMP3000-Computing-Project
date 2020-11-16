@@ -29,8 +29,19 @@ if(isset($_POST['addTaskBtn'])){
 
 }
 
+//User marks a task complete
 if(isset($_GET['task'])){
     $controller = new task_controller('dummy');
     $controller->completeTask($_GET['task']);
     header('Location: ../View/home.php');
+}
+
+//User views task details
+if(isset($_GET['taskId'])){
+    $controller = new task_controller('dummy');
+    $task = $controller->getTaskDetails($_GET['taskId']);
+
+    if($task){
+        echo $task->getTaskName();
+    }
 }

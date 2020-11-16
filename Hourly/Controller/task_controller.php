@@ -85,15 +85,18 @@ class task_controller
                 //Output task under a category box
                 switch ($task->getTaskCategory()) {
                     case "General":
-                        $jQuery = "$('#generalTasks').append('<br><label>" .$priority.'<button class="btn '.$module.'" data-toggle="modal" data-target="#viewTask">'.
+                        $jQuery = "$('#generalTasks').append('<br><label>" .$priority.'<button class="btn taskBtn" id="'.$task->getTaskId()
+                            .'" data-toggle="modal" data-target="#viewTask">'.
                             $taskName.'</button>'.$checkbox.$date. "</label>');";
                         break;
                     case "Revision":
-                        $jQuery = "$('#revisionTasks').append('<br><label>" .$priority.'<button class="btn '.$module.'" data-toggle="modal" data-target="#viewTask">'.
+                        $jQuery = "$('#revisionTasks').append('<br><label>" .$priority.'<button class="btn taskBtn" id="'.$task->getTaskId()
+                            .' data-toggle="modal" data-target="#viewTask">'.
                             $taskName.'</button>'.$checkbox.$date. "</label>');";
                         break;
                     default:
-                        $jQuery = "$('#courseworkTasks').append('<br><label>" .$priority.'<button class="btn '.$module.'" data-toggle="modal" data-target="#viewTask">'.
+                        $jQuery = "$('#courseworkTasks').append('<br><label>" .$priority.'<button class="btn taskBtn" id="'.$task->getTaskId()
+                            .' data-toggle="modal" data-target="#viewTask">'.
                             $taskName.'</button>'.$checkbox.$date. "</>');";
                 }
 
@@ -134,6 +137,17 @@ class task_controller
 
         }
         return $style = '<i style="color:'.$colour.'" class="fas fa-exclamation"></i> ';
+    }
+
+    //Return details of a task
+    public function getTaskDetails($task_id){
+        $result = $this->database->getTaskDetails($task_id);
+        if($result){
+            foreach($result as $row){
+                $task = new Task($task_id, $row['task_name'], $row['task_category'], $row['due_date'], $row['due_time'], $row['priority_level']);
+            }
+        }
+        return $task;
     }
 
     public function completeTask($taskId){

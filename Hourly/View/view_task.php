@@ -21,7 +21,7 @@
                     <div class="container">
                     <!--FORM TO VIEW TASK DETAILS-->
 
-
+                    <p id="details"></p>
                     </div>
                 </div>
 

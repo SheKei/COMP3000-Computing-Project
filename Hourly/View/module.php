@@ -102,3 +102,33 @@ if(isset($_GET['code']))
 
 </body>
 </html>
+
+<!-- UNABLE TO PLACE SCRIPT INTO A SEPARATE FILE TO RUN -->
+<script>
+    $(function(){
+
+        //If user clicks on a task
+        $(".taskBtn").click(function(){
+
+            //Get the id of the task being viewed
+            let theId = event.target.id;
+
+            if(theId!=""){
+                let xmlhttp = new XMLHttpRequest();
+                //Wait for response
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        $("#details").html(this.responseText); //Output response
+                    }
+                }
+
+                //Send task id to retrieve details
+                xmlhttp.open("GET","../Controller/create_task.php?taskId="+theId,true);
+                xmlhttp.send();
+            }
+
+
+        });
+
+    });
+</script>

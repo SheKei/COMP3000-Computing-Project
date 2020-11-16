@@ -1,4 +1,3 @@
-<script>
 $(function(){
 
     //If user checks a box next to a task

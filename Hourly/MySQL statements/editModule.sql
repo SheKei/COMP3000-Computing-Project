@@ -1,6 +1,6 @@
 DELIMITER //
 
-CREATE PROCEDURE COMP3000_STong.edit_module(IN username VARCHAR(20), IN moduleCode VARCHAR(50), IN moduleName VARCHAR(50), IN colour VARCHAR(7), IN expectedHours INT(3), IN currentModule VARCHAR(50))
+CREATE PROCEDURE COMP3000_STong.edit_module(IN username VARCHAR(20), IN moduleCode VARCHAR(50), IN moduleName VARCHAR(50), IN colour VARCHAR(18), IN expectedHours INT(3), IN currentModule VARCHAR(50))
 	BEGIN
 		UPDATE COMP3000_STong.module
 			SET

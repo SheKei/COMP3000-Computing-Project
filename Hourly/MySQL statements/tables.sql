@@ -14,8 +14,8 @@ CREATE TABLE COMP3000_STong.module(
 	user_id VARCHAR(20) NOT NULL,
 	module_code VARCHAR(50) NOT NULL,
 	module_name VARCHAR(50) NOT NULL,
-	colour_key VARCHAR(7) NOT NULL,
-	expected_hours INT(3),
+	colour_key VARCHAR(18) NOT NULL,
+	expected_hours INT(3) NOT NULL,
 	CONSTRAINT PK_module PRIMARY KEY(user_id, module_code),
 	FOREIGN KEY (user_id) REFERENCES COMP3000_STong.user(user_id)
 );

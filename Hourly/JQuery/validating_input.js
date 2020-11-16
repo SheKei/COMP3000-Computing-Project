@@ -1,4 +1,3 @@
-<script>
 $(function(){
 
     //Inform user how many characters they have left
@@ -9,23 +8,30 @@ $(function(){
         let maxLength = $(this).attr('maxLength');
 
         //Calculate how many left
-        let remaining =  maxLength - currentLength - 2;
-        console.log(remaining);
+        let remaining =  maxLength - currentLength - 1;
         let message = "("+ remaining +" Characters Remaining)";
 
         //Find which input field is being typed into
         let theId = event.target.id;
 
-        //Output chars remaining message below field
-        if(theId == "moduleCode"){
-            $("#codeChars").html(message);
-        }
-        else if(theId == "moduleName"){
-            $("#nameChars").html(message);
-        }
-        else if(theId == "taskName")
-        {
-            $("#taskNameChars").html(message);
+        //Find location to output message to
+        switch (theId) {
+            case "moduleCode": //If adding module
+                $("#codeChars").html(message);
+                break;
+            case "moduleName":
+                $("#nameChars").html(message);
+                break;
+            case "taskName":
+                $("#taskNameChars").html(message);
+                break;
+            case "code": //If viewing module details
+                $("#editCodeChars").html(message);
+                break;
+            case "name":
+                $("#editNameChars").html(message);
+                break;
+
         }
     });
 });

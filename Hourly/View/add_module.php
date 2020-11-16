@@ -6,13 +6,15 @@
     <script src="../JQuery/add_module.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
-        #blue{color:#0E86D4;}
-        #pink{color:#FFAEBC;}
-        #green{color:#B4F8C8;}
-        #purple{color:#C26DBC;}
-        #yellow{color:#F8EA8C;}
-        #orange{color:#FF9636;}
-        #red{color:#FF5C4D;}
+        #blue, #blueC{color:#0E86D4;}
+        #pink, #pinkC{color:#FFAEBC;}
+        #green, #greenC{color:#B4F8C8;}
+        #purple, #purpleC{color:#C26DBC;}
+        #yellow, #yellowC{color:#F8EA8C;}
+        #orange, #orangeC{color:#FF9636;}
+        #red, #redC{color:#FF5C4D;}
+
+        #thisColour{display: none;}
     </style>
 </head>
 <body>
@@ -31,12 +33,11 @@
 
                         <!-- Form to create module -->
                         <form method="post" action="../Controller/create_module.php">
-                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleCode" id="moduleCode" maxlength="50"><br>
-                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput" type="text" name="moduleName" id="moduleName" maxlength="50"><br>
-                        <label>Expected Hours: </label><input class="form-control moduleInput" type="number" name="hours" id="hours" value="200" min="1" max="999"><br>
+                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleCode" id="moduleCode" maxlength="50"><br>
+                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleName" id="moduleName" maxlength="50"><br>
+                        <label>Expected Hours: </label><input class="form-control moduleInput addModule" type="number" name="hours" id="hours" value="200" min="1" max="999"><br>
                         <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label><input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
                             <div id="colourPicker">
-                                <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="blue"></i></button>
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="green"></i></button>
@@ -46,7 +47,7 @@
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
                             </div>
                         <p id="requiredMessage"></p>
-                            <input type="submit" class="btn btn-primary" name="addModuleBtn" id="addModuleBtn" disabled value="Add Module">
+                            <input type="submit" class="btn btn-primary submitBtn" name="addModuleBtn" id="addModuleBtn" disabled value="Add Module">
                         </form>
 
                     </div>

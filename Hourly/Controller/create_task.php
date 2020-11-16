@@ -57,9 +57,23 @@ if(isset($_GET['taskId'])){
          <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
          <div class="col-auto">
          <select class="form-control" name="moduleCode" id="moduleCode">';
-         echo '<option value="'.$task->getTaskCategory().'">'.$task->getTaskCategory().'</option>';
+         echo '<option value="'.$task->getTaskCategory().'">'.'COMP3000'.'</option>';
          $controller->displayModuleChoices();
          echo '</select></div></div>';
+
+         echo //TASK CATEGORY
+         '<div class="form-group row">
+          <label for="taskCategory" id="categoryLabel" class="col-form-label">Task Category: <label>
+          <div class="col-auto">
+          <select class="form-control" name="taskCategory" id="taskCategory">';
+          echo '<option value="'.$task->getTaskCategory().'">'.$task->getTaskCategory().'</option>';
+          echo '<option value="General">General</option>
+          <option value="Revision">Revision</option>
+          <option value="Coursework">Coursework</option>
+          </select>
+          </div>
+          </div>
+          </div>';
 
 
     }

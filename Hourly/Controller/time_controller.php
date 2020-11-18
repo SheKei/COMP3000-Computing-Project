@@ -37,7 +37,8 @@ class time_controller
     public function outputTimes($times){
         echo '<section id="timings">';
         foreach($times as $time){
-            echo '<p>'.$time->getDuration().' hrs - '.'<i>'.$time->getDescription().' - </i> <b>'.$time->getTimestamp().'</b></p>';
+            $btn = '<button class="btn deleteTime" id="'.$time->getTimeId().'"><i class="fas fa-times"></i></button>';
+            echo '<p>'.$btn.$time->getDuration().' hrs - '.'<i>'.$time->getDescription().' - </i> <b>'.$time->getTimestamp().'</b></p>';
         }
         echo "</section>";
     }

@@ -1,5 +1,6 @@
 <?php
 include_once 'task_controller.php';
+include_once 'time_controller.php';
 
 if(isset($_POST['addTaskBtn'])){
 
@@ -39,6 +40,7 @@ if(isset($_GET['task'])){
 //User views task details
 if(isset($_GET['taskId'])){
     $controller = new task_controller('dummy');
+    $timeController = new time_controller('dummy');
     $task = $controller->getTaskDetails($_GET['taskId']);
 
     if($task){
@@ -98,7 +100,8 @@ if(isset($_GET['taskId'])){
               echo '<p>'.$task->getDueDate().' - '.$task->getDueTime().'</p>';
           }
           echo '</div>';
-
-
     }
+
+    //GET TIME SPENT ON SELECTED TASK
+    $timeController->outputTimes($timeController->getTaskTime($_GET['taskId']));
 }

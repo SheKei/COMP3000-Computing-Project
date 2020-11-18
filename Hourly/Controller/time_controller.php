@@ -42,4 +42,9 @@ class time_controller
         }
         echo "</section>";
     }
+
+    //Delete time spent on a task
+    public function deleteTime($taskId){
+        $this->database->deleteTime($taskId);
+    }
 }

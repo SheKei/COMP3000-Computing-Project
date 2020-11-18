@@ -111,4 +111,10 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Delete a time spent on a task
+    public function deleteTime($taskId){
+        $sql = $this->procedure."delete_task_time(".$taskId.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
 }

@@ -105,4 +105,10 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Get time spent on a selected task
+    public function getTaskTime($taskId){
+        $sql = $this->procedure."get_task_time(".$taskId.")";
+        return $this->executeStatement($sql);
+    }
+
 }

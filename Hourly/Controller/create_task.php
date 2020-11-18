@@ -71,9 +71,33 @@ if(isset($_GET['taskId'])){
           <option value="Revision">Revision</option>
           <option value="Coursework">Coursework</option>
           </select>
-          </div>
-          </div>
-          </div>';
+          </div></div>';
+
+          echo //PRIORITY LEVEL
+          '<div class="form-group row">
+          <label for="priorityLevel" class="col-form-label">Priority Level: <label>
+          <div class="col-auto">
+          <select class="form-control" name="priorityLevel" id="priorityLevel">';
+          echo '<option value="'.$task->getPriorityLevel().'">'.$task->getPriorityLevel().'</option>';
+          echo
+          '<option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          </select>
+          </div></div></div>';
+
+          echo //DEADLINE
+          ' <div class="form-group row">
+            <label class="col-form-label">Due Deadline: <label>';
+          //CHECK IF DUE ANYTIME
+          $d = date("Y", strtotime($task->getDueDate()));
+          if($d == "9999")
+          {
+              echo '<p>Due Anytime</p>';
+          }else{
+              echo '<p>'.$task->getDueDate().' - '.$task->getDueTime().'</p>';
+          }
+          echo '</div>';
 
 
     }

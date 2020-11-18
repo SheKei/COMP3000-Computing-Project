@@ -15,7 +15,13 @@
                 <div class="modal-body">
                     <div class="container">
                     <!--FORM TO VIEW TASK DETAILS-->
+                    <section id="taskDetails">
                     <p id="details"></p>
+                    </section>
+
+                    <section id="timeLogs">
+                        <p id="logs"></p>
+                    </section>
                     </div>
                 </div>
 

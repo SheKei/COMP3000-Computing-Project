@@ -118,7 +118,7 @@ if(isset($_GET['code']))
                 //Wait for response
                 xmlhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        $("#details").html(this.responseText); //Output response
+                        $("#details").html(this.responseText); //Output details of clicked task
                     }
                 }
 

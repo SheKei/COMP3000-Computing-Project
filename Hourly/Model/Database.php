@@ -99,4 +99,22 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //View further details of an individual task
+    public function getTaskDetails($taskId){
+        $sql = $this->procedure."get_task_details('".$taskId."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get time spent on a selected task
+    public function getTaskTime($taskId){
+        $sql = $this->procedure."get_task_time(".$taskId.")";
+        return $this->executeStatement($sql);
+    }
+
+    //Delete a time spent on a task
+    public function deleteTime($taskId){
+        $sql = $this->procedure."delete_task_time(".$taskId.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
 }

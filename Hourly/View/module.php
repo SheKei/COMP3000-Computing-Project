@@ -101,6 +101,7 @@ if(isset($_GET['code']))
     </script>
 
     <script src="../JQuery/complete_task.js"></script><!--IMPORT JQUERY TO MARK A TASK COMPLETE-->
+
 </body>
 </html>
 
@@ -128,8 +129,9 @@ if(isset($_GET['code']))
                 xmlhttp.send();
             }
 
-
         });
+
+
 
 
 

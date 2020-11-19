@@ -33,14 +33,34 @@ class time_controller
         return $times;
     }
 
-    //Output array of time logs spent on a task
+    //Output array of time logs spent on a task as paragraphs
     public function outputTimes($times){
         echo '<section id="timings">';
         foreach($times as $time){
             $btn = '<button class="btn deleteTime" id="'.$time->getTimeId().'"><i class="fas fa-times"></i></button>';
-            echo '<p>'.$btn.$time->getDuration().' hrs - '.'<i>'.$time->getDescription().' - </i> <b>'.$time->getTimestamp().'</b></p>';
+            echo '<p id="id'.$time->getTimeId().'">'.$btn.$time->getDuration().' hrs - '.'<i>'.$time->getDescription().' - </i> <b>'.$time->getTimestamp().'</b></p>';
         }
         echo "</section>";
+
+        echo //JQUERY TO DELETE A TIME
+        '<script>
+                $(function() {
+                    
+                    $(".deleteTime").click(function(){
+                    let timeId = this.id; //GET ID OF TIME TO BE DELETED
+                    
+                    let xmlhttp = new XMLHttpRequest();
+                
+                    xmlhttp.onreadystatechange = function() { //Wait for response
+                    if (this.readyState == 4 && this.status == 200) {
+                        $("#id"+timeId).addClass("delete"); //HIDE DELETED TIME 
+                        }
+                    }
+                    xmlhttp.open("GET","../Controller/add_time.php?taskId="+theId,true); //Send time id
+                    xmlhttp.send();
+                });
+            });
+        </script>';
     }
 
     //Delete time spent on a task

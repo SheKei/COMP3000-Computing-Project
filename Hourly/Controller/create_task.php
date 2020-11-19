@@ -37,6 +37,13 @@ if(isset($_GET['task'])){
     header('Location: ../View/home.php');
 }
 
+//User deletes a task
+if(isset($_GET['delTaskId'])){
+    $controller = new task_controller('dummy');
+    $controller->deleteTask($_GET['delTaskId']);
+    header('Location: ../View/home.php');
+}
+
 //User views task details
 if(isset($_GET['taskId'])){
     $controller = new task_controller('dummy');
@@ -100,6 +107,16 @@ if(isset($_GET['taskId'])){
               echo '<p>'.$task->getDueDate().' - '.$task->getDueTime().'</p>';
           }
           echo '</div>';
+
+          echo //DELETE TASK BTN
+          '<button class="btn deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
+
+          echo '<script>
+                $(".deleteTask").click(function(){
+                    let delTaskId = this.id; //Get id of task
+                    window.location.href = "../Controller/create_task.php?delTaskId="+delTaskId; //Send to controller 
+                });
+                </script>';
     }
 
     //GET TIME SPENT ON SELECTED TASK

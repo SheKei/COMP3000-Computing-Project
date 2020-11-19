@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../JQuery/delete_task.js"></script>
     <style>
+        .delete{display:none;}
     </style>
 </head>
 <body>
@@ -30,6 +30,7 @@
             </div>
         </div>
     </div>
+
 
 </body>
 </html>

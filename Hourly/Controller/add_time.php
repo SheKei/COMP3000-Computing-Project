@@ -1,10 +1,9 @@
 <?php
 include_once 'time_controller.php';
+$controller = new time_controller('dummy');
 
 //When user adds time to a task
 if(isset($_POST['addTimeBtn'])){
-    $controller = new time_controller('dummy');
-
     $duration = $_POST['hour'].":".$_POST['minute'];
     $timeStamp = "";
 
@@ -18,4 +17,10 @@ if(isset($_POST['addTimeBtn'])){
     $controller->add_time($_POST['taskName'], $duration, $_POST['description'], $timeStamp);
 
     header('Location: ../View/home.php');
+}
+echo '<script>alert("hi")</script>';
+//GET timeId to delete a time
+if(isset($_GET['timeId'])){
+
+    $controller->deleteTime($_GET['timeId']);
 }

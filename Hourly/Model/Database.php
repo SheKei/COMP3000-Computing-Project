@@ -112,8 +112,14 @@ class Database
     }
 
     //Delete a time spent on a task
-    public function deleteTime($taskId){
-        $sql = $this->procedure."delete_task_time(".$taskId.")";
+    public function deleteTime($timeId){
+        $sql = $this->procedure."delete_task_time(".$timeId.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Delete a task and time spent on it
+    public function deleteTask($taskId){
+        $sql = $this->procedure."delete_task(".$taskId.")";
         $this->executeStatementNoOutput($sql);
     }
 

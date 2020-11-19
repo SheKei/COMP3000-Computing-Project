@@ -41,8 +41,8 @@
                             <div class="form-group row">
                                 <div class="col-auto">
                                 <label for="time" class="col-form-label">Time spent: </label>
-                                <input class="form-control" type ="number" id="hour" name="hour"> <label for="hour">hour(s) </label>
-                                <input class="form-control" type="number" id="minute" name="minute"><label for="minute">minutes</label>
+                                <input class="form-control" type ="number" min="0" max="23" id="hour" placeholder="1" name="hour"> <label for="hour">hour(s) </label>
+                                <input class="form-control" type="number" min="0" max="60" placeholder="30" id="minute" name="minute"><label for="minute">minutes</label>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                         <!-- DESCRIPTION BOX -->
                         <div class="form-group">
                             <label for="description">Description (Optional):</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            <textarea class="form-control" placeholder="Finished practical 1" id="description" name="description" rows="3"></textarea>
                         </div>
 
                         <!-- TIME STAMP -->

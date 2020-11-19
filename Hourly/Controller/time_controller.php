@@ -48,23 +48,24 @@ class time_controller
                     
                     $(".deleteTime").click(function(){
                     let timeId = this.id; //GET ID OF TIME TO BE DELETED
-                    
-                    let xmlhttp = new XMLHttpRequest();
-                
-                    xmlhttp.onreadystatechange = function() { //Wait for response
-                    if (this.readyState == 4 && this.status == 200) {
-                        $("#id"+timeId).addClass("delete"); //HIDE DELETED TIME 
+                    if(timeId){
+                        let xml = new XMLHttpRequest();
+                        
+                        xml.onreadystatechange = function() { //Wait for response
+                        if (xml.readyState == 4 && xml.status == 200) {
+                            $("#id"+timeId).addClass("delete"); //HIDE DELETED TIME 
+                            }
                         }
+                        xml.open("GET","../Controller/add_time.php?timeId="+timeId,true); //Send time id to delete record
+                        xml.send();
                     }
-                    xmlhttp.open("GET","../Controller/add_time.php?taskId="+theId,true); //Send time id
-                    xmlhttp.send();
                 });
             });
         </script>';
     }
 
     //Delete time spent on a task
-    public function deleteTime($taskId){
-        $this->database->deleteTime($taskId);
+    public function deleteTime($timeId){
+        $this->database->deleteTime($timeId);
     }
 }

@@ -91,12 +91,12 @@ class task_controller
                         break;
                     case "Revision":
                         $jQuery = "$('#revisionTasks').append('<br><label>" .$priority.'<button class="btn taskBtn" id="'.$task->getTaskId()
-                            .' data-toggle="modal" data-target="#viewTask">'.
+                            .'" data-toggle="modal" data-target="#viewTask">'.
                             $taskName.'</button>'.$checkbox.$date. "</label>');";
                         break;
                     default:
                         $jQuery = "$('#courseworkTasks').append('<br><label>" .$priority.'<button class="btn taskBtn" id="'.$task->getTaskId()
-                            .' data-toggle="modal" data-target="#viewTask">'.
+                            .'" data-toggle="modal" data-target="#viewTask">'.
                             $taskName.'</button>'.$checkbox.$date. "</>');";
                 }
 

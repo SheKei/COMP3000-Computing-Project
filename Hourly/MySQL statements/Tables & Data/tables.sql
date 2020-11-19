@@ -18,6 +18,8 @@ CREATE TABLE COMP3000_STong.module(
 	expected_hours INT(3) NOT NULL,
 	CONSTRAINT PK_module PRIMARY KEY(user_id, module_code),
 	FOREIGN KEY (user_id) REFERENCES COMP3000_STong.user(user_id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE COMP3000_STong.reminder(
@@ -26,6 +28,8 @@ CREATE TABLE COMP3000_STong.reminder(
 	description VARCHAR(150) NOT NULL,
 	deadline DATETIME,
 	FOREIGN KEY (user_id) REFERENCES COMP3000_STong.user(user_id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE COMP3000_STong.class(
@@ -39,6 +43,8 @@ CREATE TABLE COMP3000_STong.class(
 	class_duration TIME NOT NULL,
 	CONSTRAINT FK_module FOREIGN KEY(user_id, module_code)
 	REFERENCES COMP3000_STong.module(user_id, module_code)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE COMP3000_STong.task(
@@ -52,7 +58,9 @@ CREATE TABLE COMP3000_STong.task(
 	due_time TIME,
 	priority_level VARCHAR(6),
 	CONSTRAINT FK_module_user FOREIGN KEY(user_id, module_code)
-	REFERENCES COMP3000_STong.module(user_id, module_code)
+	REFERENCES COMP3000_STong.module(user_id, module_code) 
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE COMP3000_STong.time_log(
@@ -62,6 +70,8 @@ CREATE TABLE COMP3000_STong.time_log(
 	description VARCHAR(150),
 	time_stamp DATE NOT NULL,
 	FOREIGN KEY (task_id) REFERENCES COMP3000_STong.task(task_id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE	
 );
 
 INSERT INTO `user` (`user_id`, `password`, `email`, `birth_date`, `daily_goal`, `weekly_goal`, `weekly_hours`, `daily_hours`, `report_subscription`) 

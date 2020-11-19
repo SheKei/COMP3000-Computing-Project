@@ -150,10 +150,14 @@ class task_controller
         return $task;
     }
 
+    //Update task status from Ongoing to Completed
     public function completeTask($taskId){
         $this->database->completeTask($this->username, $taskId);
     }
 
-
+    //Delete a task and time spent on it
+    public function deleteTask($taskId){
+        $this->database->deleteTask($taskId);
+    }
 
 }

@@ -1,9 +1,9 @@
 <?php
-include_once './module_controller.php';
+include_once './Module_Controller.php';
 
 //Use session instead
 $user = "dummy";
-$controller = new module_controller($user);
+$controller = new moduleController($user);
 
 //If create module btn clicked
 if (isset($_POST['addModuleBtn'])) {

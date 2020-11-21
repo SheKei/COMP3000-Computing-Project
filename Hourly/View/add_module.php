@@ -32,7 +32,7 @@
                     <div class="container" id="moduleContainer">
 
                         <!-- Form to create module -->
-                        <form method="post" action="../Controller/create_module.php">
+                        <form method="post" action="../Controller/moduleController.php">
                         <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleCode" id="moduleCode" maxlength="50"><br>
                         <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleName" id="moduleName" maxlength="50"><br>
                         <label>Expected Hours: </label><input class="form-control moduleInput addModule" type="number" name="hours" id="hours" value="200" min="1" max="999"><br>

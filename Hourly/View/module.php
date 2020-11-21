@@ -1,5 +1,5 @@
 <?php
-include_once '../Controller/module_controller.php';
+include_once '../Controller/Module_Controller.php';
 include_once '../Controller/task_controller.php';
 include_once 'view_task.php'; //Pop-up page for viewing task details
 
@@ -8,7 +8,7 @@ if(isset($_GET['code']))
     include_once '../Public/top_navbar.php';
     include_once '../Public/side_navbar.php';
 
-    $controller = new module_controller("dummy");
+    $controller = new Module_Controller("dummy");
     $taskControl = new task_controller('dummy');
 
     //Get module details
@@ -65,7 +65,7 @@ if(isset($_GET['code']))
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
                     <!-- Form to create module -->
-                        <form method="post" action="../Controller/create_module.php">
+                        <form method="post" action="../Controller/moduleController.php">
                             <input class="form-control userInput moduleInput" type="text" name="moduleCodeCurrent" id="moduleCodeCurrent" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Name: <p id="editNameChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="name" id="name" maxlength="50" value="<?php echo $name; ?>"><br>

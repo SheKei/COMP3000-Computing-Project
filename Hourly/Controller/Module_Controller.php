@@ -1,12 +1,12 @@
 <?php
 include_once "../Model/Database.php";
 
-class module_controller
+class Module_Controller
 {
     private $database;
     private $username;
     /**
-     * module_controller constructor.
+     * Module_Controller constructor.
      */
     public function __construct($user)
     {

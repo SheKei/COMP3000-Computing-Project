@@ -56,7 +56,7 @@ class Time_Controller
                             $("#id"+timeId).addClass("delete"); //HIDE DELETED TIME 
                             }
                         }
-                        xml.open("GET","../Controller/add_time.php?timeId="+timeId,true); //Send time id to delete record
+                        xml.open("GET","../Controller/timeController.php?timeId="+timeId,true); //Send time id to delete record
                         xml.send();
                     }
                 });

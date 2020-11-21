@@ -19,7 +19,7 @@
             <div class="modal-body">
                 <div class="container" id="timeContainer">
 
-                    <form method="post" action="../Controller/add_time.php">
+                    <form method="post" action="../Controller/timeController.php">
 
                         <!-- DROP DOWN MENU TO SELECT ONGOING TASK-->
                         <div class="form-row">

@@ -30,7 +30,7 @@
 
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
-                        <form method="post" action="../Controller/create_task.php">
+                        <form method="post" action="../Controller/taskController.php">
                         <!-- INPUT TASK NAME -->
                         <div class="form-group row">
                             <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p></label>

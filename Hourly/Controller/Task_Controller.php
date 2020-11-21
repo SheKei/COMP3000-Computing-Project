@@ -227,7 +227,7 @@ class Task_Controller
             echo '<script>
                 $(".deleteTask").click(function(){
                     let delTaskId = this.id; //Get id of task
-                    window.location.href = "../Controller/create_task.php?delTaskId="+delTaskId; //Send to controller 
+                    window.location.href = "../Controller/taskController.php?delTaskId="+delTaskId; //Send to controller 
                 });
                 </script>';
         }

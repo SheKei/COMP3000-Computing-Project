@@ -124,7 +124,7 @@ if(isset($_GET['code']))
                 }
 
                 //Send task id to retrieve details
-                xmlhttp.open("GET","../Controller/create_task.php?taskId="+theId,true);
+                xmlhttp.open("GET","../Controller/taskController.php?taskId="+theId,true);
                 xmlhttp.send();
             }
         });

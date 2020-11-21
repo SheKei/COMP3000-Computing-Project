@@ -147,8 +147,9 @@ class task_controller
                 $task = new Task($task_id, $row['task_name'], $row['task_category'], $row['due_date'], $row['due_time'], $row['priority_level']);
             }
         }
-        return $task;
+        $this->displayTaskDetails($task);
     }
+
 
     //Update task status from Ongoing to Completed
     public function completeTask($taskId){
@@ -159,5 +160,78 @@ class task_controller
     public function deleteTask($taskId){
         $this->database->deleteTask($taskId);
     }
+
+    //Display details of a task on a pop-up page
+    public function displayTaskDetails($task){
+        if($task){
+
+            echo //TASK NAME
+                '<div class="form-group row">
+         <label for="tName" class="col-form-label">Task Name: <p id="tNameChars"></p></label>
+         <div class="col-10">
+         <input class="form-control userInput taskInput" type="text" name="tName" id="tName" maxlength="150" value="'.$task->getTaskName().'">
+         </div>
+         </div>';
+
+            echo //MODULE ASSIGNMENT
+            '<div class="form-row">
+         <div class="form-group row">
+         <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
+         <div class="col-auto">
+         <select class="form-control" name="moduleCode" id="moduleCode">';
+            echo '<option value="'.$task->getTaskCategory().'">'.'COMP3000'.'</option>';
+            $this->displayModuleChoices();
+            echo '</select></div></div>';
+
+            echo //TASK CATEGORY
+            '<div class="form-group row">
+          <label for="taskCategory" id="categoryLabel" class="col-form-label">Task Category: <label>
+          <div class="col-auto">
+          <select class="form-control" name="taskCategory" id="taskCategory">';
+            echo '<option value="'.$task->getTaskCategory().'">'.$task->getTaskCategory().'</option>';
+            echo '<option value="General">General</option>
+          <option value="Revision">Revision</option>
+          <option value="Coursework">Coursework</option>
+          </select>
+          </div></div>';
+
+            echo //PRIORITY LEVEL
+            '<div class="form-group row">
+          <label for="priorityLevel" class="col-form-label">Priority Level: <label>
+          <div class="col-auto">
+          <select class="form-control" name="priorityLevel" id="priorityLevel">';
+            echo '<option value="'.$task->getPriorityLevel().'">'.$task->getPriorityLevel().'</option>';
+            echo
+            '<option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          </select>
+          </div></div></div>';
+
+            echo //DEADLINE
+            ' <div class="form-group row">
+            <label class="col-form-label">Due Deadline: <label>';
+            //CHECK IF DUE ANYTIME
+            $d = date("Y", strtotime($task->getDueDate()));
+            if($d == "9999")
+            {
+                echo '<p>Due Anytime</p>';
+            }else{
+                echo '<p>'.$task->getDueDate().' - '.$task->getDueTime().'</p>';
+            }
+            echo '</div>';
+
+            echo //DELETE TASK BTN
+                '<button class="btn deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
+
+            echo '<script>
+                $(".deleteTask").click(function(){
+                    let delTaskId = this.id; //Get id of task
+                    window.location.href = "../Controller/create_task.php?delTaskId="+delTaskId; //Send to controller 
+                });
+                </script>';
+        }
+    }
+
 
 }

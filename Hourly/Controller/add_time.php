@@ -1,6 +1,6 @@
 <?php
-include_once 'time_controller.php';
-$controller = new time_controller('dummy');
+include_once 'Time_Controller.php';
+$controller = new Time_Controller('dummy');
 
 //POST request add time to a task
 if(isset($_POST['addTimeBtn'])){

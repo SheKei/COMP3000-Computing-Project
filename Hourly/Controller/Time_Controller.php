@@ -2,12 +2,12 @@
 include_once '../Model/Database.php';
 include_once '../Model/Time.php';
 
-class time_controller
+class Time_Controller
 {
     private $username;
     private $database;
     /**
-     * time_controller constructor.
+     * Time_Controller constructor.
      */
     public function __construct($user)
     {

@@ -1,10 +1,10 @@
 <?php
 include_once 'Task_Controller.php';
-include_once 'time_controller.php';
+include_once 'Time_Controller.php';
 
 //Replace with session
 $controller = new Task_Controller("dummy");
-$timeController = new time_controller('dummy');
+$timeController = new Time_Controller('dummy');
 
 if(isset($_POST['addTaskBtn'])){
 

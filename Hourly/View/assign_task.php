@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../JQuery/assign_task.js"></script>
+    <script src="../JQuery/task_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
         #taskCategory, #moduleCode,  #moduleLabel{

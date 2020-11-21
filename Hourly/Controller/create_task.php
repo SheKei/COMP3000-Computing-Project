@@ -2,6 +2,10 @@
 include_once 'task_controller.php';
 include_once 'time_controller.php';
 
+//Replace with session
+$controller = new task_controller("dummy");
+$timeController = new time_controller('dummy');
+
 if(isset($_POST['addTaskBtn'])){
 
     $task_name = $_POST['taskName'];
@@ -9,8 +13,9 @@ if(isset($_POST['addTaskBtn'])){
     $task_category = $_POST['taskCategory'];
     $priority = $_POST['priorityOptions'];
 
+    //Check if user set a deadline
     if($_POST['dueDeadline'] == "dueAnytime"){
-        $due_date = "9999-12-30"; //Set to an extreme date
+        $due_date = "9999-12-30"; //Set to an extreme date if no deadline
         $due_time = "";
     }
     else
@@ -19,35 +24,27 @@ if(isset($_POST['addTaskBtn'])){
         $due_time = $_POST['dueTime'];
     }
 
-
-    //Replace with session
-    $controller = new task_controller("dummy");
     $controller->assignTask($module_code, $task_name, $task_category, $due_date, $due_time, $priority);
 
     //Go to module page once created
     header('Location: ../View/module.php?code='.$module_code);
-
-
 }
 
-//User marks a task complete
+//GET request to mark task complete
 if(isset($_GET['task'])){
-    $controller = new task_controller('dummy');
     $controller->completeTask($_GET['task']);
     header('Location: ../View/home.php');
 }
 
-//User deletes a task
+//GET request to delete task
 if(isset($_GET['delTaskId'])){
-    $controller = new task_controller('dummy');
     $controller->deleteTask($_GET['delTaskId']);
     header('Location: ../View/home.php');
 }
 
-//User views task details
+//GET request to view task details on a pop-up page
 if(isset($_GET['taskId'])){
-    $controller = new task_controller('dummy');
-    $timeController = new time_controller('dummy');
+
     $task = $controller->getTaskDetails($_GET['taskId']);
 
     if($task){

@@ -4,6 +4,6 @@ $(function(){
     $(".complete").click(function(){
         //Get the id of the checkbox to find the task
         let theId = event.target.id;
-        window.location.href = '../Controller/create_task.php?task='+theId;
+        window.location.href = '../Controller/taskController.php?task='+theId;
     });
 });

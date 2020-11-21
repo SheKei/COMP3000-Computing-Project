@@ -2,12 +2,12 @@
 include_once '../Model/Database.php';
 include_once '../Model/Time.php';
 
-class time_controller
+class Time_Controller
 {
     private $username;
     private $database;
     /**
-     * time_controller constructor.
+     * Time_Controller constructor.
      */
     public function __construct($user)
     {
@@ -56,7 +56,7 @@ class time_controller
                             $("#id"+timeId).addClass("delete"); //HIDE DELETED TIME 
                             }
                         }
-                        xml.open("GET","../Controller/add_time.php?timeId="+timeId,true); //Send time id to delete record
+                        xml.open("GET","../Controller/timeController.php?timeId="+timeId,true); //Send time id to delete record
                         xml.send();
                     }
                 });

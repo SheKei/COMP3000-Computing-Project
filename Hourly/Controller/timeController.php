@@ -1,8 +1,8 @@
 <?php
-include_once 'time_controller.php';
-$controller = new time_controller('dummy');
+include_once 'Time_Controller.php';
+$controller = new Time_Controller('dummy');
 
-//When user adds time to a task
+//POST request add time to a task
 if(isset($_POST['addTimeBtn'])){
     $duration = $_POST['hour'].":".$_POST['minute'];
     $timeStamp = "";
@@ -18,8 +18,8 @@ if(isset($_POST['addTimeBtn'])){
 
     header('Location: ../View/home.php');
 }
-echo '<script>alert("hi")</script>';
-//GET timeId to delete a time
+
+//GET request for timeId to delete a time
 if(isset($_GET['timeId'])){
 
     $controller->deleteTime($_GET['timeId']);

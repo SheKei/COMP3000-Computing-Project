@@ -1,10 +1,10 @@
-<?php include_once '../Controller/task_controller.php' ?>
+<?php include_once '../Controller/Task_Controller.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../JQuery/assign_task.js"></script>
+    <script src="../JQuery/task_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
         #taskCategory, #moduleCode,  #moduleLabel{
@@ -30,7 +30,7 @@
 
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
-                        <form method="post" action="../Controller/create_task.php">
+                        <form method="post" action="../Controller/taskController.php">
                         <!-- INPUT TASK NAME -->
                         <div class="form-group row">
                             <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p></label>
@@ -46,7 +46,7 @@
                                         <div class="col-auto">
                                             <select class="form-control" name="moduleCode" id="moduleCode">
                                                 <?php
-                                                $controller = new task_controller("dummy");
+                                                $controller = new Task_Controller("dummy");
                                                 $controller->displayModuleChoices();
                                                 ?>
                                             </select>

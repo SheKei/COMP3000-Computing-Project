@@ -1,5 +1,5 @@
 <?php
-include_once '../Controller/module_controller.php';
+include_once '../Controller/Module_Controller.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@ include_once '../Controller/module_controller.php';
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%;">
     <h3 class="w3-bar-item">Welcome</h3>
     <?php
-        $controller = new module_controller("dummy");
+        $controller = new Module_Controller("dummy");
         $controller->displaySideBar();
     ?>
 </div>

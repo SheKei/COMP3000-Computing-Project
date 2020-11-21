@@ -1,5 +1,6 @@
 <?php
 include_once "../Model/Database.php";
+include_once '../Model/Module.php';
 
 class Module_Controller
 {
@@ -35,7 +36,21 @@ class Module_Controller
     //Return with all details of selected module
     public function displayModulePage($moduleCode)
     {
-        return $this->database->getModuleDetails($this->username, $moduleCode);
+        $module ="";
+        $result = $this->database->getModuleDetails($this->username, $moduleCode);
+        if(isset($result))
+        {
+            foreach($result as $row){
+                $code = $row['module_code'];
+                $name = $row['module_name'];
+                $hours = $row['expected_hours'];
+                $colour = $row['colour_key'];
+
+                $this->displayPageHeading($code, $name);
+                $module = new Module($code, $name, $hours, $colour);
+            }
+        }
+        return $module;
     }
 
     //Display module name and code as page heading

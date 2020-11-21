@@ -20,7 +20,7 @@ if(isset($_GET['code']))
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JQuery/complete_task.js"></script>
-    <script src="../JQuery/add_module.js"></script>
+    <script src="../JQuery/module_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
         #heading, #buttonDisplay{

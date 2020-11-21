@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../JQuery/add_module.js"></script>
+    <script src="../JQuery/module_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
         #blue, #blueC{color:#0E86D4;}

@@ -22,3 +22,8 @@ if (isset($_POST['addModuleBtn'])) {
     header('Location: ../View/module.php?code='.$moduleCode);
 }
 
+//If edit module btn clicked
+if(isset($_POST['saveModuleBtn'])) {
+    $controller->updateModuleDetails($_POST['code'], $_POST['name'], $_POST['theColour'], $_POST['hour'], $_POST['moduleCodeCurrent']);
+    header('Location: ../View/module.php?code='.$_POST['code']);
+}

@@ -65,7 +65,7 @@ if(isset($_GET['code']))
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
                     <!-- Form to create module -->
-                        <form method="post" action="../Controller/edit_module.php">
+                        <form method="post" action="../Controller/create_module.php">
                             <input class="form-control userInput moduleInput" type="text" name="moduleCodeCurrent" id="moduleCodeCurrent" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $code; ?>"><br>
                             <label>Module Name: <p id="editNameChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="name" id="name" maxlength="50" value="<?php echo $name; ?>"><br>
@@ -108,7 +108,6 @@ if(isset($_GET['code']))
 <!-- UNABLE TO PLACE SCRIPT INTO A SEPARATE FILE TO RUN -->
 <script>
     $(function(){
-
         //If user clicks on a task
         $(".taskBtn").click(function(){
 
@@ -128,12 +127,6 @@ if(isset($_GET['code']))
                 xmlhttp.open("GET","../Controller/create_task.php?taskId="+theId,true);
                 xmlhttp.send();
             }
-
         });
-
-
-
-
-
     });
 </script>

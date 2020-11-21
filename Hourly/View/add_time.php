@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include_once '../Controller/task_controller.php';?>
+<?php include_once '../Controller/Task_Controller.php';?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
                                         <div class="col-auto">
                                             <select class="form-control" name="taskName" id="taskName">
                                                 <?php
-                                                $controller = new task_controller('dummy');
+                                                $controller = new Task_Controller('dummy');
                                                 $controller->displayOngoingTasks();
                                                 ?>
                                             </select>

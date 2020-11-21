@@ -2,13 +2,13 @@
 include_once '../Model/Database.php';
 include_once '../Model/Task.php';
 
-class task_controller
+class Task_Controller
 {
     private $database;
     private $username;
 
     /**
-     * task_controller constructor.
+     * Task_Controller constructor.
      */
     public function __construct($user)
     {

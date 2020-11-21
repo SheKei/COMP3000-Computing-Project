@@ -1,6 +1,6 @@
 <?php
 include_once '../Controller/Module_Controller.php';
-include_once '../Controller/task_controller.php';
+include_once '../Controller/Task_Controller.php';
 include_once 'view_task.php'; //Pop-up page for viewing task details
 
 if(isset($_GET['code']))
@@ -9,7 +9,7 @@ if(isset($_GET['code']))
     include_once '../Public/side_navbar.php';
 
     $controller = new Module_Controller("dummy");
-    $taskControl = new task_controller('dummy');
+    $taskControl = new Task_Controller('dummy');
 
     //Get module details
     $result = $controller->displayModulePage($_GET['code']);

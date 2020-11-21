@@ -1,4 +1,4 @@
-<?php include_once '../Controller/task_controller.php' ?>
+<?php include_once '../Controller/Task_Controller.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +46,7 @@
                                         <div class="col-auto">
                                             <select class="form-control" name="moduleCode" id="moduleCode">
                                                 <?php
-                                                $controller = new task_controller("dummy");
+                                                $controller = new Task_Controller("dummy");
                                                 $controller->displayModuleChoices();
                                                 ?>
                                             </select>

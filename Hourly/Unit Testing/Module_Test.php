@@ -4,13 +4,13 @@ include_once '../Controller/Module_Controller.php';
 
 use PHPUnit\Framework\TestCase;
 
-class Test extends TestCase
+class Module_Test extends TestCase
 {
     private $db;
     private $user;
     private $controller;
 
-
+    //MAKE SURE TO RUN FORTICLIENT TO TEST CALL OF DB PROCEDURES
     public function start(){
         $this->db = new Database();
         $this->user = "dummy";
@@ -32,11 +32,31 @@ class Test extends TestCase
         //Get module details from module code
         $module = $this->controller->displayModulePage("COMP3333");
 
-        //Test if details match
+        //ModuleTest if details match
         $this->assertEquals($module->getModuleCode(), "COMP3333");
         $this->assertEquals($module->getModuleName(), "Test Module");
         $this->assertEquals($module->getColour(), "rgb(33, 37, 41)");
         $this->assertEquals($module->getExpectedHours(), 300);
+    }
+
+    //Editing module details
+    public function test_edit_module(){
+        $moduleCode = "COMP3333";
+        $newModuleCode = $moduleCode;
+        $newModuleName = "New Test Module";
+        $colour = "rgb(33, 37, 41)";
+        $expectedHours = 300;
+
+        $this->start();
+
+        //Update
+        $this->db->editModuleDetails($this->user, $newModuleCode, $newModuleName, $colour, $expectedHours,$moduleCode);
+
+        //Retrieve back
+        $module = $this->controller->displayModulePage($moduleCode);
+
+        //Check if updated
+        $this->assertEquals($module->getModuleName(), "New Test Module");
     }
 
 }

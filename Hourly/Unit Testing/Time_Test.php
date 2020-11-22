@@ -31,7 +31,7 @@ class Time_Test extends TestCase
         $this->start();
 
         //Add test data
-        //$this->time_controller->add_time($taskId, $duration, $description, $timestamp);
+        $this->time_controller->add_time($taskId, $duration, $description, $timestamp);
 
         //Retrieve test data back in an array
         $result = $this->time_controller->getTaskTime($taskId);
@@ -41,5 +41,28 @@ class Time_Test extends TestCase
             $this->assertEquals($time->getDuration(), "01:00:00");
             $this->assertEquals($time->getTimestamp(), "2020-11-22");
         }
+    }
+
+    //Delete time
+    public function test_delete_time(){
+        $taskId = 8;
+
+        $this->start();
+
+        //Get time id
+        $sql = "SELECT time_id FROM COMP3000_STong.time_log WHERE description='Test Description'";
+        $result = $this->db->executeStatement($sql);
+        foreach($result as $row){
+            $timeId = $row['time_id'];
+        }
+
+        //Delete time
+        $this->db->deleteTime($timeId);
+
+        //Retrieve using same time id
+        $sql = "SELECT time_id FROM COMP3000_STong.time_log WHERE time_id=".$timeId;
+        $shouldBeNull = $this->db->executeStatement($sql);
+
+        $this->assertEmpty($shouldBeNull);
     }
 }

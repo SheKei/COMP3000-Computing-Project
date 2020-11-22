@@ -24,6 +24,7 @@ class Task_Test extends TestCase
     {
         //Get task id
         $sql = "SELECT task_id FROM COMP3000_STong.task WHERE task_name='Task Name'";
+        $this->start();
         $result = $this->db->executeStatement($sql);
         foreach($result as $row){
             $taskId = $row['task_id'];
@@ -34,13 +35,16 @@ class Task_Test extends TestCase
     public function addTestData(){
         $taskName = "Task Name";
         $taskCategory = "Revision";
-        $dueDate = "12-12-2020";
+        $dueDate = "2020-12-12";
         $dueTime = "13:00";
         $priorityLevel = "Medium";
 
+        $this->start();
+
         //Call controller to insert test data
-        //$this->task_controller->assignTask($this->moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
+        $this->task_controller->assignTask($this->moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
     }
+
 
     //Test retrieval of task details
     public function test_get_task(){
@@ -98,5 +102,18 @@ class Task_Test extends TestCase
         $highPriority = $this->task_controller->sortPriority("High");
         $expectedStyle = '<i style="color:red" class="fas fa-exclamation"></i> ';
         $this->assertEquals($highPriority, $expectedStyle);
+    }
+
+    public function test_delete_task(){
+        $this->start();
+        $this->addTestData();
+        $taskId = $this->returnId();
+
+        $this->task_controller->deleteTask($taskId);
+
+        $sql = "SELECT task_id FROM COMP3000_STong.task WHERE task_id=".$taskId;
+        $shouldBeNull = $this->db->executeStatement($sql);
+
+        $this->assertEmpty($shouldBeNull);
     }
 }

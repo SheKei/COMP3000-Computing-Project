@@ -20,21 +20,35 @@ class Task_Test extends TestCase
         $this->moduleCode = "COMP3333";
     }
 
-    //Test retrieval of task details
-    public function test_get_task(){
+    public function returnId()
+    {
+        //Get task id
+        $sql = "SELECT task_id FROM COMP3000_STong.task WHERE task_name='Task Name'";
+        $result = $this->db->executeStatement($sql);
+        foreach($result as $row){
+            $taskId = $row['task_id'];
+        }
+        return $taskId;
+    }
+
+    public function addTestData(){
         $taskName = "Task Name";
         $taskCategory = "Revision";
         $dueDate = "12-12-2020";
         $dueTime = "13:00";
         $priorityLevel = "Medium";
 
-        //Call controller to call db procedure
+        //Call controller to insert test data
         //$this->task_controller->assignTask($this->moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
+    }
 
+    //Test retrieval of task details
+    public function test_get_task(){
         $this->start();
+        $taskId = $this->returnId();
 
         //Task id for test data = 8
-        $result = $this->db->getTaskDetails(8);
+        $result = $this->db->getTaskDetails($taskId);
 
         if($result){
             foreach($result as $row){
@@ -50,4 +64,21 @@ class Task_Test extends TestCase
         $this->assertEquals($task->getDueDate(), "2020-12-12");
     }
 
+    //Updating task status from ongoing to complete
+    public function test_complete_task()
+    {
+        $this->start();
+        $taskId = $this->returnId();
+
+        //Update status
+        $this->task_controller->completeTask($taskId);
+
+        //Retrieve task status
+        $sql = "SELECT task_status FROM COMP3000_STong.task WHERE task_id=".$taskId;
+        $result = $this->db->executeStatement($sql);
+        foreach($result as $row){
+            $status = $row['task_status'];
+            $this->assertEquals($status, "Complete");
+        }
+    }
 }

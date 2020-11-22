@@ -81,4 +81,22 @@ class Task_Test extends TestCase
             $this->assertEquals($status, "Complete");
         }
     }
+
+    //Colour coding priority levels
+    public function test_sort_priority(){
+        $this->start();
+
+        //Test Priority
+        $lowPriority = $this->task_controller->sortPriority("Low");
+        $expectedStyle = '<i style="color:green" class="fas fa-exclamation"></i> ';
+        $this->assertEquals($lowPriority, $expectedStyle);
+
+        $mediumPriority = $this->task_controller->sortPriority("Medium");
+        $expectedStyle = '<i style="color:orange" class="fas fa-exclamation"></i> ';
+        $this->assertEquals($mediumPriority, $expectedStyle);
+
+        $highPriority = $this->task_controller->sortPriority("High");
+        $expectedStyle = '<i style="color:red" class="fas fa-exclamation"></i> ';
+        $this->assertEquals($highPriority, $expectedStyle);
+    }
 }

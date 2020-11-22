@@ -1,6 +1,5 @@
 <?php
 include_once '../Model/Database.php';
-include_once '../Controller/Module_Controller.php';
 include_once '../Controller/Task_Controller.php';
 include_once '../Model/Task.php';
 
@@ -10,7 +9,6 @@ class Task_Test extends TestCase
 {
     private $db;
     private $user;
-    private $module_controller;
     private $task_controller;
     private $moduleCode;
 
@@ -18,7 +16,6 @@ class Task_Test extends TestCase
     public function start(){
         $this->db = new Database();
         $this->user = "dummy";
-        $this->module_controller = new Module_Controller($this->user);
         $this->task_controller = new Task_Controller($this->user);
         $this->moduleCode = "COMP3333";
     }

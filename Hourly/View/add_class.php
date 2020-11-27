@@ -1,3 +1,4 @@
+<?php include_once '../Controller/taskController.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../JQuery/module_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
-    <style>
-        #blue, #blueC{color:#0E86D4;}
-        #pink, #pinkC{color:#FFAEBC;}
-        #green, #greenC{color:#B4F8C8;}
-        #purple, #purpleC{color:#C26DBC;}
-        #yellow, #yellowC{color:#F8EA8C;}
-        #orange, #orangeC{color:#FF9636;}
-        #red, #redC{color:#FF5C4D;}
 
-        #thisColour{display: none;}
+    <style>
+        label{font-size: 20px;}
     </style>
 </head>
 <body>
@@ -30,8 +24,90 @@
 
             <div class="modal-body">
                 <div class="container" >
+                    <form method="post">
+                    <!-- ASSIGN CLASS TO MODULE -->
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="moduleCode">Module:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="moduleCode" name="moduleCode" class="form-control">
+                                <?php
+                                $controller = new Task_Controller('dummy');
+                                $controller->displayModuleChoices();
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- CLASS NAME -->
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="className">Name:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input name="className" id="className" type="text" placeholder="Class Name" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- CLASS LOCATION -->
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="classRoom">Location:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input name="classRoom" id="classRoom" type="text" placeholder="Class Room" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- DAY CLASS OCCURS -->
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="classDay">Day:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="classDay" name="classDay" class="form-control">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- TIME CLASS STARTS -->
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="startTime">Start Time:</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input name="startTime" id="startTime" type="time" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- DURATION OF CLASS -->
+                    <div class="row">
 
+                        <div class="col-sm-2">
+                            <label>Class Duration:</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input name="hour" id="hour" type="number" class="form-control">
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="hour">hour(s)</label>
+                        </div>
 
+                        <div class="col-sm-2">
+                            <input name="minutes" id="minutes" type="number" class="form-control">
+                        </div>
+                        <div class="col-sm-1">
+                            <label for="minutes">minute(s)</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add Class</button>
+                    </form>
                 </div>
             </div>
 

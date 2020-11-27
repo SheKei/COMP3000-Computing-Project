@@ -11,10 +11,10 @@ class Class_Controller
      * @param $user
      * @param $database
      */
-    public function __construct($user, $database)
+    public function __construct($user)
     {
         $this->user = $user;
-        $this->database = $database;
+        $this->database = new Database();
     }
 
     //Add a class to timetable

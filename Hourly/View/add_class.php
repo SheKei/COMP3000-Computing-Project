@@ -24,7 +24,7 @@
 
             <div class="modal-body">
                 <div class="container" >
-                    <form method="post">
+                    <form method="post" action="../Controller/classController.php">
                     <!-- ASSIGN CLASS TO MODULE -->
                     <div class="row">
                         <div class="col-sm-2">
@@ -106,7 +106,7 @@
                             <label for="minutes">minute(s)</label>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Add Class</button>
+                    <button class="btn btn-primary" id="classBtn" name="classBtn" type="submit">Add Class</button>
                     </form>
                 </div>
             </div>

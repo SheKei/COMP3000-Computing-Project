@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <button class="btn" data-toggle="modal" data-target="#timeModal">Add Time</button>
                 </li>
+                <li class="nav-item">
+                    <button class="btn" data-toggle="modal" data-target="#classModal">Add Class</button>
+                </li>
             </ul>
         </nav>
 
@@ -34,6 +37,7 @@
     include_once "../View/add_module.php";
     include_once "../View/assign_task.php";
     include_once '../View/add_time.php';
+    include_once '../View/add_class.php';
     ?>
 
 

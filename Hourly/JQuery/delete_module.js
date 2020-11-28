@@ -3,6 +3,6 @@ $(function(){
     //User confirms deleting module
     $("#confirmDelete").click(function(){
         let moduleCode = $("#moduleCodeCurrent").val();
-        alert(moduleCode);
+        window.location.href = '../Controller/moduleController.php?module='+moduleCode;
     });
 });

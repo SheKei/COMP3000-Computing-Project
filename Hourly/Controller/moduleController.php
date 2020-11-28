@@ -3,7 +3,7 @@ include_once './Module_Controller.php';
 
 //Use session instead
 $user = "dummy";
-$controller = new moduleController($user);
+$controller = new Module_Controller($user);
 
 //If create module btn clicked
 if (isset($_POST['addModuleBtn'])) {
@@ -26,4 +26,11 @@ if (isset($_POST['addModuleBtn'])) {
 if(isset($_POST['saveModuleBtn'])) {
     $controller->updateModuleDetails($_POST['code'], $_POST['name'], $_POST['theColour'], $_POST['hour'], $_POST['moduleCodeCurrent']);
     header('Location: ../View/module.php?code='.$_POST['code']);
+}
+
+//GET request to delete module
+if(isset($_GET['module'])){
+    $controller->deleteModule($_GET['module']);
+    //Return to home page
+    header('Location: ../View/home.php');
 }

@@ -20,10 +20,9 @@
                     <button type="button" class="btn btn-info" id="cancel" data-dismiss="modal">CANCEL</button>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-
+    <script src="../JQuery/delete_module.js"></script>
 </body>
 </html>

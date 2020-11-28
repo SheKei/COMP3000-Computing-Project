@@ -56,7 +56,8 @@ if(isset($_GET['code']))
                         <p id="requiredMsg"></p>
                         <input type="submit" class="btn btn-primary submitBtn" name="saveModuleBtn" id="saveModuleBtn" value="Save Changes">
                     </form>
-
+                    <button type="button" class="btn btn-danger" id="deleteModule" name="deleteModule" data-toggle="modal" data-target="#deleteModuleWarning">Delete Module</button>
+                    <?php include_once 'delete_module.php';?>
                 </div>
             </div>
 

@@ -66,6 +66,11 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //Delete Module
+    public function deleteModule($user, $moduleCode){
+        $sql = $this->procedure."delete_module('".$user."','".$moduleCode."')";
+        $this->executeStatementNoOutput($sql);
+    }
 
     //Assign a task to a module
     public function assignTask($module_code, $user, $task_name, $task_category, $due_date, $due_time, $priority_level)
@@ -80,7 +85,7 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
-    //Get all ongoing tasks user has made
+    //Get all ongoing tasks user has made for all modules
     public function getAllOngoingTasks($user){
         $sql = $this->procedure."get_tasks('".$user."')";
         return $this->executeStatement($sql);
@@ -96,6 +101,12 @@ class Database
     public function getModuleOngoingTasks($user, $module)
     {
         $sql = $this->procedure."get_ongoing_module_tasks('".$user."','".$module."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get all completed tasks for one module
+    public function getModuleCompletedTasks($user, $module){
+        $sql = $this->procedure."get_completed_module_tasks('".$user."','".$module."')";
         return $this->executeStatement($sql);
     }
 

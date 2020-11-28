@@ -34,6 +34,10 @@ class Task_Controller
         $this->database->assignTask($moduleCode, $this->username, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
     }
 
+    public function editTask($moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel){
+        $this->database->editTask($moduleCode, $this->username, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
+    }
+
     //Display all ongoing tasks in a drop down menu for add time pop up page
     public function displayOngoingTasks()
     {
@@ -164,7 +168,8 @@ class Task_Controller
     //Display details of a task on a pop-up page
     public function displayTaskDetails($task){
         if($task){
-
+            echo '<form method="post" action="../Controller/taskController.php">';
+            echo '<input type="text" class="form-control" name="id" value="'.$task->getTaskId().'" readonly>';
             echo //TASK NAME
                 '<div class="form-group row">
          <label for="tName" class="col-form-label">Task Name: <p id="tNameChars"></p></label>
@@ -176,18 +181,18 @@ class Task_Controller
             echo //MODULE ASSIGNMENT
             '<div class="form-row">
          <div class="form-group row">
-         <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
+         <label for="module" id="moduleLabel" class="col-form-label">Assign to Module: <label>
          <div class="col-auto">
-         <select class="form-control" name="moduleCode" id="moduleCode">';
-            echo '<option value="'.$task->getTaskCategory().'">'.'COMP3000'.'</option>';
+         <select class="form-control" name="module" id="module">';
+            echo '<option value="COMP3000">'.'COMP3000'.'</option>';
             $this->displayModuleChoices();
             echo '</select></div></div>';
 
             echo //TASK CATEGORY
             '<div class="form-group row">
-          <label for="taskCategory" id="categoryLabel" class="col-form-label">Task Category: <label>
+          <label for="category" id="categoryLabel" class="col-form-label">Task Category: <label>
           <div class="col-auto">
-          <select class="form-control" name="taskCategory" id="taskCategory">';
+          <select class="form-control" name="category" id="category">';
             echo '<option value="'.$task->getTaskCategory().'">'.$task->getTaskCategory().'</option>';
             echo '<option value="General">General</option>
           <option value="Revision">Revision</option>
@@ -197,9 +202,9 @@ class Task_Controller
 
             echo //PRIORITY LEVEL
             '<div class="form-group row">
-          <label for="priorityLevel" class="col-form-label">Priority Level: <label>
+          <label for="priority" class="col-form-label">Priority Level: <label>
           <div class="col-auto">
-          <select class="form-control" name="priorityLevel" id="priorityLevel">';
+          <select class="form-control" name="priority" id="priority">';
             echo '<option value="'.$task->getPriorityLevel().'">'.$task->getPriorityLevel().'</option>';
             echo
             '<option value="Low">Low</option>
@@ -210,24 +215,60 @@ class Task_Controller
 
             echo //DEADLINE
             ' <div class="form-group row">
-            <label class="col-form-label">Due Deadline: <label>';
+              <label class="col-form-label">Due Deadline: <label>';
+
             //CHECK IF DUE ANYTIME
             $d = date("Y", strtotime($task->getDueDate()));
             if($d == "9999")
             {
-                echo '<p>Due Anytime</p>';
+                $due = 'Due Anytime';
             }else{
-                echo '<p>'.$task->getDueDate().' - '.$task->getDueTime().'</p>';
+                $due = $task->getDueDate().' - '.$task->getDueTime();
             }
+            echo'<div class="col"><input id="currentDue" type="text" class="form-control" value="'.$due.'" readonly></div>';
+            echo '<input type="text" name="date" id="date">';
+            echo '<input type="text" name="time" id="time">';
+            echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline">Edit Deadline</button></div>';
             echo '</div>';
 
+            //SECTION TO EDIT DEADLINE
+            echo '
+            <section id="newDeadline" class="hide">
+            <div class="form-group row">
+            <label for="newDate">New Date:</label>
+            <input type="date" id="newDate" name="newDate" class="form-control newDue">
+            <label for="newTime">New Time:</label>
+            <input type="time" name="newTime" id="newTime" class="form-control newDue">
+            </div>
+            </section>
+            ';
+
+            echo '<button type="submit" class="btn btn-primary" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
             echo //DELETE TASK BTN
-                '<button class="btn deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
+                '<button type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
 
             echo '<script>
                 $(".deleteTask").click(function(){
                     let delTaskId = this.id; //Get id of task
                     window.location.href = "../Controller/taskController.php?delTaskId="+delTaskId; //Send to controller 
+                });
+                
+                $("#changeDeadline").click(function(){
+                    $("#newDeadline").removeClass("hide");
+                });
+                
+                $(".newDue").change(function(){
+                    let dueId = this.id;
+                    let date = $("#newDate").val();
+                    let time = $("#newTime").val();
+                    
+                    if(dueId == "newDate"){
+                        $("#date").val(date);
+                    }else{
+                        $("#time").val(time);
+                    }
+                    
+                    $("#currentDue").val(date + " - " + time);
                 });
                 </script>';
         }

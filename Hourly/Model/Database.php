@@ -48,13 +48,6 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
-    //Assign a task to a module
-    public function assignTask($module_code, $user, $task_name, $task_category, $due_date, $due_time, $priority_level)
-    {
-        $sql = $this->procedure."add_task('".$user."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
-        $this->executeStatementNoOutput($sql);
-    }
-
     //Return all modules user has made
     public function getModuleCodes($user){
         $sql = $this->procedure."get_modules('".$user."')";
@@ -70,6 +63,20 @@ class Database
     //Edit Module
     public function editModuleDetails($user, $moduleCode, $moduleName, $colour, $expectedHours, $currentCode){
         $sql = $this->procedure."edit_module('".$user."','".$moduleCode."','".$moduleName."','".$colour."',".$expectedHours.",'".$currentCode."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+
+    //Assign a task to a module
+    public function assignTask($module_code, $user, $task_name, $task_category, $due_date, $due_time, $priority_level)
+    {
+        $sql = $this->procedure."add_task('".$user."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Edit ongoing task details
+    public function editTask($taskId, $module_code, $task_name, $task_category, $due_date, $due_time, $priority_level){
+        $sql = $this->procedure."edit_task('".$taskId."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
         $this->executeStatementNoOutput($sql);
     }
 

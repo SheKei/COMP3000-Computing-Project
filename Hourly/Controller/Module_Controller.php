@@ -67,4 +67,9 @@ class Module_Controller
     public function updateModuleDetails($module_code, $module_name, $colour_key, $expected_hours, $current_code){
         $this->database->editModuleDetails($this->username, $module_code, $module_name, $colour_key, $expected_hours, $current_code);
     }
+
+    //Delete module and all tasks
+    public function deleteModule($moduleCode){
+        $this->database->deleteModule($this->username, $moduleCode);
+    }
 }

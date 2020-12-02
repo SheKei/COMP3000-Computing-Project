@@ -6,6 +6,7 @@ include_once 'Time_Controller.php';
 $controller = new Task_Controller("dummy");
 $timeController = new Time_Controller('dummy');
 
+//Collect inputs to assign a task to module
 if(isset($_POST['addTaskBtn'])){
 
     $task_name = $_POST['taskName'];
@@ -28,6 +29,32 @@ if(isset($_POST['addTaskBtn'])){
 
     //Go to module page once created
     header('Location: ../View/module.php?code='.$module_code);
+}
+
+//Edit details of an ongoing task
+if(isset($_POST['editTaskBtn'])){
+
+    $taskId = $_POST['id'];
+    $task = $_POST['tName'];
+    $module = $_POST['module'];
+    $category = $_POST['category'];
+    $priority = $_POST['priority'];
+
+    //Check if user set a deadline
+    if($_POST['date'] == ""){
+        $due_date = "9999-12-30"; //Set to an extreme date if no deadline
+        $due_time = "";
+    }
+    else
+    {
+        $due_date = $_POST['dueDate'];
+        $due_time = $_POST['dueTime'];
+    }
+
+    $controller->editTask($taskId, $module, $task, $category, $due_date, $due_time, $priority);
+
+    //Go to module page once created
+    header('Location: ../View/module.php?code='.$module);
 }
 
 //GET request to mark task complete

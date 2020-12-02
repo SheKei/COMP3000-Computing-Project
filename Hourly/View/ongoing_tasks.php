@@ -23,6 +23,7 @@
 <body>
 
     <div class="container" id="ongoingTasksSection">
+        <h2>Ongoing Tasks</h2>
         <div class="row">
             <div class="col-lg category">
                 <h2 id="general">General</h2>

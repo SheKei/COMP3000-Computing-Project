@@ -39,6 +39,13 @@ if(isset($_GET['code']))
         });
     </script>
 
+    <?php include_once 'completed_tasks.php'; ?> <!-- IMPORT HTML TO VIEW COMPLETED TASKS -->
+    <script>
+        $(function(){
+            <?php $taskControl->displayCompletedTasks($_GET['code']); ?>
+        });
+    </script>
+
     <script src="../JQuery/complete_task.js"></script><!--IMPORT JQUERY TO MARK A TASK COMPLETE-->
 
 </body>

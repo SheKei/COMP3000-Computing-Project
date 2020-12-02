@@ -48,13 +48,6 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
-    //Assign a task to a module
-    public function assignTask($module_code, $user, $task_name, $task_category, $due_date, $due_time, $priority_level)
-    {
-        $sql = $this->procedure."add_task('".$user."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
-        $this->executeStatementNoOutput($sql);
-    }
-
     //Return all modules user has made
     public function getModuleCodes($user){
         $sql = $this->procedure."get_modules('".$user."')";
@@ -73,7 +66,26 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
-    //Get all ongoing tasks user has made
+    //Delete Module
+    public function deleteModule($user, $moduleCode){
+        $sql = $this->procedure."delete_module('".$user."','".$moduleCode."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Assign a task to a module
+    public function assignTask($module_code, $user, $task_name, $task_category, $due_date, $due_time, $priority_level)
+    {
+        $sql = $this->procedure."add_task('".$user."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Edit ongoing task details
+    public function editTask($taskId, $module_code, $task_name, $task_category, $due_date, $due_time, $priority_level){
+        $sql = $this->procedure."edit_task('".$taskId."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Get all ongoing tasks user has made for all modules
     public function getAllOngoingTasks($user){
         $sql = $this->procedure."get_tasks('".$user."')";
         return $this->executeStatement($sql);
@@ -88,7 +100,13 @@ class Database
     //Get all ongoing tasks for one module
     public function getModuleOngoingTasks($user, $module)
     {
-        $sql = $this->procedure."get_ongoing_module_tasks('".$user."','".$module."')";
+        $sql = $this->procedure."get_module_tasks('".$user."','".$module."','Ongoing')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get all completed tasks for one module
+    public function getModuleCompletedTasks($user, $module){
+        $sql = $this->procedure."get_module_tasks('".$user."','".$module."', 'Complete')";
         return $this->executeStatement($sql);
     }
 

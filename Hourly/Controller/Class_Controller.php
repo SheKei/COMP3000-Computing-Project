@@ -1,5 +1,7 @@
 <?php
 include_once '../Model/Database.php';
+include_once '../Model/Module_Class.php';
+include_once '../Model/Module_Assignment.php';
 
 class Class_Controller
 {
@@ -21,6 +23,44 @@ class Class_Controller
     public function addClass($module, $name, $room, $day, $time, $duration){
         $this->database->addClass($this->user, $module, $name, $room, $day, $time, $duration);
     }
+
+    //Return array of timetabled classes
+    public function getTimetable(){
+        $result = $this->database->getTimetable($this->user);
+        $classes = [];
+        if($result){
+            foreach($result as $row){
+                $class = new Module_Class($row['module_code'], $row['module_name'], $row['class_id'], $row['class_name'], $row['class_room'], $row['class_day'], $row['start_time'], $row['class_duration']);
+                $classes[] = $class;
+            }
+        }
+        return $classes;
+    }
+
+    //Get all modules to sort classes into
+    public function getModules(){
+        //Get all modules user has made
+        $result = $this->database->getModuleCodes($this->user);
+        $modules = [];
+        if ($result) {
+            foreach ($result as $row) {
+                $module = new Module_Assignment($row['module_code'], $row['module_name']);
+                $modules[] = $module;
+            }
+        }
+        return $modules;
+    }
+
+    public function displayModuleSections(){
+        $modules = $this->getModules();
+        if($modules){
+            foreach($modules as $module){
+                echo '<h1 id="'.$module->getModuleCode().'">'.$module->getModuleCode().' - '.$module->getModuleName().'</h1>';
+                echo '<hr class="my-4">';
+            }
+        }
+    }
+
 
 
 }

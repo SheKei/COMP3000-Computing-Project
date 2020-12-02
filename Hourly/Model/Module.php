@@ -1,12 +1,10 @@
 <?php
+include_once 'Module_Assignment.php';
 
-
-class Module
+class Module extends Module_Assignment
 {
-    private $moduleCode;
-    private $moduleName;
-    private $expectedHours;
-    private $colour;
+    protected $expectedHours;
+    protected $colour;
 
     /**
      * Module constructor.
@@ -23,15 +21,6 @@ class Module
         $this->colour = $colour;
     }
 
-    public function getModuleCode()
-    {
-        return $this->moduleCode;
-    }
-
-    public function getModuleName()
-    {
-        return $this->moduleName;
-    }
 
     public function getExpectedHours()
     {

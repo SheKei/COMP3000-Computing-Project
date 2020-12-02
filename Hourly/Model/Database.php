@@ -141,9 +141,15 @@ class Database
         $this->executeStatementNoOutput($this->procedure."delete_task(".$taskId.")");
     }
 
+    //Add class to timetable
     public function addClass($user, $module, $className, $classRoom, $classDay, $startTime, $classDuration){
         $sql = $this->procedure."add_class('".$user."','".$module."','".$className."','".$classRoom."','".$classDay."','".$startTime."','".$classDuration."')";
         $this->executeStatementNoOutput($sql);
     }
 
+    //Get all timetabled classes
+    public function getTimetable($user){
+        $sql = $this->procedure."get_all_classes('".$user."')";
+        return $this->executeStatement($sql);
+    }
 }

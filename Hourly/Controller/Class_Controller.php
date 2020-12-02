@@ -65,8 +65,7 @@ class Class_Controller
         $classes = $this->getTimetable();
         if($classes){
             foreach($classes as $class){
-                //$('#courseworkTasks').append
-                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getClassName().'</p>");';
+                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getStartTime().' - '.$class->getClassName().'</p>");';
             }
         }
     }

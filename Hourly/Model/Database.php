@@ -100,13 +100,13 @@ class Database
     //Get all ongoing tasks for one module
     public function getModuleOngoingTasks($user, $module)
     {
-        $sql = $this->procedure."get_ongoing_module_tasks('".$user."','".$module."')";
+        $sql = $this->procedure."get_module_tasks('".$user."','".$module."','Ongoing')";
         return $this->executeStatement($sql);
     }
 
     //Get all completed tasks for one module
     public function getModuleCompletedTasks($user, $module){
-        $sql = $this->procedure."get_completed_module_tasks('".$user."','".$module."')";
+        $sql = $this->procedure."get_module_tasks('".$user."','".$module."', 'Complete')";
         return $this->executeStatement($sql);
     }
 

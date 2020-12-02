@@ -1,6 +1,6 @@
 DELIMITER //
 
-CREATE PROCEDURE COMP3000_STong.get_ongoing_module_tasks(IN username VARCHAR(20), IN moduleCode VARCHAR(50))
+CREATE PROCEDURE COMP3000_STong.get_ongoing_module_tasks(IN username VARCHAR(20), IN moduleCode VARCHAR(50), IN taskStatus VARCHAR(10))
 	BEGIN
 		SELECT
 		task_id,
@@ -14,7 +14,7 @@ CREATE PROCEDURE COMP3000_STong.get_ongoing_module_tasks(IN username VARCHAR(20)
 		WHERE
 		user_id = username
         AND
-        task_status = "Ongoing"
+        task_status = taskStatus
 		AND
 		module_code = moduleCode
 		ORDER BY task_category;

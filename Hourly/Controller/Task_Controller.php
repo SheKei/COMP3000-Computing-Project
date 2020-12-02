@@ -165,6 +165,37 @@ class Task_Controller
         $this->database->deleteTask($taskId);
     }
 
+    public function displayCompletedTasks($module){
+        $results = $this->database->getModuleCompletedTasks($this->username,$module);
+        if($results){
+            foreach($results as $row){
+                $taskName = $row['task_name'];
+
+                $jQuery = "";
+
+                //Output task under a category box
+                switch ($row['task_category']) {
+                    case "General":
+                        $jQuery = "$('#completedGeneralTasks').append('<br><label><button class='btn taskBtn' id='".$row['task_id']
+                            ."' data-toggle='modal' data-target='#viewTask'>".
+                            $taskName."</button></label>');";
+                        break;
+                    case "Revision":
+                        $jQuery = "$('#completedRevisionTasks').append('<br><label><button class='btn taskBtn' id='".$row['task_id']
+                            ."' data-toggle='modal' data-target='#viewTask'>".
+                            $taskName."</button></label>');";
+                        break;
+                    default:
+                        $jQuery = "$('#completedCourseworkTasks').append('<br><label><button class='btn taskBtn' id='".$row['task_id']
+                            ."' data-toggle='modal' data-target='#viewTask'>".
+                            $taskName."</button></label>');";
+                }
+
+                echo $jQuery;
+            }
+        }
+    }
+
     //Display details of a task on a pop-up page
     public function displayTaskDetails($task){
         if($task){

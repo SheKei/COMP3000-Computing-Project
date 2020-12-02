@@ -14,6 +14,10 @@ $classController = new Class_Controller('dummy');
             margin-left: 25%;
             margin-top: 10%;
         }
+
+        .classes{
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -26,6 +30,11 @@ include_once '../Public/side_navbar.php';
 <div id="timetable" >
     <h1>Timetable</h1><br>
     <?php $classController->displayModuleSections(); ?>
+    <script>
+        $(function(){
+            <?php $classController->sortTimetableClasses(); ?>
+        });
+    </script>
 </div>
 
 </body>

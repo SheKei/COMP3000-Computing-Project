@@ -61,6 +61,16 @@ class Class_Controller
         }
     }
 
+    public function sortTimetableClasses(){
+        $classes = $this->getTimetable();
+        if($classes){
+            foreach($classes as $class){
+                //$('#courseworkTasks').append
+                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getClassName().'</p>");';
+            }
+        }
+    }
+
 
 
 }

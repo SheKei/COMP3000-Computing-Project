@@ -152,4 +152,10 @@ class Database
         $sql = $this->procedure."get_all_classes('".$user."')";
         return $this->executeStatement($sql);
     }
+
+    //Get details for a class
+    public function getClass($classId){
+        $sql = $this->procedure."get_class(".$classId.")";
+        return $this->executeStatement($sql);
+    }
 }

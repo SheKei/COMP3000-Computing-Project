@@ -45,4 +45,29 @@ include_once '../Public/side_navbar.php';
 </body>
 </html>
 
+<script>
+    $(function(){
+        //If user clicks on a task
+        $(".viewClassBtn").click(function(){
+
+            //Get the id of the task being viewed
+            let theId = event.target.id;
+
+            if(theId!=""){
+                let xmlhttp = new XMLHttpRequest();
+                //Wait for response
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        $("#classDetails").html(this.responseText); //Output details of clicked class
+                    }
+                }
+
+                //Send class id to retrieve details
+                xmlhttp.open("GET","../Controller/classController.php?classId="+theId,true);
+                xmlhttp.send();
+            }
+        });
+    });
+</script>
+
 

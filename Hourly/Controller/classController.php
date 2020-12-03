@@ -15,3 +15,8 @@ if (isset($_POST['classBtn'])) {
 
     header('Location: ../View/home.php');
 }
+
+//GET class id to retrieve details of a class
+if(isset($_GET['classId'])){
+    $controller->getClassDetails($_GET['classId']);
+}

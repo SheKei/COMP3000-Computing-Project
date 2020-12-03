@@ -72,6 +72,19 @@ class Class_Controller
         }
     }
 
+    public function getClassDetails($classId){
+        $result = $this->database->getClass($classId);
+        if($result){
+            echo '<form>';
+            foreach($result as $row){
+                echo '<label for="className">Class Name:</label><input class="form-control" id="theClassName" value="'.$row['class_name'].'">';
+
+
+            }
+            echo '</form>';
+        }
+    }
+
 
 
 }

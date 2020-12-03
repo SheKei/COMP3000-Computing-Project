@@ -15,6 +15,23 @@ include_once '../Public/top_navbar.php';
 include_once '../Public/side_navbar.php';
 ?>
 
+<div class="modal fade" id="viewClass">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="container">
+                    <!--FORM TO VIEW CLASS DETAILS-->
+                    <section id="classSection">
+                        <p id="classDetails"></p>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
 

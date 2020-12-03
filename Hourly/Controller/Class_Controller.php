@@ -63,9 +63,11 @@ class Class_Controller
 
     public function sortTimetableClasses(){
         $classes = $this->getTimetable();
-        if($classes){
+        if($classes){ //Button to bring pop-up page for class details
             foreach($classes as $class){
-                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getStartTime().' - '.$class->getClassName().'</p>");';
+                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getStartTime().
+                    ' - <button data-toggle=\"modal\" data-target=\"#viewClass\" class=\"btn viewClassBtn\" id=\"'.$class->getClassId().'\">'
+                    .$class->getClassName().'</p></p>");';
             }
         }
     }

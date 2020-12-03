@@ -158,4 +158,10 @@ class Database
         $sql = $this->procedure."get_class(".$classId.")";
         return $this->executeStatement($sql);
     }
+
+    //Update class
+    public function editClass($classId, $moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration){
+        $sql = $this->procedure."edit_class(".$classId.",'".$moduleCode."','".$className."','".$classRoom."','".$classDay."','".$startTime."','".$classDuration."')";
+        $this->executeStatementNoOutput($sql);
+    }
 }

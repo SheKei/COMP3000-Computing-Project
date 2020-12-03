@@ -23,6 +23,10 @@ $classController = new Class_Controller('dummy');
             margin-left: 20px;
         }
 
+        .hidden{
+            display: none;
+        }
+
     </style>
 </head>
 <body>

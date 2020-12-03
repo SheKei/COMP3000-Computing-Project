@@ -2,11 +2,13 @@
 include_once '../Model/Database.php';
 include_once '../Model/Module_Class.php';
 include_once '../Model/Module_Assignment.php';
+include_once '../Controller/taskController.php';
 
 class Class_Controller
 {
     private $user;
     private $database;
+    private $controller;
 
     /**
      * Class_Controller constructor.
@@ -17,11 +19,17 @@ class Class_Controller
     {
         $this->user = $user;
         $this->database = new Database();
+        $this->controller = new Task_Controller($user);
     }
 
     //Add a class to timetable
     public function addClass($module, $name, $room, $day, $time, $duration){
         $this->database->addClass($this->user, $module, $name, $room, $day, $time, $duration);
+    }
+
+    //Save edit of class
+    public function editClass($classId,$moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration){
+        $this->database->editClass($classId, $moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration);
     }
 
     //Return array of timetabled classes
@@ -75,13 +83,34 @@ class Class_Controller
     public function getClassDetails($classId){
         $result = $this->database->getClass($classId);
         if($result){
-            echo '<form>';
+            echo '<form method="post" action="../Controller/classController.php">';
             foreach($result as $row){
-                echo '<label for="className">Class Name:</label><input class="form-control" id="theClassName" value="'.$row['class_name'].'">';
+                //CLASS ID - HIDDEN
+                echo '<input class="form-control hidden"  name="idClass" value="'.$row['class_id'].'" readonly>';
 
+                //MODULE ASSIGNED TO
+                echo '<label for="moduleAssigned">Module:</label>
+                <select class="form-control" id="moduleAssigned" name="moduleAssigned">';
+                echo "<option value='" . $row['module_code'] . "'>" . $row['module_code'] . " - " . $row['module_name'] . "</option>";
+                $this->controller->displayModuleChoices();
+                echo '</select>';
 
+                //CLASS NAME
+                echo '<label for="theClassName">Class Name:</label><input type="text" class="form-control" name="theClassName" id="theClassName" value="'.$row['class_name'].'">';
+
+                //CLASS ROOM
+                echo '<label for="room">Location</label><input type="text" class="form-control" name="room" id="room" value="'.$row['class_room'].'">';
+
+                //CLASS DAY
+                echo '<label for="day">Day:</label><input type="text" class="form-control" id="day" name="day" value="'.$row['class_day'].'">';
+
+                //START TIME
+                echo '<label for="time">Start Time:</label><input type="time" class="form-control" name="time" id="name" value="'.$row['start_time'].'">';
+
+                //CLASS DURATION
+                echo '<label for="duration">Class Duration:</label><input type="text" id="duration" class="form-control" name="duration" value="'.$row['class_duration'].'">';
             }
-            echo '</form>';
+            echo '<button class="btn btn-default" type="submit" name="editClassBtn" id="editClassBtn">Save Edit</button></form>';
         }
     }
 

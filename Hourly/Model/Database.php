@@ -164,4 +164,10 @@ class Database
         $sql = $this->procedure."edit_class(".$classId.",'".$moduleCode."','".$className."','".$classRoom."','".$classDay."','".$startTime."','".$classDuration."')";
         $this->executeStatementNoOutput($sql);
     }
+
+    //Delete class
+    public function deleteClass($classId){
+        $sql = $this->procedure."delete_class(".$classId.")";
+        $this->executeStatementNoOutput($sql);
+    }
 }

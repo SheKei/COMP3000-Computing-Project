@@ -24,6 +24,11 @@ if(isset($_GET['classId'])){
 //POST request to save edit on class details
 if (isset($_POST['editClassBtn'])) {
     $controller->editClass($_POST['idClass'],$_POST['moduleAssigned'],$_POST['theClassName'], $_POST['room'], $_POST['day'], $_POST['time'], $_POST['duration']);
+    header('Location: ../View/timetable.php');
+}   //return to timetable page
 
+//GET request to delete class
+if(isset($_GET['deleteClassId'])){
+    $controller->deleteClass($_GET['deleteClassId']);
     header('Location: ../View/timetable.php');
 }

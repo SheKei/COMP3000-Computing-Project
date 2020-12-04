@@ -32,6 +32,11 @@ class Class_Controller
         $this->database->editClass($classId, $moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration);
     }
 
+    //Delete a class
+    public function deleteClass($classId){
+        $this->database->deleteClass($classId);
+    }
+
     //Return array of timetabled classes
     public function getTimetable(){
         $result = $this->database->getTimetable($this->user);

@@ -141,9 +141,33 @@ class Database
         $this->executeStatementNoOutput($this->procedure."delete_task(".$taskId.")");
     }
 
+    //Add class to timetable
     public function addClass($user, $module, $className, $classRoom, $classDay, $startTime, $classDuration){
         $sql = $this->procedure."add_class('".$user."','".$module."','".$className."','".$classRoom."','".$classDay."','".$startTime."','".$classDuration."')";
         $this->executeStatementNoOutput($sql);
     }
 
+    //Get all timetabled classes
+    public function getTimetable($user){
+        $sql = $this->procedure."get_all_classes('".$user."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get details for a class
+    public function getClass($classId){
+        $sql = $this->procedure."get_class(".$classId.")";
+        return $this->executeStatement($sql);
+    }
+
+    //Update class
+    public function editClass($classId, $moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration){
+        $sql = $this->procedure."edit_class(".$classId.",'".$moduleCode."','".$className."','".$classRoom."','".$classDay."','".$startTime."','".$classDuration."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Delete class
+    public function deleteClass($classId){
+        $sql = $this->procedure."delete_class(".$classId.")";
+        $this->executeStatementNoOutput($sql);
+    }
 }

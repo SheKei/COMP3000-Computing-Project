@@ -31,6 +31,7 @@ class Module_Controller
                 echo $link = '<a href="module.php?code='.$code.'" class="w3-bar-item w3-button">'.$row['module_code'].'-'.$row['module_name'].'</a>';
             }
         }
+        echo '<a href="timetable.php" class="w3-bar-item w3-button">Timetable</a>';
     }
 
     //Return with all details of selected module

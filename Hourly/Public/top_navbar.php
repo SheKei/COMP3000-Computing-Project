@@ -12,11 +12,12 @@
     <style>
         nav{
             padding: 15px;
+            height: 10%;
         }
     </style>
 </head>
 <body>
-        <nav class="fixed-top navbar-light bg-light">
+        <nav id="topNavBar" class="fixed-top navbar-light bg-light">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
                     <button class="btn" data-toggle="modal" data-target="#moduleModal">Add Module</button>

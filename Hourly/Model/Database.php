@@ -159,6 +159,12 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Get today's classes
+    public function getTodaysClasses($userId){
+        $sql = $this->procedure."get_upcoming_class('".$userId."')";
+        return $this->executeStatement($sql);
+    }
+
     //Update class
     public function editClass($classId, $moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration){
         $sql = $this->procedure."edit_class(".$classId.",'".$moduleCode."','".$className."','".$classRoom."','".$classDay."','".$startTime."','".$classDuration."')";

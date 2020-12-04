@@ -85,6 +85,18 @@ class Class_Controller
         }
     }
 
+    public function showTodaysClasses(){
+        $result = $this->database->getTodaysClasses($this->user);
+        if($result){
+            echo "<section><h1>Today's Classes</h1>";
+            foreach($result as $row){
+                echo '<p>'.$row['module_code'].' '.$row['module_name'].' - '.
+                    '<button class="btn viewClassBtn" data-toggle="modal" data-target="#viewClass" id="'.$row['class_id'].'">'.$row['class_name'].'</button> - '.$row['start_time'].'</p>';
+            }
+            echo '</section>';
+        }
+    }
+
     public function getClassDetails($classId){
         $result = $this->database->getClass($classId);
         if($result){

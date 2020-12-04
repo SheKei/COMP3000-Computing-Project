@@ -80,8 +80,8 @@ class Database
     }
 
     //Edit ongoing task details
-    public function editTask($taskId, $module_code, $task_name, $task_category, $due_date, $due_time, $priority_level){
-        $sql = $this->procedure."edit_task('".$taskId."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
+    public function editTask($taskId, $moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel){
+        $sql = $this->procedure."edit_task('".$taskId."','".$moduleCode."','".$taskName."','".$taskCategory."','".$dueDate."','".$dueTime."','".$priorityLevel."')";
         $this->executeStatementNoOutput($sql);
     }
 

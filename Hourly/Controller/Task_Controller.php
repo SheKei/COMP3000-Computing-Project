@@ -34,8 +34,8 @@ class Task_Controller
         $this->database->assignTask($moduleCode, $this->username, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
     }
 
-    public function editTask($moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel){
-        $this->database->editTask($moduleCode, $this->username, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
+    public function editTask($taskId,$moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel){
+        $this->database->editTask($taskId,$moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel);
     }
 
     //Display all ongoing tasks in a drop down menu for add time pop up page

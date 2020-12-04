@@ -176,17 +176,17 @@ class Task_Controller
                 //Output task under a category box
                 switch ($row['task_category']) {
                     case "General":
-                        $jQuery = '$("#completedGeneralTasks").append("<br><label><button class=\"btn taskBtn\" id=\"'.$row['task_id']
+                        $jQuery = '$("#completedGeneralTasks").append("<br><label><button class=\"btn taskBtn completed\" id=\"'.$row['task_id']
                             .'\" data-toggle=\"modal\" data-target=\"#viewTask\">'.
                             $taskName.'</button></label>");';
                         break;
                     case "Revision": //#completedRevisionTasks
-                        $jQuery = '$("#completedRevisionTasks").append("<br><label><button class=\"btn taskBtn\" id=\"'.$row['task_id']
+                        $jQuery = '$("#completedRevisionTasks").append("<br><label><button class=\"btn taskBtn completed\" id=\"'.$row['task_id']
                             .'\" data-toggle=\"modal\" data-target=\"#viewTask\">'.
                             $taskName.'</button></label>");';
                         break;
                     default: //#completedCourseworkTasks
-                        $jQuery = '$("#completedCourseworkTasks").append("<br><label><button class=\"btn taskBtn\" id=\"'.$row['task_id']
+                        $jQuery = '$("#completedCourseworkTasks").append("<br><label><button class=\"btn taskBtn completed\" id=\"'.$row['task_id']
                             .'\" data-toggle=\"modal\" data-target=\"#viewTask\">'.
                             $taskName.'</button></label>");';
                 }
@@ -302,6 +302,38 @@ class Task_Controller
                     $("#currentDue").val(date + " - " + time);
                 });
                 </script>';
+        }
+    }
+
+    public function displayCompletedTaskDetails($taskId){
+        $result = $this->database->getTaskDetails($taskId);
+        if($result){
+            foreach($result as $row){
+                echo '<p><strong>Task Name:</strong>'.$row['task_name'].'</p>';
+                echo '<p><strong>Category:</strong>'.$row['task_category'];
+
+                //CHECK IF DUE ANYTIME
+                $d = date("Y", strtotime($row['due_date']));
+                if($d == "9999")
+                {
+                    $due = 'Due Anytime';
+                }else{
+                    $due = $row['due_date'].' - '.$row['due_time'];
+                }
+
+                echo '<p><strong>Deadline:</strong>'.$due.'</p>';
+                echo '<p><strong>Priority Level:</strong>'.$row['priority_level'].'</p>';
+
+                echo '<button class="btn btn-danger deleteTask" id="'.$taskId.'">Delete Task</button>';
+
+                echo '<script>
+                $(".deleteTask").click(function(){
+                    let delTaskId = this.id; //Get id of task
+                    window.location.href = "../Controller/taskController.php?delTaskId="+delTaskId; //Send to controller 
+                });
+                
+                </script>';
+            }
         }
     }
 

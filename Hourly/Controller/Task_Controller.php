@@ -176,19 +176,19 @@ class Task_Controller
                 //Output task under a category box
                 switch ($row['task_category']) {
                     case "General":
-                        $jQuery = "$('#completedGeneralTasks').append('<br><label><button class='btn taskBtn' id='".$row['task_id']
-                            ."' data-toggle='modal' data-target='#viewTask'>".
-                            $taskName."</button></label>');";
+                        $jQuery = '$("#completedGeneralTasks").append("<br><label><button class=\"btn taskBtn\" id=\"'.$row['task_id']
+                            .'\" data-toggle=\"modal\" data-target=\"#viewTask\">'.
+                            $taskName.'</button></label>");';
                         break;
-                    case "Revision":
-                        $jQuery = "$('#completedRevisionTasks').append('<br><label><button class='btn taskBtn' id='".$row['task_id']
-                            ."' data-toggle='modal' data-target='#viewTask'>".
-                            $taskName."</button></label>');";
+                    case "Revision": //#completedRevisionTasks
+                        $jQuery = '$("#completedRevisionTasks").append("<br><label><button class=\"btn taskBtn\" id=\"'.$row['task_id']
+                            .'\" data-toggle=\"modal\" data-target=\"#viewTask\">'.
+                            $taskName.'</button></label>");';
                         break;
-                    default:
-                        $jQuery = "$('#completedCourseworkTasks').append('<br><label><button class='btn taskBtn' id='".$row['task_id']
-                            ."' data-toggle='modal' data-target='#viewTask'>".
-                            $taskName."</button></label>');";
+                    default: //#completedCourseworkTasks
+                        $jQuery = '$("#completedCourseworkTasks").append("<br><label><button class=\"btn taskBtn\" id=\"'.$row['task_id']
+                            .'\" data-toggle=\"modal\" data-target=\"#viewTask\">'.
+                            $taskName.'</button></label>");';
                 }
 
                 echo $jQuery;

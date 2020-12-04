@@ -115,8 +115,26 @@ class Class_Controller
                 //CLASS DURATION
                 echo '<label for="duration">Class Duration:</label><input type="text" id="duration" class="form-control" name="duration" value="'.$row['class_duration'].'">';
             }
+            //SUBMIT BTN
             echo '<button class="btn btn-default" type="submit" name="editClassBtn" id="editClassBtn">Save Edit</button></form>';
+
+            //DELETE BTN
+            echo '<button class="btn btn-danger classDeleteBtn" type="button" id="'.$row['class_id'].'">Delete Class</button>';
+            $this->echoJquery();
         }
+    }
+
+    public function echoJquery(){
+        echo '
+        <script>
+            $(function(){
+                $(".classDeleteBtn").click(function(){
+                   let classId = this.id;
+                   alert(classId);
+                });
+            });
+        </script>
+        ';
     }
 
 

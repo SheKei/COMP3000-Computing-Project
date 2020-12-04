@@ -130,7 +130,7 @@ class Class_Controller
             $(function(){
                 $(".classDeleteBtn").click(function(){
                    let classId = this.id;
-                   alert(classId);
+                   window.location.href = "../Controller/classController.php?deleteClassId="+classId;
                 });
             });
         </script>

@@ -176,4 +176,22 @@ class Database
         $sql = $this->procedure."delete_class(".$classId.")";
         $this->executeStatementNoOutput($sql);
     }
+
+    //Get account details
+    public function getAccountDetails($username){
+        $sql = $this->procedure."get_account('".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Update email and date of birth
+    public function updateAccount($username, $email, $birthdate){
+        $sql = $this->procedure."update_account('".$username."','".$email."','".$birthdate."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Create new account
+    public function createAccount($username, $password, $email, $birthdate){
+        $sql = $this->procedure."create_account('".$username."','".$password."','".$email."','".$birthdate."')";
+        $this->executeStatementNoOutput($sql);
+    }
 }

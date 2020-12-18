@@ -21,6 +21,7 @@ include_once '../Controller/Module_Controller.php';
         $controller = new Module_Controller("dummy");
         $controller->displaySideBar();
     ?>
+
 </div>
 
 </body>

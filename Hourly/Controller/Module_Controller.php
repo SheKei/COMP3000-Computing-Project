@@ -32,6 +32,7 @@ class Module_Controller
             }
         }
         echo '<a href="timetable.php" class="w3-bar-item w3-button">Timetable</a>';
+        echo '<a href="account.php" class="w3-bar-item w3-button">Account</a>';
     }
 
     //Return with all details of selected module

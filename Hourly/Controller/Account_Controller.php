@@ -31,7 +31,7 @@ class Account_Controller
             echo '<form method="post" action="../Controller/accountController.php">';
             echo '<label for="email">Email Address: </label><input class="form-control col-sm-8" id="email" name="email" type="email" value="'.$account->getEmail().'">';
             echo '<label for=birthdate>Date Of Birth: </label><input <input class="form-control col-sm-8" id="birthdate" name="birthdate" type="date" value="'.$account->getDateOfBirth().'">';
-            echo '<button type="submit" class="btn btn-primary" id="editAccount" name="editAccount">Save Edit</button>';
+            echo '<button type="submit" class="btn btn-primary" id="editAccountBtn" name="editAccountBtn">Save Edit</button>';
             echo '</form>';
         }
     }

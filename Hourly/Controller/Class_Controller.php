@@ -27,7 +27,7 @@ class Class_Controller
         $this->database->addClass($this->user, $module, $name, $room, $day, $time, $duration);
     }
 
-    //Save edit of class
+    //Save edit details of class
     public function editClass($classId,$moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration){
         $this->database->editClass($classId, $moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration);
     }
@@ -35,6 +35,11 @@ class Class_Controller
     //Delete a class
     public function deleteClass($classId){
         $this->database->deleteClass($classId);
+    }
+
+    //Update attendance on a class
+    public function updateAttendance($classId){
+        $this->database->updateAttendance($this->user, $classId);
     }
 
     //Return array of timetabled classes
@@ -85,13 +90,16 @@ class Class_Controller
         }
     }
 
+    //Display today's classes on home page
     public function showTodaysClasses(){
         $result = $this->database->getTodaysClasses($this->user);
         if($result){
             echo "<section><h1>Today's Classes</h1>";
             foreach($result as $row){
                 echo '<p>'.$row['module_code'].' '.$row['module_name'].' - '.
-                    '<button class="btn viewClassBtn" data-toggle="modal" data-target="#viewClass" id="'.$row['class_id'].'">'.$row['class_name'].'</button> - '.$row['start_time'].'</p>';
+                    '<button class="btn viewClassBtn" data-toggle="modal" data-target="#viewClass" 
+                    id="'.$row['class_id'].'">'.$row['class_name'].'</button> - '.$row['start_time'].
+                    '<button class="btn logAttendance" id="'.$row['class_id'].'">Log Attendance</button></p>';
             }
             echo '</section>';
         }

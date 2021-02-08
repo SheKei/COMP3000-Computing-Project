@@ -177,6 +177,12 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //Update class attendance
+    public function updateAttendance($username, $classId){
+        $sql = $this->procedure."update_attendance('".$username."',".$classId.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
     //Get account details
     public function getAccountDetails($username){
         $sql = $this->procedure."get_account('".$username."')";

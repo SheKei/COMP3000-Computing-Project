@@ -56,5 +56,12 @@ include_once "../Public/side_navbar.php";
                 xmlhttp.send();
             }
         });
+
+        //If user logs attendance for a class
+        $(".logAttendance").click(function(){
+            //Get the id of the class attended
+            let theId = event.target.id;
+            window.location.href = "../Controller/classController.php?attendanceClassId="+theId;
+        });
     });
 </script>

@@ -32,3 +32,9 @@ if(isset($_GET['deleteClassId'])){
     $controller->deleteClass($_GET['deleteClassId']);
     header('Location: ../View/timetable.php');
 }
+
+//GET request to update attendance log for a class
+if(isset($_GET['attendanceClassId'])){
+    $controller->updateAttendance($_GET['attendanceClassId']);
+    header('Location: ../View/home.php');
+}

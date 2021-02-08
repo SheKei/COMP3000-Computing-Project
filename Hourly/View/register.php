@@ -4,7 +4,7 @@ include_once '../Controller/Account_Controller.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Account</title>
+    <title>Register</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,25 +13,14 @@ include_once '../Controller/Account_Controller.php';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-    <style>
-        #accountContainer{
-            margin-left: 25%;
-            margin-top: 10%;
-        }
-    </style>
 </head>
 <body>
-<?php
-include_once '../Public/top_navbar.php';
-include_once '../Public/side_navbar.php';
-?>
 
-<div id="accountContainer">
-    <?php
-    $accountController = new Account_Controller("dummy");
-    $accountController->displayAccountDetails();
-    ?>
+<div id="registerContainer">
+    <label for="username">Username:</label><input class="form-control col-sm-8" id="username" name="username" type="text">
+    
 </div>
 
 </body>
 </html>
+

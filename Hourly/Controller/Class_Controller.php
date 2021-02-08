@@ -85,6 +85,18 @@ class Class_Controller
         }
     }
 
+    public function showTodaysClasses(){
+        $result = $this->database->getTodaysClasses($this->user);
+        if($result){
+            echo "<section><h1>Today's Classes</h1>";
+            foreach($result as $row){
+                echo '<p>'.$row['module_code'].' '.$row['module_name'].' - '.
+                    '<button class="btn viewClassBtn" data-toggle="modal" data-target="#viewClass" id="'.$row['class_id'].'">'.$row['class_name'].'</button> - '.$row['start_time'].'</p>';
+            }
+            echo '</section>';
+        }
+    }
+
     public function getClassDetails($classId){
         $result = $this->database->getClass($classId);
         if($result){
@@ -107,7 +119,13 @@ class Class_Controller
                 echo '<label for="room">Location</label><input type="text" class="form-control" name="room" id="room" value="'.$row['class_room'].'">';
 
                 //CLASS DAY
-                echo '<label for="day">Day:</label><input type="text" class="form-control" id="day" name="day" value="'.$row['class_day'].'">';
+                $weekday = $this->returnDayOfWeek($row['class_day']);
+                echo '<label for="day">Day:</label>';
+                echo '<select class="form-control" id="day" name="day">
+                <option value="'.$row['class_day'].'">'.$weekday.'</option>';
+                $this->outputDayDropDownMenu();
+                echo '</select>';
+
 
                 //START TIME
                 echo '<label for="time">Start Time:</label><input type="time" class="form-control" name="time" id="name" value="'.$row['start_time'].'">';
@@ -137,6 +155,31 @@ class Class_Controller
         ';
     }
 
+    public function returnDayOfWeek($num){
+        switch ($num){
+            case 0:
+                return "Monday";
+            case 1:
+                return "Tuesday";
+            case 2:
+                return "Wednesday";
+            case 3:
+                return "Thursday";
+            case 4:
+                return "Friday";
+        }
+    }
+
+    public function outputDayDropDownMenu()
+    {
+        echo '
+        <option value="0">Monday</option>
+        <option value="1">Tuesday</option>
+        <option value="2">Wednesday</option>
+        <option value="3">Thursday</option>
+        <option value="4">Friday</option>
+        ';
+    }
 
 
 }

@@ -80,8 +80,8 @@ class Database
     }
 
     //Edit ongoing task details
-    public function editTask($taskId, $module_code, $task_name, $task_category, $due_date, $due_time, $priority_level){
-        $sql = $this->procedure."edit_task('".$taskId."','".$module_code."','".$task_name."','".$task_category."','".$due_date."','".$due_time."','".$priority_level."')";
+    public function editTask($taskId, $moduleCode, $taskName, $taskCategory, $dueDate, $dueTime, $priorityLevel){
+        $sql = $this->procedure."edit_task('".$taskId."','".$moduleCode."','".$taskName."','".$taskCategory."','".$dueDate."','".$dueTime."','".$priorityLevel."')";
         $this->executeStatementNoOutput($sql);
     }
 
@@ -159,6 +159,12 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Get today's classes
+    public function getTodaysClasses($userId){
+        $sql = $this->procedure."get_upcoming_class('".$userId."')";
+        return $this->executeStatement($sql);
+    }
+
     //Update class
     public function editClass($classId, $moduleCode, $className, $classRoom, $classDay, $startTime, $classDuration){
         $sql = $this->procedure."edit_class(".$classId.",'".$moduleCode."','".$className."','".$classRoom."','".$classDay."','".$startTime."','".$classDuration."')";
@@ -168,6 +174,24 @@ class Database
     //Delete class
     public function deleteClass($classId){
         $sql = $this->procedure."delete_class(".$classId.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Get account details
+    public function getAccountDetails($username){
+        $sql = $this->procedure."get_account('".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Update email and date of birth
+    public function updateAccount($username, $email, $birthdate){
+        $sql = $this->procedure."update_account('".$username."','".$email."','".$birthdate."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Create new account
+    public function createAccount($username, $password, $email, $birthdate){
+        $sql = $this->procedure."create_account('".$username."','".$password."','".$email."','".$birthdate."')";
         $this->executeStatementNoOutput($sql);
     }
 }

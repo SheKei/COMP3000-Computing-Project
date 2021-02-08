@@ -69,9 +69,14 @@ if(isset($_GET['code']))
                     }
                 }
 
-                //Send task id to retrieve details
-                xmlhttp.open("GET","../Controller/taskController.php?taskId="+theId,true);
-                xmlhttp.send();
+                if($("#"+theId).hasClass("completed")){
+                    xmlhttp.open("GET","../Controller/taskController.php?completedTaskId="+theId,true);
+                    xmlhttp.send();
+                }
+                else{
+                    xmlhttp.open("GET","../Controller/taskController.php?taskId="+theId,true);
+                    xmlhttp.send();
+                }
             }
         });
     });

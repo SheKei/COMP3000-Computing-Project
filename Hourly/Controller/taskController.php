@@ -74,3 +74,9 @@ if(isset($_GET['taskId'])){
     $controller->getTaskDetails($_GET['taskId']);
     $timeController->outputTimes($timeController->getTaskTime($_GET['taskId']));
 }
+
+//GET request to view task details and time spent on a pop-up page
+if(isset($_GET['completedTaskId'])){
+    $controller->displayCompletedTaskDetails($_GET['completedTaskId']);
+    $timeController->outputTimes($timeController->getTaskTime($_GET['completedTaskId']));
+}

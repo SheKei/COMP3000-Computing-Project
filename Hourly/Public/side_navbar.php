@@ -11,12 +11,13 @@ include_once '../Controller/Module_Controller.php';
     <style>
         #sideBar{
             margin-top: -5%;
+            background-color: rgb(242, 242, 233);
         }
     </style>
 </head>
 <body>
 
-<div id="sideBar" class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%; font-family: 'Century Gothic';">
+<div id="sideBar" class="w3-sidebar w3-bar-block" style="width:20%; font-family: 'Century Gothic';">
     <br><br><br>
     <h3 class="w3-bar-item">Welcome</h3>
     <?php

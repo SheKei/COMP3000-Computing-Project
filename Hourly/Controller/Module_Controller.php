@@ -6,9 +6,7 @@ class Module_Controller
 {
     private $database;
     private $username;
-    /**
-     * Module_Controller constructor.
-     */
+
     public function __construct($user)
     {
         $this->database = new Database();
@@ -18,21 +16,6 @@ class Module_Controller
     //Create a module using user's inputs
     public function createModule($moduleCode, $moduleName, $colour, $expectedHours){
         $this->database->addModule($this->username,$moduleCode, $moduleName, $colour, $expectedHours);
-    }
-
-    //Display modules as navigation items
-    public function displaySideBar()
-    {
-        $modules = $this->database->getModuleCodes($this->username);
-
-        if($modules){
-            foreach($modules as $row){
-                $code = $row['module_code'];
-                echo $link = '<a href="module.php?code='.$code.'" class="w3-bar-item w3-button">'.$row['module_code'].'-'.$row['module_name'].'</a>';
-            }
-        }
-        echo '<a href="timetable.php" class="w3-bar-item w3-button">Timetable</a>';
-        echo '<a href="account.php" class="w3-bar-item w3-button">Account</a>';
     }
 
     //Return with all details of selected module
@@ -73,5 +56,29 @@ class Module_Controller
     //Delete module and all tasks assigned to the module
     public function deleteModule($moduleCode){
         $this->database->deleteModule($this->username, $moduleCode);
+    }
+
+
+    //Display module names as navigation items on side bar
+    //Print background colour of module nav item as its colour code
+    public function displaySideBar()
+    {
+        $modules = $this->database->getModuleCodes($this->username);
+
+        if($modules){
+            foreach($modules as $row){
+                $colour = $row['colour_key'];
+                //IF BACKGROUND COLOUR IS BLACK PRINT TEXT IN WHITE
+                // ELSE PRINT TEXT IN BLACK
+                if($colour != "rgb(51, 57, 64)"){
+                    $style = "style='background-color:".$colour."; color:black'";
+                }else{
+                    $style = "style='background-color:".$colour."; color:white'";
+                }
+                echo $link = '<a href="module.php?code='.$row['module_code'].'" class="w3-bar-item w3-button"'.$style.'>'.$row['module_code'].'-'.$row['module_name'].'</a>';
+            }
+        }
+        echo '<a href="timetable.php" class="w3-bar-item w3-button">Timetable</a>';
+        echo '<a href="account.php" class="w3-bar-item w3-button">Account</a>';
     }
 }

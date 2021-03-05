@@ -18,10 +18,14 @@
         body{
             font-family: "Century Gothic", "Century", "Century Schoolbook";
         }
+
+        #topNavBar{
+            background-color: rgb(252, 252, 242);
+        }
     </style>
 </head>
 <body>
-        <nav style="font-family: 'Century Gothic';" id="topNavBar" class="fixed-top navbar-light bg-light">
+        <nav style="font-family: 'Century Gothic';" id="topNavBar" class="fixed-top navbar-light ">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
                     <button class="btn btn-light" data-toggle="modal" data-target="#moduleModal">Add Module</button>

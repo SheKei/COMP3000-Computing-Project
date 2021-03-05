@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JQuery/module_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
     <style>
@@ -33,9 +35,10 @@
 
                         <!-- Form to create module -->
                         <form method="post" action="../Controller/moduleController.php">
-                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleCode" id="moduleCode" maxlength="50"><br>
-                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleName" id="moduleName" maxlength="50"><br>
-                        <label>Expected Hours: </label><input class="form-control moduleInput addModule" type="number" name="hours" id="hours" value="200" min="1" max="999"><br>
+
+                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleCode" id="moduleCode" size="50" maxlength="50" required><br>
+                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleName" id="moduleName" maxlength="50" required><br>
+                        <label>Expected Hours: </label><input class="form-control moduleInput addModule" type="number" name="hours" id="hours" value="200" min="1" max="999" required><br>
                         <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label><input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
                             <div id="colourPicker">
                                 <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>

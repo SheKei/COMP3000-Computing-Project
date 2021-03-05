@@ -9,22 +9,35 @@ $classController = new Class_Controller('dummy');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
 
+    <style>
+        #homePanel{
+            margin-left: 25%;
+            margin-top: 10%;
+            border-radius: 25px;
+            border: 2px solid black;
+            padding: 20px;
+            width: 70%;
+            min-height: 200px;
+        }
+
+        .logAttendance{
+            margin-left:10px;
+        }
+
+        #classTitle{
+            letter-spacing: 3px;
+        }
+    </style>
 
 </head>
-<body>
+<body style="font-family: 'Century Gothic'">
 
 <?php
     include_once "../Public/top_navbar.php";
 include_once "../Public/side_navbar.php";
 ?>
 
-<div id="issuePara" style="margin-left: 25%;">
-    <br><br><br><br>
-    <h3>Issues found & yet to be fixed (as of 19/11/20):</h3>
-    <ul>
-        <li>Entering the same module code will bring an error in add module</li>
-        <li>The overall appearance </li>
-    </ul>
+<div id="homePanel">
     <?php $classController->showTodaysClasses(); ?>
 </div>
 

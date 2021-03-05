@@ -196,11 +196,12 @@ class Task_Controller
         }
     }
 
-    //Display details of a task on a pop-up page
+    //Display details of a task on a pop-up page when a task name is clicked on
     public function displayTaskDetails($task){
         if($task){
             echo '<form method="post" action="../Controller/taskController.php">';
-            echo '<input type="text" class="form-control" name="id" value="'.$task->getTaskId().'" readonly>';
+
+            echo '<input type="text" class="form-control hidden" name="id" value="'.$task->getTaskId().'" readonly>'; //TASK ID
             echo //TASK NAME
                 '<div class="form-group row">
          <label for="tName" class="col-form-label">Task Name: <p id="tNameChars"></p></label>
@@ -256,10 +257,12 @@ class Task_Controller
             }else{
                 $due = $task->getDueDate().' - '.$task->getDueTime();
             }
-            echo'<div class="col"><input id="currentDue" type="text" class="form-control" value="'.$due.'" readonly></div>';
-            echo '<input type="text" name="date" id="date">';
-            echo '<input type="text" name="time" id="time">';
+            echo '<div class="row">';
+            echo'<div class="col"><input id="currentDue" type="text" size="50" class="form-control" value="'.$due.'" readonly></div>';
+            echo '<input type="text" name="date" id="date" class="hidden">';
+            echo '<input type="text" name="time" id="time" class="hidden">';
             echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline">Edit Deadline</button></div>';
+            echo '</div>';
             echo '</div>';
 
             //SECTION TO EDIT DEADLINE
@@ -274,9 +277,9 @@ class Task_Controller
             </section>
             ';
 
-            echo '<button type="submit" class="btn btn-primary" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
+            echo '<div class="row"><button type="submit" class="btn btn-dark" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
             echo //DELETE TASK BTN
-                '<button type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
+                '<button style="margin-left:20px;" type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button></div><br><br>';
 
             echo '<script>
                 $(".deleteTask").click(function(){

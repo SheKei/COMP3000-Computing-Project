@@ -46,7 +46,7 @@
                             <label for="className">Name:</label>
                         </div>
                         <div class="col-sm-6">
-                            <input name="className" id="className" type="text" placeholder="Class Name" class="form-control">
+                            <input name="className" id="className" type="text" placeholder="Class Name" class="form-control" required>
                         </div>
                     </div>
                     <br>
@@ -56,7 +56,7 @@
                             <label for="classRoom">Location:</label>
                         </div>
                         <div class="col-sm-6">
-                            <input name="classRoom" id="classRoom" type="text" placeholder="Class Room" class="form-control">
+                            <input name="classRoom" id="classRoom" type="text" placeholder="Class Room" class="form-control" required>
                         </div>
                     </div>
                     <br>
@@ -82,7 +82,7 @@
                             <label for="startTime">Start Time:</label>
                         </div>
                         <div class="col-sm-6">
-                            <input name="startTime" id="startTime" type="time" class="form-control">
+                            <input name="startTime" id="startTime" type="time" class="form-control" required>
                         </div>
                     </div>
                     <br>
@@ -93,14 +93,14 @@
                             <label>Class Duration:</label>
                         </div>
                         <div class="col-sm-2">
-                            <input name="hour" id="hour" type="number" class="form-control">
+                            <input name="hour" id="hour" min="0" max="23" type="number" class="form-control" required>
                         </div>
                         <div class="col-sm-1">
                             <label for="hour">hour(s)</label>
                         </div>
 
                         <div class="col-sm-2">
-                            <input name="minutes" id="minutes" type="number" class="form-control">
+                            <input name="minutes" id="minutes" min="0" max="59" type="number" class="form-control" required>
                         </div>
                         <div class="col-sm-1">
                             <label for="minutes">minute(s)</label>

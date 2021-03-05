@@ -24,7 +24,7 @@ class Module_Controller
     public function displaySideBar()
     {
         $modules = $this->database->getModuleCodes($this->username);
-        //<a href="#" class="w3-bar-item w3-button">Link 1</a>
+
         if($modules){
             foreach($modules as $row){
                 $code = $row['module_code'];
@@ -48,29 +48,29 @@ class Module_Controller
                 $hours = $row['expected_hours'];
                 $colour = $row['colour_key'];
 
-                $this->displayPageHeading($code, $name);
+                $this->displayPageHeading($code, $name, $colour);
                 $module = new Module($code, $name, $hours, $colour);
             }
         }
         return $module;
     }
 
-    //Display module name and code as page heading
-    public function displayPageHeading($moduleCode, $moduleName)
+    //Display module name and code as a page header when viewing a module page
+    public function displayPageHeading($moduleCode, $moduleName, $color)
     {
-        echo "<div id='heading' class='jumbotron jumbotron-fluid'>";
-        echo "<h1 class='display-4'>".$moduleCode."</h1>";
-        echo "<p class='lead'>".$moduleName."</p>";
-        echo "<button class='btn' data-toggle='modal' data-target='#viewModule'>VIEW MODULE DETAILS</button>";
+        echo "<div id='heading' class='jumbotron jumbotron-fluid moduleColor'>";
+        echo "<h1 class='display-4 title'>".$moduleCode."</h1>";
+        echo "<p class='title'>".$moduleName."</p>";
+        echo "<button class='btn btn-light title' data-toggle='modal' data-target='#viewModule'>VIEW MODULE DETAILS</button>";
         echo "</div>";
     }
 
-    //Update module details
+    //Update module details after editting
     public function updateModuleDetails($module_code, $module_name, $colour_key, $expected_hours, $current_code){
         $this->database->editModuleDetails($this->username, $module_code, $module_name, $colour_key, $expected_hours, $current_code);
     }
 
-    //Delete module and all tasks
+    //Delete module and all tasks assigned to the module
     public function deleteModule($moduleCode){
         $this->database->deleteModule($this->username, $moduleCode);
     }

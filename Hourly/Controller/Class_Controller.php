@@ -73,7 +73,7 @@ class Class_Controller
         $modules = $this->getModules();
         if($modules){
             foreach($modules as $module){
-                echo '<h1 id="'.$module->getModuleCode().'">'.$module->getModuleCode().' - '.$module->getModuleName().'</h1>';
+                echo '<h1 class="moduleTitle" id="'.$module->getModuleCode().'">'.$module->getModuleCode().' - '.$module->getModuleName().'</h1>';
                 echo '<hr class="my-4">';
             }
         }
@@ -94,12 +94,12 @@ class Class_Controller
     public function showTodaysClasses(){
         $result = $this->database->getTodaysClasses($this->user);
         if($result){
-            echo "<section><h1>Today's Classes</h1>";
+            echo "<section><h1 id='classTitle'>Today's Classes</h1>";
             foreach($result as $row){
                 echo '<p>'.$row['module_code'].' '.$row['module_name'].' - '.
                     '<button class="btn viewClassBtn" data-toggle="modal" data-target="#viewClass" 
                     id="'.$row['class_id'].'">'.$row['class_name'].'</button> - '.$row['start_time'].
-                    '<button class="btn logAttendance" id="'.$row['class_id'].'">Log Attendance</button></p>';
+                    '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'">Log Attendance</button></p>';
             }
             echo '</section>';
         }

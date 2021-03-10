@@ -27,12 +27,12 @@
                 <div class="container" id="reminderContainer">
 
                     <!-- Form to add a reminder -->
-                    <form method="post" action="">
+                    <form method="post" action="../Controller/reminderController.php">
                         <label for="reminder">
-                            <textarea class="form-control" cols="60" rows="15" placeholder="Jot your thoughts down here..."></textarea>
+                            <textarea id="reminder" name="reminder" class="form-control" cols="60" rows="7" placeholder="Jot your thoughts down here..."></textarea>
                         </label>
 
-                        <button type="submit" class="btn btn-success" id="addReminder">Add Reminder</button>
+                        <button type="submit" class="btn btn-success" name="addReminder" id="addReminder">Add Reminder</button>
                     </form>
 
                 </div>

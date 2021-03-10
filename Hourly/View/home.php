@@ -80,13 +80,17 @@ include_once "../Public/side_navbar.php";
         </div>
 
         <div class="panel" id="reminders">
-            <h3 class="title">Reminders</h3>
+            <h3 class="title">
+                <button class="btn btn-light" data-toggle="modal" data-target="#reminderModal">
+                    <i class="far fa-plus-square"></i>
+                </button>Reminders
+            </h3>
         </div>
     </div>
 </div>
 
 <?php include_once'view_class.php'; ?>
-
+<?php include_once 'add_reminder.php'; ?>
 
 </body>
 </html>

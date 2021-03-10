@@ -94,7 +94,7 @@ class Class_Controller
     public function showTodaysClasses(){
         $result = $this->database->getTodaysClasses($this->user);
         if($result){
-            echo "<section><h1 id='classTitle'>Today's Classes</h1>";
+            echo "<section><h1 class='title' id='classTitle'>Today's Classes</h1>";
             foreach($result as $row){
                 echo '<p>'.$row['module_code'].' '.$row['module_name'].' - '.
                     '<button class="btn viewClassBtn" data-toggle="modal" data-target="#viewClass" 

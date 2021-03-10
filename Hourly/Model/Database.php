@@ -200,4 +200,10 @@ class Database
         $sql = $this->procedure."create_account('".$username."','".$password."','".$email."','".$birthdate."')";
         $this->executeStatementNoOutput($sql);
     }
+
+    //Add a reminder
+    public function addReminder($username, $description){
+        $sql = $this->procedure."add_reminder('".$this->username."','".$description."')";
+        $this->executeStatementNoOutput($sql);
+    }
 }

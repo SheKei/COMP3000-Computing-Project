@@ -12,12 +12,36 @@ $classController = new Class_Controller('dummy');
     <style>
         #homePanel{
             margin-left: 25%;
-            margin-top: 10%;
+            margin-top: 8%;
+
+        }
+
+        .panel{
+            background-color: white;
             border-radius: 25px;
             border: 2px solid black;
             padding: 20px;
-            width: 70%;
+        }
+
+        #classPanel{
+            width: 95%;
             min-height: 200px;
+        }
+
+        #reminders, #upcomingDeadlines{
+            min-height: 350px;
+            margin-top: 25px;
+        }
+
+
+        #reminders{
+            margin-left:10%;
+            width: 30%;
+        }
+
+        #upcomingDeadlines{
+            margin-left: 2%;
+            width: 50%;
         }
 
         .logAttendance{
@@ -27,10 +51,17 @@ $classController = new Class_Controller('dummy');
         #classTitle{
             letter-spacing: 3px;
         }
+
+        .title{
+            font-family: "Century Gothic", "Century", "Century Schoolbook";
+            letter-spacing: 3px;
+        }
+
+        body{background-color: rgb(255, 253, 247);}
     </style>
 
 </head>
-<body style="font-family: 'Century Gothic'">
+<body style="font-family: 'Century Gothic'; background-color: rgb(255, 253, 250);">
 
 <?php
     include_once "../Public/top_navbar.php";
@@ -38,7 +69,20 @@ include_once "../Public/side_navbar.php";
 ?>
 
 <div id="homePanel">
-    <?php $classController->showTodaysClasses(); ?>
+
+    <div class="panel" id="classPanel">
+        <?php $classController->showTodaysClasses(); ?>
+    </div>
+
+    <div class="row">
+        <div class="panel" id="upcomingDeadlines">
+            <h3 class="title">Upcoming Deadlines</h3>
+        </div>
+
+        <div class="panel" id="reminders">
+            <h3 class="title">Reminders</h3>
+        </div>
+    </div>
 </div>
 
 <?php include_once'view_class.php'; ?>

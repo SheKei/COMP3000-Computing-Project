@@ -34,6 +34,7 @@ if(isset($_GET['code']))
             margin-top: 5%;
         }
 
+        body{background-color: rgb(255, 253, 247);}
 
     </style>
 </head>

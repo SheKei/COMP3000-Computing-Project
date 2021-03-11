@@ -78,6 +78,7 @@ class Module_Controller
                 echo $link = '<a href="module.php?code='.$row['module_code'].'" class="w3-bar-item w3-button"'.$style.'>'.$row['module_code'].'-'.$row['module_name'].'</a>';
             }
         }
+        echo '<a href="pomodoro.php" class="w3-bar-item w3-button">Pomodoro Timer</a>';
         echo '<a href="timetable.php" class="w3-bar-item w3-button">Timetable</a>';
         echo '<a href="account.php" class="w3-bar-item w3-button">Account</a>';
     }

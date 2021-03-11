@@ -1,0 +1,9 @@
+DELIMITER //
+CREATE PROCEDURE COMP3000_STong.delete_reminder(IN reminderID INT)
+	BEGIN
+		DELETE FROM 
+		COMP3000_STong.reminder
+		WHERE
+		reminder_id = reminderID;
+	END //
+DELIMITER

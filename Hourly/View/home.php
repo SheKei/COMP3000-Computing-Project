@@ -61,6 +61,15 @@ $reminderController = new Reminder_Controller('dummy');
         }
 
         body{background-color: rgb(255, 253, 247);}
+
+        i.fa-times-circle:hover{
+            color: #FF5C4D;
+        }
+
+        .fa-times-circle{
+            margin-right: 10px;
+        }
+
     </style>
 
 </head>
@@ -84,7 +93,7 @@ include_once "../Public/side_navbar.php";
 
         <div class="panel" id="reminders">
             <h3 class="title">
-                <button class="btn btn-light" data-toggle="modal" data-target="#reminderModal">
+                <button class="btn btn-dark" data-toggle="modal" data-target="#reminderModal">
                     <i class="far fa-plus-square"></i>
                 </button>
                 Reminders
@@ -128,6 +137,13 @@ include_once "../Public/side_navbar.php";
             //Get the id of the class attended
             let theId = event.target.id;
             window.location.href = "../Controller/classController.php?attendanceClassId="+theId;
+        });
+
+        //If user logs attendance for a class
+        $(".fa-times-circle").click(function(){
+            //Get the id of the reminder
+            let theId = event.target.id;
+            window.location.href = "../Controller/reminderController.php?reminderID="+theId;
         });
     });
 </script>

@@ -8,3 +8,10 @@ if (isset($_POST['addReminder'])) {
     //Redirect to home page
     header('Location: ../View/home.php');
 }
+
+//GET REQUEST to delete reminder
+if (isset($_GET['reminderID'])) {
+    $controller->deleteReminder($_GET['reminderID']);
+    //Redirect to home page
+    header('Location: ../View/home.php');
+}

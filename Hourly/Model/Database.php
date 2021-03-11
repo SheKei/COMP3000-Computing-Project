@@ -212,4 +212,10 @@ class Database
         $sql = $this->procedure."get_reminders('".$username."')";
         return $this->executeStatement($sql);
     }
+
+    //Delete reminder
+    public function deleteReminder($id){
+        $sql = $this->procedure."delete_reminder(".$id.")";
+        $this->executeStatementNoOutput($sql);
+    }
 }

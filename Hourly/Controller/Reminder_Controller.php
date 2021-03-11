@@ -36,11 +36,17 @@ class Reminder_Controller
         $reminders = $this->getReminders();
         if($reminders){
             foreach ($reminders as $reminder){
-                echo "<p class='reminder' id='".$reminder->getReminderId()."'>"
+                echo "<p>"
+                    ."<i class='far fa-times-circle' id='".$reminder->getReminderId()."'></i>"
                     .$reminder->getDescription().
                     "</p>";
             }
         }
+    }
+
+    //Delete a reminder using id
+    public function deleteReminder($reminderID){
+        $this->database->deleteReminder($reminderID);
     }
 
 

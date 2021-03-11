@@ -206,4 +206,10 @@ class Database
         $sql = $this->procedure."add_reminder('".$username."','".$description."')";
         $this->executeStatementNoOutput($sql);
     }
+
+    //Get all reminders from one user
+    public function getReminders($username){
+        $sql = $this->procedure."get_reminders('".$username."')";
+        return $this->executeStatement($sql);
+    }
 }

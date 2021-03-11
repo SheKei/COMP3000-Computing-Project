@@ -1,6 +1,9 @@
 <?php
 include_once'../Controller/Class_Controller.php';
+include_once '../Controller/Reminder_Controller.php';
+
 $classController = new Class_Controller('dummy');
+$reminderController = new Reminder_Controller('dummy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,8 +86,10 @@ include_once "../Public/side_navbar.php";
             <h3 class="title">
                 <button class="btn btn-light" data-toggle="modal" data-target="#reminderModal">
                     <i class="far fa-plus-square"></i>
-                </button>Reminders
+                </button>
+                Reminders
             </h3>
+            <?php $reminderController->displayReminders(); ?>
         </div>
     </div>
 </div>

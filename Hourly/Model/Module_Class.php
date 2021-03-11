@@ -1,7 +1,7 @@
 <?php
 include_once 'Module_Assignment.php';
 
-class Module_Class extends Module_Assignment
+class Module_Class extends Module_Assignment //Inherit module code and module name attribute
 {
     protected $classId;
     protected $className;

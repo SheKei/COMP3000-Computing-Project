@@ -113,7 +113,8 @@ include_once "../Public/side_navbar.php";
         var remainingTime = totalMinutes * 60;
         $("#timer").html(calculateTime(remainingTime));
 
-        
+        var onPause = true;
+
 
         //Increment time by 5
         $("#increment").click(function(){
@@ -135,14 +136,11 @@ include_once "../Public/side_navbar.php";
 
         //When pomodoro start/pause btn is pressed
         $("#button").click(function(){
+
             if($("#button").hasClass("btn-success")){
-                $("#button").removeClass("btn-success");
-                $("#button").addClass("btn-danger");
-                $("#button").html("Pause");
+                changeToPauseBtn();
             }else{
-                $("#button").removeClass("btn-danger");
-                $("#button").addClass("btn-success");
-                $("#button").html("Start");
+                changeToStartBtn();
             }
         });
 
@@ -174,5 +172,17 @@ include_once "../Public/side_navbar.php";
             remainder = "0" + remainder;
         }
         return quotient + ":" + remainder;
+    }
+
+    function changeToStartBtn(){
+        $("#button").removeClass("btn-danger");
+        $("#button").addClass("btn-success");
+        $("#button").html("Start");
+    }
+
+    function changeToPauseBtn(){
+        $("#button").removeClass("btn-success");
+        $("#button").addClass("btn-danger");
+        $("#button").html("Pause");
     }
 </script>

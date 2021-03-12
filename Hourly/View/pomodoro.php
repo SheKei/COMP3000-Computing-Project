@@ -110,33 +110,27 @@ include_once "../Public/side_navbar.php";
 <script>
     $(function(){
         var totalMinutes = 25;
-        var totalSeconds = totalMinutes * 60;
-        $("#timer").html(calculateTime(totalSeconds));
+        var remainingTime = totalMinutes * 60;
+        $("#timer").html(calculateTime(remainingTime));
 
-        //If user increments/decrements working time
-        $(".time").click(function(){
-            let theId =  event.target.id;
-            //Get current minutes
-            let currentMinutes = Number($("#timeChosen").html());
+        
 
-            //Check if increment or decrement button
-            if(theId === "increment"){
-                currentMinutes = currentMinutes + 5; //Increment current minutes by 5
+        //Increment time by 5
+        $("#increment").click(function(){
+            remainingTime = Number($("#timeChosen").html()); //Get current minutes
+            remainingTime = remainingTime + 5; //Increment current minutes by 5
+            displayTime(); //Display change in time
+        });
+
+        //Check and decrement current time by 5
+        $("#decrement").click(function(){
+            remainingTime = Number($("#timeChosen").html());
+            if(remainingTime > 5){
+                remainingTime = remainingTime - 5; //Decrement current if minutes more than 5
             }else{
-                if(currentMinutes > 0){
-                    currentMinutes = currentMinutes - 5; //Decrement current by 5 if minutes more than 0
-                }else{
-                    currentMinutes = 0;
-                }
-
+                remainingTime = 5;
             }
-
-            //Display mm:ss in timer
-            $("#timer").html(calculateTime(currentMinutes*60));
-
-            //Display current chosen time
-            $("#timeChosen").html(currentMinutes);
-
+            displayTime(); //Display change in time
         });
 
         //When pomodoro start/pause btn is pressed
@@ -157,6 +151,17 @@ include_once "../Public/side_navbar.php";
             $("#timer").html(calculateTime(25*60));
             $("#timeChosen").html(25);
         });
+
+        function startTimer(remainingTime){
+
+        }
+
+        function displayTime(){
+            //Display mm:ss in timer
+            $("#timer").html(calculateTime(remainingTime*60));
+            //Display current chosen time
+            $("#timeChosen").html(remainingTime);
+        }
 
     });
 

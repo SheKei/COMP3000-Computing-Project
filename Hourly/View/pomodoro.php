@@ -136,7 +136,15 @@ include_once "../Public/side_navbar.php";
 
         //When pomodoro start/pause btn is pressed
         $("#button").click(function(){
-            if($("#button").hasClass())
+            if($("#button").hasClass("btn-success")){
+                $("#button").removeClass("btn-success");
+                $("#button").addClass("btn-danger");
+                $("#button").html("Pause");
+            }else{
+                $("#button").removeClass("btn-danger");
+                $("#button").addClass("btn-success");
+                $("#button").html("Start");
+            }
         });
 
     });

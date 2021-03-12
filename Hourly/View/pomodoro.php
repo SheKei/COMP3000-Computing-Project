@@ -46,6 +46,10 @@ $taskController = new Task_Controller('dummy');
              margin-left: auto;
              margin-right: auto;
          }
+
+         #timer{
+             font-size: 40px;
+         }
     </style>
 
 </head>
@@ -85,7 +89,8 @@ include_once "../Public/side_navbar.php";
         </div>
 
         <div id="timePanel">
-            <p id="timer"></p>
+            <p class="text-center" id="timer"></p><br>
+            <button class="btn btn-success" id="button">Start</button>
         </div>
 
 
@@ -99,7 +104,11 @@ include_once "../Public/side_navbar.php";
 
 <script>
     $(function(){
-        //If user clicks on a time button
+        var totalMinutes = 25;
+        var totalSeconds = totalMinutes * 60;
+        $("#timer").html(calculateTime(totalSeconds));
+
+        //If user increments/decrements working time
         $(".time").click(function(){
             let theId =  event.target.id;
             //Get current minutes
@@ -107,21 +116,39 @@ include_once "../Public/side_navbar.php";
 
             //Check if increment or decrement button
             if(theId === "increment"){
-                currentMinutes = currentMinutes + 5;
+                currentMinutes = currentMinutes + 5; //Increment current minutes by 5
             }else{
                 if(currentMinutes > 0){
-                    currentMinutes = currentMinutes - 5;
+                    currentMinutes = currentMinutes - 5; //Decrement current by 5 if minutes more than 0
                 }else{
                     currentMinutes = 0;
                 }
 
             }
 
-            //Display change in minutes
-            $("#timer").html(currentMinutes);
+            //Display mm:ss in timer
+            $("#timer").html(calculateTime(currentMinutes*60));
+
+            //Display current chosen time
             $("#timeChosen").html(currentMinutes);
 
         });
 
+        //When pomodoro start/pause btn is pressed
+        $("#button").click(function(){
+            if($("#button").hasClass())
+        });
+
     });
+
+    //Format time into mm:ss
+    function calculateTime(time){
+        let quotient = parseInt(time/60);
+        let remainder = time%60;
+
+        if(remainder < 10){
+            remainder = "0" + remainder;
+        }
+        return quotient + ":" + remainder;
+    }
 </script>

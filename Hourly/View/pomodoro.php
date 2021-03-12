@@ -48,8 +48,9 @@ $taskController = new Task_Controller('dummy');
          }
 
          #timer{
-             font-size: 40px;
+             font-size: 50px;
          }
+
     </style>
 
 </head>
@@ -89,8 +90,12 @@ include_once "../Public/side_navbar.php";
         </div>
 
         <div id="timePanel">
-            <p class="text-center" id="timer"></p><br>
-            <button class="btn btn-success" id="button">Start</button>
+            <p class="text-center" id="timer"></p>
+            <div id="btnPanel" class="text-center">
+                <button class="btn btn-success" id="button">Start</button>
+                <button class="btn btn-dark" id="reset">Reset</button>
+            </div>
+
         </div>
 
 
@@ -145,6 +150,12 @@ include_once "../Public/side_navbar.php";
                 $("#button").addClass("btn-success");
                 $("#button").html("Start");
             }
+        });
+
+        //Reset timer back to 25 minutes
+        $("#reset").click(function(){
+            $("#timer").html(calculateTime(25*60));
+            $("#timeChosen").html(25);
         });
 
     });

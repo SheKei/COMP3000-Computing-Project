@@ -12,14 +12,38 @@ if(isset($_GET['code']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/20c7401107.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JQuery/complete_task.js"></script>
     <script src="../JQuery/module_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
 
     <style>
-        #theKeyColour{color: <?php echo $module->getColour(); ?>}
+        #theKeyColour{color: <?php echo $module->getColour(); ?>;}
+
+        #deleteModule{margin-left: auto;}
+
+        .title{margin-left: 15px;}
+
+        .moduleColor{
+            background-color: <?php echo $module->getColour();?>;
+            color: <?php
+                //If module is not color coded as black, print text in black else in white
+                if($module->getColour() != "rgb(51, 57, 64)"){
+                    echo "black";
+                }else{
+                    echo "white";
+                }
+            ?>;
+        }
+
+        .category{
+            background-color: white;
+            color: black;
+        }
+
+        #heading{font-size: 25px; font-family: "Century Gothic", "Century", "Century Schoolbook"}
+
     </style>
 </head>
 <body>
@@ -28,7 +52,7 @@ if(isset($_GET['code']))
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
 
-            <div class="modal-header">
+            <div class="modal-header" >
                 <h4 class="modal-title"><?php echo $module->getModuleCode()." - ".$module->getModuleName(); ?></h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
@@ -41,7 +65,10 @@ if(isset($_GET['code']))
                         <label>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $module->getModuleCode(); ?>"><br>
                         <label>Module Name: <p id="editNameChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="name" id="name" maxlength="50" value="<?php echo $module->getModuleName(); ?>"><br>
                         <label>Expected Hours: </label><input class="form-control userInput moduleInput viewModule" type="number" name="hour" id="hour" min="1" max="999" value="<?php echo $module->getExpectedHours(); ?>"><br>
-                        <label>Module Colour: <i class="fas fa-circle" id="theKeyColour"></i></label><input type="text" class="form-control" name="theColour" id="theColour" value="<?php echo $module->getColour(); ?>"><br><br>
+
+                        <label>Module Colour: <i class="fas fa-circle" id="theKeyColour"></i></label>
+                        <input type="text" class="form-control" name="theColour" style="display: none" id="theColour" value="<?php echo $module->getColour(); ?>">
+
                         <div id="colourPicker">
                             <button type="button" class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="blackC"></i></button>
                             <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x edit" id="redC"></i></button>
@@ -54,9 +81,13 @@ if(isset($_GET['code']))
                         </div>
 
                         <p id="requiredMsg"></p>
-                        <input type="submit" class="btn btn-primary submitBtn" name="saveModuleBtn" id="saveModuleBtn" value="Save Changes">
+                        <br><br>
+                        <div class="row">
+                            <input type="submit" class="btn btn-success submitBtn" name="saveModuleBtn" id="saveModuleBtn" value="Save Changes">
+                            <button type="button" class="btn btn-danger" id="deleteModule" name="deleteModule" data-toggle="modal" data-target="#deleteModuleWarning">Delete Module</button>
+                        </div>
                     </form>
-                    <button type="button" class="btn btn-danger" id="deleteModule" name="deleteModule" data-toggle="modal" data-target="#deleteModuleWarning">Delete Module</button>
+
                     <?php include_once 'delete_module.php';?> <!-- IMPORT CONFIRMATION POP UP PAGE TO DELETE MODULE -->
                 </div>
             </div>

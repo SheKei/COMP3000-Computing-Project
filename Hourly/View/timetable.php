@@ -12,7 +12,7 @@ $classController = new Class_Controller('dummy');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/20c7401107.js" crossorigin="anonymous"></script>
     <style>
         #timetable{
             margin-left: 25%;
@@ -27,6 +27,12 @@ $classController = new Class_Controller('dummy');
             display: none;
         }
 
+        .classes, .moduleTitle{
+            font-family: "Century Gothic", "Century", "Century Schoolbook";
+        }
+
+        .moduleTitle,h1{letter-spacing: 2px;}
+
     </style>
 </head>
 <body>
@@ -37,7 +43,7 @@ include_once '../Public/side_navbar.php';
 ?>
 
 <div id="timetable" >
-    <h1>Timetable</h1><br>
+    <h1 style="font-family: 'Century Gothic';letter-spacing: 2px;font-size: 35px;">Timetable</h1><br>
     <?php $classController->displayModuleSections(); ?>
     <script>
         $(function(){

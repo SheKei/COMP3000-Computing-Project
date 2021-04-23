@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/20c7401107.js" crossorigin="anonymous"></script>
     <style>
-        #ongoingTasksSection{
-            margin-left: 25%;
+        .hidden{
+            display: none;
         }
 
         .category{
@@ -16,15 +16,24 @@
             min-height: 500px;
         }
 
+        #ongoingTasksSection{
+            border-radius: 25px;
+            border: 2px solid black;
+            padding: 20px;
+            width: 100%;
+            min-height: 600px;
+        }
+
+
         #general, #revision, #coursework{text-align: center;}
 
     </style>
 </head>
 <body>
 
-    <div class="container" id="ongoingTasksSection">
-        <h2>Ongoing Tasks</h2>
-        <div class="row">
+    <div class="container moduleColor" id="ongoingTasksSection" >
+        <h2>Ongoing Tasks <i id="ongoing" class="fas fa-expand-alt"></i></h2>
+        <div class="row" id="ongoingBoard">
             <div class="col-lg category">
                 <h2 id="general">General</h2>
                 <p id="generalTasks"></p>
@@ -42,3 +51,19 @@
 
 </body>
 </html>
+
+<script>
+    $(function(){
+
+        //If user checks a box next to a task
+        $("#ongoing").click(function(){
+            if($("#ongoingBoard").hasClass("hidden")){
+                $("#ongoingBoard").removeClass("hidden");
+                $('#ongoingTasksSection').css('min-height', '600px');
+            }else{
+                $("#ongoingBoard").addClass("hidden");
+                $('#ongoingTasksSection').css('min-height', '20px');
+            }
+        });
+    });
+</script>

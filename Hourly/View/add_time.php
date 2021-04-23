@@ -41,8 +41,8 @@
                             <div class="form-group row">
                                 <div class="col-auto">
                                 <label for="time" class="col-form-label">Time spent: </label>
-                                <input class="form-control" type ="number" min="0" max="23" id="hour" placeholder="1" name="hour"> <label for="hour">hour(s) </label>
-                                <input class="form-control" type="number" min="0" max="60" placeholder="30" id="minute" name="minute"><label for="minute">minutes</label>
+                                <input class="form-control" type ="number" min="0" max="23" id="hour" placeholder="1" name="hour" required> <label for="hour">hour(s) </label>
+                                <input class="form-control" type="number" min="0" max="59" placeholder="30" id="minute" name="minute" required><label for="minute">minutes</label>
                                 </div>
                             </div>
                         </div>

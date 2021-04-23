@@ -1,6 +1,9 @@
 <?php
 include_once'../Controller/Class_Controller.php';
+include_once '../Controller/Reminder_Controller.php';
+
 $classController = new Class_Controller('dummy');
+$reminderController = new Reminder_Controller('dummy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,27 +12,99 @@ $classController = new Class_Controller('dummy');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
 
+    <style>
+        #homePanel{
+            margin-left: 25%;
+            margin-top: 8%;
+
+        }
+
+        .panel{
+            background-color: white;
+            border-radius: 25px;
+            border: 2px solid black;
+            padding: 20px;
+        }
+
+        #classPanel{
+            width: 95%;
+            min-height: 200px;
+        }
+
+        #reminders, #upcomingDeadlines{
+            min-height: 350px;
+            margin-top: 25px;
+        }
+
+
+        #reminders{
+            margin-left:10%;
+            width: 30%;
+        }
+
+        #upcomingDeadlines{
+            margin-left: 2%;
+            width: 50%;
+        }
+
+        .logAttendance{
+            margin-left:10px;
+        }
+
+        #classTitle{
+            letter-spacing: 3px;
+        }
+
+        .title{
+            font-family: "Century Gothic", "Century", "Century Schoolbook";
+            letter-spacing: 3px;
+        }
+
+        body{background-color: rgb(255, 253, 247);}
+
+        i.fa-times-circle:hover{
+            color: #FF5C4D;
+        }
+
+        .fa-times-circle{
+            margin-right: 10px;
+        }
+
+    </style>
 
 </head>
-<body>
+<body style="font-family: 'Century Gothic'; background-color: rgb(255, 253, 250);">
 
 <?php
     include_once "../Public/top_navbar.php";
 include_once "../Public/side_navbar.php";
 ?>
 
-<div id="issuePara" style="margin-left: 25%;">
-    <br><br><br><br>
-    <h3>Issues found & yet to be fixed (as of 19/11/20):</h3>
-    <ul>
-        <li>Entering the same module code will bring an error in add module</li>
-        <li>The overall appearance </li>
-    </ul>
-    <?php $classController->showTodaysClasses(); ?>
+<div id="homePanel">
+
+    <div class="panel" id="classPanel">
+        <?php $classController->showTodaysClasses(); ?>
+    </div>
+
+    <div class="row">
+        <div class="panel" id="upcomingDeadlines">
+            <h3 class="title">Upcoming Deadlines</h3>
+        </div>
+
+        <div class="panel" id="reminders">
+            <h3 class="title">
+                <button class="btn btn-dark" data-toggle="modal" data-target="#reminderModal">
+                    <i class="far fa-plus-square"></i>
+                </button>
+                Reminders
+            </h3>
+            <?php $reminderController->displayReminders(); ?>
+        </div>
+    </div>
 </div>
 
 <?php include_once'view_class.php'; ?>
-
+<?php include_once 'add_reminder.php'; ?>
 
 </body>
 </html>
@@ -62,6 +137,13 @@ include_once "../Public/side_navbar.php";
             //Get the id of the class attended
             let theId = event.target.id;
             window.location.href = "../Controller/classController.php?attendanceClassId="+theId;
+        });
+
+        //If user logs attendance for a class
+        $(".fa-times-circle").click(function(){
+            //Get the id of the reminder
+            let theId = event.target.id;
+            window.location.href = "../Controller/reminderController.php?reminderID="+theId;
         });
     });
 </script>

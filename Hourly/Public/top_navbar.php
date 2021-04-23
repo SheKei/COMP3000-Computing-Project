@@ -7,29 +7,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/20c7401107.js" crossorigin="anonymous"></script>
 
     <style>
         nav{
             padding: 15px;
             height: 10%;
         }
+
+        body{
+            font-family: "Century Gothic", "Century", "Century Schoolbook";
+        }
+
+        #topNavBar{
+            background-color: rgb(252, 252, 242);
+        }
     </style>
 </head>
 <body>
-        <nav id="topNavBar" class="fixed-top navbar-light bg-light">
+        <nav style="font-family: 'Century Gothic';" id="topNavBar" class="fixed-top navbar-light ">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <button class="btn" data-toggle="modal" data-target="#moduleModal">Add Module</button>
+                    <button class="btn btn-light" data-toggle="modal" data-target="#moduleModal">Add Module</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn" data-toggle="modal" data-target="#taskModal">Add Task</button>
+                    <button class="btn btn-light" data-toggle="modal" data-target="#taskModal">Add Task</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn" data-toggle="modal" data-target="#timeModal">Add Time</button>
+                    <button class="btn btn-light" data-toggle="modal" data-target="#timeModal">Add Time</button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn" data-toggle="modal" data-target="#classModal">Add Class</button>
+                    <button class="btn btn-light" data-toggle="modal" data-target="#classModal">Add Class</button>
                 </li>
             </ul>
         </nav>

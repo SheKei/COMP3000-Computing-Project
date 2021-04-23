@@ -17,29 +17,44 @@ if(isset($_GET['code']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/20c7401107.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JQuery/complete_task.js"></script>
     <script src="../JQuery/module_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
+
     <style>
-        #heading, #buttonDisplay{
+        #buttonDisplay{
             margin-left: 20%;
         }
         #moduleCodeCurrent{display:none;}
+
+        #modulePanel{
+            margin-left: 20%;
+            margin-top: 5%;
+        }
+
+        body{background-color: rgb(255, 253, 247);}
+
     </style>
 </head>
-<body>
-    <?php include_once'view_module.php'; ?> <!--IMPORT HTML POP-UP PAGE FOR VIEWING MODULE DETAILS -->
+<body style="font-family: 'Century Gothic'">
 
-    <?php include_once 'ongoing_tasks.php';?> <!--IMPORT HTML TO VIEW ONGOING TASKS-->
-    <script>
-        $(function(){
-            <?php $taskControl->sortTasks($_GET['code']); ?>
-        });
-    </script>
+    <div id="modulePanel">
+        <?php include_once'view_module.php'; ?> <!--IMPORT HTML POP-UP PAGE FOR VIEWING MODULE DETAILS -->
 
-    <?php include_once 'completed_tasks.php'; ?> <!-- IMPORT HTML TO VIEW COMPLETED TASKS -->
+        <?php include_once 'ongoing_tasks.php';?> <!--IMPORT HTML TO VIEW ONGOING TASKS-->
+        <script>
+            $(function(){
+                <?php $taskControl->sortTasks($_GET['code']); ?>
+            });
+        </script>
+
+        <?php include_once 'completed_tasks.php'; ?> <!-- IMPORT HTML TO VIEW COMPLETED TASKS -->
+    </div>
+
+
+
     <script>
         $(function(){
             <?php $taskControl->displayCompletedTasks($_GET['code']); ?>

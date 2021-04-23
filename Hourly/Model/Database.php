@@ -200,4 +200,22 @@ class Database
         $sql = $this->procedure."create_account('".$username."','".$password."','".$email."','".$birthdate."')";
         $this->executeStatementNoOutput($sql);
     }
+
+    //Add a reminder
+    public function addReminder($username, $description){
+        $sql = $this->procedure."add_reminder('".$username."','".$description."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Get all reminders from one user
+    public function getReminders($username){
+        $sql = $this->procedure."get_reminders('".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Delete reminder
+    public function deleteReminder($id){
+        $sql = $this->procedure."delete_reminder(".$id.")";
+        $this->executeStatementNoOutput($sql);
+    }
 }

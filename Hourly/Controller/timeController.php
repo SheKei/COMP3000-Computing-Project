@@ -19,6 +19,19 @@ if(isset($_POST['addTimeBtn'])){
     header('Location: ../View/home.php');
 }
 
+//POST request to log pomodoro session
+if(isset($_POST['saveTimeBtn'])){
+    $totalMinutes = $_POST['workedFor'];            //CONVERT TOTAL MINUTES TO HH:MM FORMAT
+    $hour = (int)($totalMinutes/60);
+    $minutes = $totalMinutes%60;
+
+    $duration = $hour.":".$minutes;
+    $timeStamp = date("Y-m-d");
+                                                    //ADD TO DB THEN REFRESH PAGE
+    $controller->add_time($_POST['taskName'], $duration, $_POST['description'], $timeStamp);
+    header('Location: ../View/pomodoro.php');
+}
+
 //GET request for timeId to delete a time
 if(isset($_GET['timeId'])){
 

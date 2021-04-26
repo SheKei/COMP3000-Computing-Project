@@ -266,10 +266,16 @@ class Database
         $sql = $this->procedure."update_daily_goal('".$username."',".$newGoal.")";
         $this->executeStatementNoOutput($sql);
     }
-    
+
     //Update the goal number of hours to work in a week
     public function updateWeeklyGoal($username, $newGoal){
         $sql = $this->procedure."update_weekly_goal('".$username."',".$newGoal.")";
         $this->executeStatementNoOutput($sql);
+    }
+
+    //Get upcoming deadlines for the next seven days
+    public function getDeadlines($username){
+        $sql = $this->procedure."get_deadlines('".$username."')";
+        return $this->executeStatement($sql);
     }
 }

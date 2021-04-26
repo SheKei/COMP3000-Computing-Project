@@ -218,4 +218,46 @@ class Database
         $sql = $this->procedure."delete_reminder(".$id.")";
         $this->executeStatementNoOutput($sql);
     }
+
+    //PROCEDURES TO GET TIME CALCULATIONS FOR TIME SPENT ON MODULE/MODULES
+
+    //The total hours spent on ONE module both class and tasks OVERALL
+    public function overallModuleClassHours($moduleCode, $username){
+        $sql = $this->procedure."get_class_time_overall_hours('".$moduleCode."','".$username."')";
+        return $this->executeStatement($sql);
+    }
+    public function overallModuleTaskHours($moduleCode, $username){
+        $sql = $this->procedure."get_module_tasks_overall_hours('".$moduleCode."','".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+    //The hours spent on ONE module in a WEEK
+    public function weeklyModuleClassHours($moduleCode, $username){
+        $sql = $this->procedure."get_module_class_weekly_hours('".$moduleCode."','".$username."')";
+        return $this->executeStatement($sql);
+    }
+    public function weeklyModuleTaskHours($moduleCode, $username){
+        $sql = $this->procedure."get_module_task_weekly_hours('".$moduleCode."','".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+    //The OVERALL weekly hours spent attending classes and tasks
+    public function weeklyModuleHours($username){
+        $sql = $this->procedure."get_overall_task_weekly_hours('".$username."')";
+        return $this->executeStatement($sql);
+    }
+    public function weeklyClassHours($username){
+        $sql = $this->procedure."get_overall_class_weekly_hours('".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+    //The hours spent working TODAY
+    public function todayModuleHours($username){
+        $sql = $this->procedure."get_today_class_hours('".$username."')";
+        return $this->executeStatement($sql);
+    }
+    public function todayClassHours($username){
+        $sql = $this->procedure."get_today_task_hours('".$username."')";
+        return $this->executeStatement($sql);
+    }
 }

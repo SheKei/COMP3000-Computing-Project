@@ -44,5 +44,15 @@ class Goal_Controller
         return $totalDuration;
     }
 
+    //Update the goal for daily hours spent working
+    public function updateDailyGoal($newGoal){
+        $this->database->updateDailyGoal($this->user, $newGoal);
+    }
+
+    //Update the goal for hours spent in a week
+    public function updateWeeklyGoal($newGoal){
+        $this->database->updateWeeklyGoal($this->user, $newGoal);
+    }
+
 
 }

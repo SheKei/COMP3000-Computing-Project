@@ -242,11 +242,11 @@ class Database
     }
 
     //The OVERALL weekly hours spent attending classes and tasks
-    public function weeklyModuleHours($username){
+    public function weeklyOverallModuleHours($username){
         $sql = $this->procedure."get_overall_task_weekly_hours('".$username."')";
         return $this->executeStatement($sql);
     }
-    public function weeklyClassHours($username){
+    public function weeklyOverallClassHours($username){
         $sql = $this->procedure."get_overall_class_weekly_hours('".$username."')";
         return $this->executeStatement($sql);
     }

@@ -54,12 +54,14 @@ CREATE TABLE COMP3000_STong.task(
 );
 
 CREATE TABLE COMP3000_STong.time_log(
+	user_id VARCHAR(20) NOT NULL,
 	task_id INT NOT NULL,
 	time_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	duration TIME NOT NULL,
 	description VARCHAR(150),
 	time_stamp DATE NOT NULL,
-	FOREIGN KEY (task_id) REFERENCES COMP3000_STong.task(task_id)
+	FOREIGN KEY (task_id) REFERENCES COMP3000_STong.task(task_id),
+	FOREIGN KEY (user_id) REFERENCES COMP3000_STong.user(user_id)
 );
 
 INSERT INTO `user` (`user_id`, `password`, `email`, `birth_date`, `daily_goal`, `weekly_goal`, `weekly_hours`, `daily_hours`, `report_subscription`) 

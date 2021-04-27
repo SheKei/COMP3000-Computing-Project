@@ -1,16 +1,19 @@
 <?php
 include_once "../Model/Database.php";
 include_once '../Model/Module.php';
+include_once 'Goal_Controller.php';
 
 class Module_Controller
 {
     private $database;
     private $username;
+    private $goalController;
 
     public function __construct($user)
     {
         $this->database = new Database();
         $this->username = $user;
+        $this->goalController = new Goal_Controller($user);
     }
 
     //Create a module using user's inputs
@@ -42,9 +45,16 @@ class Module_Controller
     public function displayPageHeading($moduleCode, $moduleName, $color)
     {
         echo "<div id='heading' class='jumbotron jumbotron-fluid moduleColor'>";
-        echo "<h1 class='display-4 title'>".$moduleCode."</h1>";
-        echo "<p class='title'>".$moduleName."</p>";
-        echo "<button class='btn btn-light title' data-toggle='modal' data-target='#viewModule'>VIEW MODULE DETAILS</button>";
+            echo "<div class='row'>";
+                echo "<div class='col-lg-8'>";
+                    echo "<h1 class='display-4 title'>".$moduleCode."</h1>";
+                    echo "<p class='title'>".$moduleName."</p>";
+                    echo "<button class='btn btn-light title' data-toggle='modal' data-target='#viewModule'>VIEW MODULE DETAILS</button>";
+                echo "</div>";
+                echo "<div class='col-lg-4'>";
+                    $this->goalController->displayModuleHours($moduleCode);
+                echo "</div>";
+            echo "</div>";
         echo "</div>";
     }
 

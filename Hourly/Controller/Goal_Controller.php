@@ -29,17 +29,17 @@ class Goal_Controller
     }
 
     //Calculate the TOTAL number of hours spent so far on a module
-    public function getTotalHoursOnModule(){
-        $onTasks = $this->database->overallModuleTaskHours($this->user);
-        $onClass = $this->database->overallModuleClassHours($this->user);
+    public function getTotalHoursOnModule($moduleCode){
+        $onTasks = $this->database->overallModuleTaskHours($moduleCode,$this->user);
+        $onClass = $this->database->overallModuleClassHours($moduleCode,$this->user);
         $totalDuration = date("H:i",strtotime($onTasks)+strtotime($onClass));
         return $totalDuration;
     }
 
     //Calculate the number of hours spent on a module so far this WEEK
-    public function getWeeklyHoursOnModule(){
-        $onTasks = $this->database->weeklyModuleTaskHours($this->user);
-        $onClass = $this->database->weeklyModuleClassHours($this->user);
+    public function getWeeklyHoursOnModule($moduleCode){
+        $onTasks = $this->database->weeklyModuleTaskHours($moduleCode,$this->user);
+        $onClass = $this->database->weeklyModuleClassHours($moduleCode,$this->user);
         $totalDuration = date("H:i",strtotime($onTasks)+strtotime($onClass));
         return $totalDuration;
     }
@@ -54,5 +54,21 @@ class Goal_Controller
         $this->database->updateWeeklyGoal($this->user, $newGoal);
     }
 
+
+    public function displayOverallHours(){
+        $thisWeek = $this->getOverallWeeklyHours();
+        $today = $this->getTodaysHours();
+
+        echo "<p>This Week: ".$thisWeek." hours</p>";
+        echo "<p>Today: ".$today." hours</p>";
+    }
+
+    public function displayModuleHours($moduleCode){
+        $totalHours = $this->getTotalHoursOnModule($moduleCode);
+        $weeklyHours = $this->getWeeklyHoursOnModule($moduleCode);
+
+        echo "<p>Overall: ".$totalHours." hours</p>";
+        echo "<p>This Week: ".$weeklyHours. "hours</p>";
+    }
 
 }

@@ -1,21 +1,14 @@
 <?php
 include_once '../Model/Database.php';
 include_once '../Model/Deadline.php';
+include_once 'Task_Controller.php';
 
-class Deadline_Controller
+class Deadline_Controller extends Task_Controller //Inherit priority sorting function
 {
-    private $user;
-    private $database;
-
-    public function __construct($user)
-    {
-        $this->user = $user;
-        $this->database = new Database();
-    }
 
     //Get upcoming task deadlines for the next seven days
     public function getDeadlines(){
-        $result = $this->database->getDeadlines($this->user);
+        $result = $this->database->getDeadlines($this->username);
         $deadlines = [];
         if($result){
             foreach ($result as $row){
@@ -33,8 +26,21 @@ class Deadline_Controller
         $deadlines = $this->getDeadlines();
         if($deadlines){
             foreach ($deadlines as $deadline){
-                echo "<p>".$deadline->getTaskName()."</p>";
+                $priorityIcon = $this->sortPriority($deadline->getPriorityLevel());
+                $deadlineDate = $this->formatStringDate($deadline->getDueDate(), $deadline->getDueTime());
+                echo "<p class='upcomingDeadline'>".$priorityIcon.'<button class="btn taskBtn" id="'.$deadline->getTaskId()
+                    .'" data-toggle="modal" data-target="#viewTask">'.$deadline->getTaskName()."</button> - ".$deadlineDate."</p>";
             }
         }
     }
+
+    //Return format date string to d/m h:m
+    public function formatStringDate($date, $time){
+        $icon = '<i class="far fa-calendar-alt"></i>'; //Calender icon
+        $due = $icon." ".date("d/m h:m", strtotime($date." ".$time));
+
+        return $due;
+    }
+
+
 }

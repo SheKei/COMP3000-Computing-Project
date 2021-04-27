@@ -84,6 +84,7 @@ if(isset($_GET['code']))
                     }
                 }
 
+                //DATA FORMAT DISPLAY CHANGES IF TASK IS COMPLETED OR ONGOING
                 if($("#"+theId).hasClass("completed")){
                     xmlhttp.open("GET","../Controller/taskController.php?completedTaskId="+theId,true);
                     xmlhttp.send();

@@ -4,8 +4,8 @@ include_once '../Model/Task.php';
 
 class Task_Controller
 {
-    private $database;
-    private $username;
+    protected $database;
+    protected $username;
 
     /**
      * Task_Controller constructor.

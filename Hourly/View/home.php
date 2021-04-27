@@ -1,9 +1,12 @@
 <?php
 include_once'../Controller/Class_Controller.php';
 include_once '../Controller/Reminder_Controller.php';
+include_once '../Controller/Deadline_Controller.php';
+include_once '../View/view_task.php'; //POP UP PAGE TO VIEW DEADLINE DETAILS
 
 $classController = new Class_Controller('dummy');
 $reminderController = new Reminder_Controller('dummy');
+$deadlineController = new Deadline_Controller('dummy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,6 +73,10 @@ $reminderController = new Reminder_Controller('dummy');
             margin-right: 10px;
         }
 
+        .upcomingDeadline{
+            font-size: 20px;
+        }
+
     </style>
 
 </head>
@@ -88,7 +95,10 @@ include_once "../Public/side_navbar.php";
 
     <div class="row">
         <div class="panel" id="upcomingDeadlines">
-            <h3 class="title">Upcoming Deadlines</h3>
+            <h3 class="title">Upcoming Deadlines</h3><br>
+            <?php
+                $deadlineController->displayDeadlines();
+            ?>
         </div>
 
         <div class="panel" id="reminders">
@@ -145,5 +155,27 @@ include_once "../Public/side_navbar.php";
             let theId = event.target.id;
             window.location.href = "../Controller/reminderController.php?reminderID="+theId;
         });
+
+        //If user clicks on a deadline to view further details
+        $(".taskBtn").click(function(){
+
+            //Get the id of the task being viewed
+            let theId = event.target.id;
+
+            if(theId!=""){
+                let xmlhttp2 = new XMLHttpRequest();
+                //Wait for response
+                xmlhttp2.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        $("#details").html(this.responseText); //Output details of clicked task
+                    }
+                }
+
+                xmlhttp2.open("GET","../Controller/taskController.php?taskId="+theId,true);
+                xmlhttp2.send();
+            }
+        });
+
     });
 </script>
+

@@ -5,11 +5,19 @@ class Goal_Controller
 {
     private $user;
     private $database;
+    private $weekly;
+    private $daily;
 
     public function __construct($user)
     {
         $this->user = $user;
         $this->database = new Database();
+
+        $result = $this->database->getGoals($this->user);
+        foreach($result as $row){
+            $this->weekly = $row['weekly_hours'];
+            $this->daily = $row['daily_hours'];
+        }
     }
 
     //Calculate the overall number of hours spent for current week
@@ -78,14 +86,10 @@ class Goal_Controller
 
     //Get the goals currently set for user and display
     public function displayGoals(){
-        $result = $this->database->getGoals($this->user);
-        foreach($result as $row){
-            $weekly = $row['weekly_hours'];
-            $daily = $row['daily_hours'];
-        }
+
         echo "<form method='POST' action='../Controller/goalController.php'>";
-        echo "<label>Week: </label><input class='form-control col-lg-2' name='weekly' type='number' min='1' max='99' value='".$weekly."'>";
-        echo "<label>Daily: </label><input class='form-control col-lg-2' name='daily' type='number' min='1' max='23' value='".$daily."'>";
+        echo "<label>Week: </label><input class='form-control col-lg-2' name='weekly' type='number' min='1' max='99' value='".$this->weekly."'>";
+        echo "<label>Daily: </label><input class='form-control col-lg-2' name='daily' type='number' min='1' max='23' value='".$this->daily."'>";
         echo "<button class='btn btn-success' name='updateGoal' type='submit'>Change Goals</button>";
     }
 

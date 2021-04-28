@@ -275,6 +275,13 @@ class Database
         return $theTime;
     }
 
+    //Get the current goal numbers set to achieve per week and day
+    public function getGoals($username){
+        $sql = $this->procedure."get_goals('".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+
     //Update the goal number of hours to work in a day
     public function updateDailyGoal($username, $newGoal){
         $sql = $this->procedure."update_daily_goal('".$username."',".$newGoal.")";

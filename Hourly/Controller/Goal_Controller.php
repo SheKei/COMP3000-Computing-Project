@@ -23,7 +23,6 @@ class Goal_Controller
     public function getTodaysHours(){
         $onTasks = explode(":", $this->database->todayModuleHours($this->user));
         $onClass = explode(":", $this->database->todayClassHours($this->user));
-        echo sizeof($onTasks);
         return $this->addTime($onTasks[1], $onClass[1],$onTasks[0]+$onClass[0]);
     }
 
@@ -59,7 +58,7 @@ class Goal_Controller
         $this->database->updateWeeklyGoal($this->user, $newGoal);
     }
 
-
+    //Display today and this week's hours spent on all modules
     public function displayOverallHours(){
         $thisWeek = $this->getOverallWeeklyHours();
         $today = $this->getTodaysHours();
@@ -68,12 +67,26 @@ class Goal_Controller
         echo "<p>Today: ".$today." hours</p>";
     }
 
+    //Display total and this week's hours spent on selected module
     public function displayModuleHours($moduleCode){
         $totalHours = $this->getTotalHoursOnModule($moduleCode);
         $weeklyHours = $this->getWeeklyHoursOnModule($moduleCode);
 
         echo "<p>Overall: ".$totalHours." hours</p>";
         echo "<p>This Week: ".$weeklyHours. " hours</p>";
+    }
+
+    //Get the goals currently set for user and display
+    public function displayGoals(){
+        $result = $this->database->getGoals($this->user);
+        foreach($result as $row){
+            $weekly = $row['weekly_hours'];
+            $daily = $row['daily_hours'];
+        }
+        echo "<form method='POST' action='../Controller/goalController.php'>";
+        echo "<label>Week: </label><input class='form-control col-lg-2' name='weekly' type='number' min='1' max='99' value='".$weekly."'>";
+        echo "<label>Daily: </label><input class='form-control col-lg-2' name='daily' type='number' min='1' max='23' value='".$daily."'>";
+        echo "<button class='btn btn-success' name='updateGoal' type='submit'>Change Goals</button>";
     }
 
 }

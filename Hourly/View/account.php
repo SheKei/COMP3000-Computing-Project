@@ -1,5 +1,7 @@
 <?php
 include_once '../Controller/Account_Controller.php';
+include_once '../Controller/Goal_Controller.php';
+$goalController = new Goal_Controller('dummy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +16,17 @@ include_once '../Controller/Account_Controller.php';
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <style>
-        #accountContainer{
+        #overallContainer{
             margin-left: 25%;
             margin-top: 10%;
+        }
+
+        .panel{
+            background-color: white;
+            border-radius: 25px;
+            border: 2px solid black;
+            padding: 20px;
+            margin: 25px;
         }
     </style>
 </head>
@@ -26,12 +36,21 @@ include_once '../Public/top_navbar.php';
 include_once '../Public/side_navbar.php';
 ?>
 
-<div id="accountContainer">
-    <?php
-    $accountController = new Account_Controller("dummy");
-    $accountController->displayAccountDetails();
-    ?>
+<div id="overallContainer">
+    <div class="panel" id="accountContainer">
+        <?php
+        $accountController = new Account_Controller("dummy");
+        $accountController->displayAccountDetails();
+        ?>
+    </div><br>
+
+    <div class="panel" id="goalContainer">
+        <h3>Number of hours to achieve per... </h3>
+        <?php $goalController->displayGoals(); ?>
+    </div>
 </div>
+
+
 
 </body>
 </html>

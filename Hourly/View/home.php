@@ -34,6 +34,7 @@ $goalController = new Goal_Controller('dummy');
         #classPanel{
             width: 95%;
             min-height: 200px;
+            margin: 15px;
         }
 
         #reminders, #upcomingDeadlines{
@@ -91,10 +92,10 @@ include_once "../Public/side_navbar.php";
 
 <div id="homePanel">
     <div class="row">
-        <div class="panel col-lg-4" id="classPanel">
+        <div class="panel col-lg-8" id="classPanel">
             <?php $classController->showTodaysClasses(); ?>
         </div>
-        <div class="panel col-lg-4">
+        <div class="panel col-lg-3" id="goalPanel">
             <?php $goalController->displayOverallHours(); ?>
         </div>
     </div>

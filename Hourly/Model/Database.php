@@ -92,8 +92,8 @@ class Database
     }
 
     //Insert time for a task
-    public function addTime($taskId, $theDuration, $theDescription, $theTimeStamp){
-        $sql = $this->procedure."add_time(".$taskId.",'".$theDuration."','".$theDescription."','".$theTimeStamp."')";
+    public function addTime($user,$taskId, $theDuration, $theDescription, $theTimeStamp){
+        $sql = $this->procedure."add_time(".$taskId.",'".$theDuration."','".$theDescription."','".$theTimeStamp."','".$user."')";
         $this->executeStatementNoOutput($sql);
     }
 
@@ -267,6 +267,9 @@ class Database
         if($result){
             foreach($result as $row){
                 $theTime = $row['total_time'];
+                if($theTime === null){
+                    $theTime = "00:00"; //Set null value to 00:00
+                }
             }
         }
         return $theTime;

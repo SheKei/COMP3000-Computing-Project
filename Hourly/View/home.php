@@ -2,11 +2,13 @@
 include_once'../Controller/Class_Controller.php';
 include_once '../Controller/Reminder_Controller.php';
 include_once '../Controller/Deadline_Controller.php';
+include_once '../Controller/Goal_Controller.php';
 include_once '../View/view_task.php'; //POP UP PAGE TO VIEW DEADLINE DETAILS
 
 $classController = new Class_Controller('dummy');
 $reminderController = new Reminder_Controller('dummy');
 $deadlineController = new Deadline_Controller('dummy');
+$goalController = new Goal_Controller('dummy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,10 +90,15 @@ include_once "../Public/side_navbar.php";
 ?>
 
 <div id="homePanel">
-
-    <div class="panel" id="classPanel">
-        <?php $classController->showTodaysClasses(); ?>
+    <div class="row">
+        <div class="panel col-lg-4" id="classPanel">
+            <?php $classController->showTodaysClasses(); ?>
+        </div>
+        <div class="panel col-lg-4">
+            <?php $goalController->displayOverallHours(); ?>
+        </div>
     </div>
+
 
     <div class="row">
         <div class="panel" id="upcomingDeadlines">

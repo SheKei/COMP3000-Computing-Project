@@ -17,7 +17,7 @@ class Time_Controller
 
     //Add time spent working on an ongoing task
     public function add_time($task, $duration, $description, $timeStamp){
-        $this->database->addTime($task, $duration, $description, $timeStamp);
+        $this->database->addTime($this->username,$task, $duration, $description, $timeStamp);
     }
 
     //Get time spent on a task

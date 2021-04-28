@@ -23,6 +23,7 @@ class Goal_Controller
     public function getTodaysHours(){
         $onTasks = explode(":", $this->database->todayModuleHours($this->user));
         $onClass = explode(":", $this->database->todayClassHours($this->user));
+        echo sizeof($onTasks);
         return $this->addTime($onTasks[1], $onClass[1],$onTasks[0]+$onClass[0]);
     }
 

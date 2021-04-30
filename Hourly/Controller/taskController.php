@@ -80,3 +80,9 @@ if(isset($_GET['completedTaskId'])){
     $controller->displayCompletedTaskDetails($_GET['completedTaskId']);
     $timeController->outputTimes($timeController->getTaskTime($_GET['completedTaskId']));
 }
+
+//GET request to update task status to complete
+if(isset($_GET['completeTaskId'])){
+    $controller->completeTask($_GET['completeTaskId']);
+    header('Location: ../View/home.php');
+}

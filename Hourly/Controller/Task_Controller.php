@@ -279,12 +279,21 @@ class Task_Controller
 
             echo '<div class="row"><button type="submit" class="btn btn-dark" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
             echo //DELETE TASK BTN
-                '<button style="margin-left:20px;" type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button></div><br><br>';
-
+                '<button style="margin-left:20px;" type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
+            echo //COMPLETE TASK BTN
+                '<button style="margin-left:20px;" type="button" class="btn btn-success completeTask" id="'.$task->getTaskId().'">Complete Task</button></div><br><br>';
             echo '<script>
+                
+                //BTN to delete task
                 $(".deleteTask").click(function(){
                     let delTaskId = this.id; //Get id of task
                     window.location.href = "../Controller/taskController.php?delTaskId="+delTaskId; //Send to controller 
+                });
+                
+                //BTN to change task status to complete
+                $(".completeTask").click(function(){
+                    let completeTaskId = this.id; //Get id of task
+                    window.location.href = "../Controller/taskController.php?completeTaskId="+completeTaskId; //Send to controller 
                 });
                 
                 $("#changeDeadline").click(function(){

@@ -70,16 +70,16 @@ class Goal_Controller
     public function displayOverallHours(){
         $thisWeek = $this->getOverallWeeklyHours();
         $today = $this->getTodaysHours();
-
-        echo "<p>This Week: ".$thisWeek." hours</p>";
-        echo "<p>Today: ".$today." hours</p>";
+        echo "<p>Should be working for ".$this->weekly." hours per week</p>";
+        echo "<p>This Week Currently: ".$thisWeek." hours</p>";
+        echo "<p>Should be working for ".$this->daily." hours per day</p>";
+        echo "<p>Today You Have Worked For: ".$today." hours</p>";
     }
 
     //Display total and this week's hours spent on selected module
     public function displayModuleHours($moduleCode){
         $totalHours = $this->getTotalHoursOnModule($moduleCode);
         $weeklyHours = $this->getWeeklyHoursOnModule($moduleCode);
-
         echo "<p>Overall: ".$totalHours." hours</p>";
         echo "<p>This Week: ".$weeklyHours. " hours</p>";
     }

@@ -47,8 +47,8 @@ if(isset($_POST['editTaskBtn'])){
     }
     else
     {
-        $due_date = $_POST['dueDate'];
-        $due_time = $_POST['dueTime'];
+        $due_date = $_POST['newDate'];
+        $due_time = $_POST['newTime'];
     }
 
     $controller->editTask($taskId, $module, $task, $category, $due_date, $due_time, $priority);

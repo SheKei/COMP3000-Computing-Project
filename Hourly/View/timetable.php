@@ -23,6 +23,10 @@ $classController = new Class_Controller('dummy');
             margin-left: 20px;
         }
 
+        .classNames{
+            font-size: 25px;
+        }
+
         .hidden{
             display: none;
         }

@@ -62,7 +62,7 @@ class Class_Controller
         $modules = [];
         if ($result) {
             foreach ($result as $row) {
-                $module = new Module_Assignment($row['module_code'], $row['module_name']);
+                $module = new Module($row['module_code'], $row['module_name'], 0, $row['colour_key']);
                 $modules[] = $module;
             }
         }
@@ -73,7 +73,12 @@ class Class_Controller
         $modules = $this->getModules();
         if($modules){
             foreach($modules as $module){
-                echo '<h1 class="moduleTitle" id="'.$module->getModuleCode().'">'.$module->getModuleCode().' - '.$module->getModuleName().'</h1>';
+                $colour = $module->getColour(); //If background is black, change font to white
+                if($colour == "rgb(51, 57, 64)"){
+                    $style = "background-color:".$colour.";color:white";
+                }else{$style = "background-color:".$colour;}
+
+                echo '<h1 style="'.$style.'" class="moduleTitle" id="'.$module->getModuleCode().'">'.$module->getModuleCode().' - '.$module->getModuleName().'</h1>';
                 echo '<hr class="my-4">';
             }
         }
@@ -83,7 +88,7 @@ class Class_Controller
         $classes = $this->getTimetable();
         if($classes){ //Button to bring pop-up page for class details
             foreach($classes as $class){
-                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getClassDay()." - ".date("H:i",strtotime($class->getStartTime())).
+                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes classNames\">'.$class->getClassDay()." - ".date("H:i",strtotime($class->getStartTime())).
                     ' - <button data-toggle=\"modal\" data-target=\"#viewClass\" class=\"btn viewClassBtn\" id=\"'.$class->getClassId().'\">'
                     .$class->getClassName().'</p></p>");';
             }
@@ -166,15 +171,15 @@ class Class_Controller
     public function returnDayOfWeek($num){
         switch ($num){
             case 0:
-                return "Monday";
+                return "Mon";
             case 1:
-                return "Tuesday";
+                return "Tues";
             case 2:
-                return "Wednesday";
+                return "Wed";
             case 3:
-                return "Thursday";
+                return "Thurs";
             case 4:
-                return "Friday";
+                return "Fri";
         }
     }
 

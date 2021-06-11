@@ -48,7 +48,7 @@ class Class_Controller
         $classes = [];
         if($result){
             foreach($result as $row){
-                $class = new Module_Class($row['module_code'], $row['module_name'], $row['class_id'], $row['class_name'], $row['class_room'], $row['class_day'], $row['start_time'], $row['class_duration']);
+                $class = new Module_Class($row['module_code'], $row['module_name'], $row['class_id'], $row['class_name'], $row['class_room'], $this->returnDayOfWeek($row['class_day']), $row['start_time'], $row['class_duration']);
                 $classes[] = $class;
             }
         }
@@ -83,7 +83,7 @@ class Class_Controller
         $classes = $this->getTimetable();
         if($classes){ //Button to bring pop-up page for class details
             foreach($classes as $class){
-                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getStartTime().
+                echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes\">'.$class->getClassDay()." - ".date("H:i",strtotime($class->getStartTime())).
                     ' - <button data-toggle=\"modal\" data-target=\"#viewClass\" class=\"btn viewClassBtn\" id=\"'.$class->getClassId().'\">'
                     .$class->getClassName().'</p></p>");';
             }

@@ -112,7 +112,9 @@
 
                         <!-- OPTIONAL TO SET DEADLINE -->
                         <div class="form-group row">
+                            <input class="form-control" id="deadlineInput" name="deadlineInput" readonly>
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setDateTimeModal">Set Deadline</button>
+                            <button type="button" class="btn btn-dark" id="dueAnytimeBtn">Due Anytime</button>
                             <label class="col-form-label">Due Deadline: <label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="dueDeadline" id="dueAnytime" value="dueAnytime" checked>
@@ -165,7 +167,14 @@ include_once 'set_datetime.php' //POP UP PAGE TO CHANGE DEADLINE DATETIME
         $("#confirmDateBtn").click(function(){
             let theDate = $("#theDate").val();
             let theTime = $("#theTime").val();
+
+            $("#deadlineInput").val(theDate + " " + theTime);
         });
+
+        $("#dueAnytimeBtn").click(function(){
+            $("#deadlineInput").val("Due Anytime");
+        });
+
     });
 </script>
 

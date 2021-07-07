@@ -9,6 +9,8 @@
 
     <style>
         label{font-size: 20px;}
+
+        #dateMsg{color: #FF5C4D;}
     </style>
 </head>
 <body>
@@ -24,6 +26,7 @@
 
             <div class="modal-body">
                 <div class="container" >
+                    <p id="dateMsg"></p>
                     <input class="form-control" name="theDate" id="theDate" type="date"><br>
                     <input class="form-control" name="theTime" id="theTime" type="time"><br><br>
 
@@ -38,5 +41,49 @@
 
 </body>
 </html>
+<script>
+    $(function(){
+
+        $("#theDate").change(function(){
+            checkDeadline();
+        })
+
+        function checkDeadline()
+        {
+            //Get input date and current date
+            let inputDate = $("#theDate").val();
+            let currentDate = getCurrentDate();
+
+            //Check if input date isn't set in the past
+            if(inputDate < currentDate){
+                $("#dateMsg").html("Due deadline has already passed!");
+                $("#confirmDateBtn").prop("disabled", true); //Keep btn disabled
+            }
+            else{
+                $("#dateMsg").html("");
+                $("#confirmDateBtn").prop("disabled", false);
+            }
+        }
+
+        function getCurrentDate()
+        {
+            let d = new Date();
+            let month = d.getMonth() + 1;
+            let day = d.getDate();
+
+            if(day < 10) //Issues arise if day is a single digit
+            {
+                day = "0" + day;
+            }
+
+            if(month < 10){
+                month = "0" + month;
+            }
+
+            let currentDate = d.getFullYear() + "-" + month  + "-" + day;
+            return currentDate;
+        }
+    });
+</script>
 
 

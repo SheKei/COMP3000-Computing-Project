@@ -15,14 +15,16 @@ if(isset($_POST['addTaskBtn'])){
     $priority = $_POST['priorityOptions'];
 
     //Check if user set a deadline
-    if($_POST['dueDeadline'] == "dueAnytime"){
+    if($_POST['deadlineInput'] == "Due Anytime"){
         $due_date = "9999-12-30"; //Set to an extreme date if no deadline
         $due_time = "";
     }
     else
     {
-        $due_date = $_POST['dueDate'];
-        $due_time = $_POST['dueTime'];
+        echo $_POST['deadlineInput'];
+        $split = explode(" ", $_POST['deadlineInput']);
+        $due_date = $split[0];
+        $due_time = $split[1];
     }
 
     $controller->assignTask($module_code, $task_name, $task_category, $due_date, $due_time, $priority);

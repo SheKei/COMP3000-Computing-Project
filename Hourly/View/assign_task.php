@@ -38,8 +38,6 @@
                     <div class="container" id="moduleContainer">
                         <form method="post" action="../Controller/taskController.php">
 
-
-
                         <!-- INPUT TASK NAME -->
                         <div class="form-group row">
 
@@ -103,7 +101,7 @@
                                 <label class="form-check-label">Deadline Date:</label>
                             </div>
                             <div class="col-form-4 deadline">
-                                <input class="form-control" id="deadlineInput" name="deadlineInput" readonly>
+                                <input type="text" class="form-control" id="deadlineInput" name="deadlineInput" readonly>
                             </div>
                             <div class="col-form-2 deadline">
                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setDateTimeModal">Set Deadline</button>

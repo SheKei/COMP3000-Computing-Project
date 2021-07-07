@@ -10,7 +10,7 @@
     <style>
         label{font-size: 20px;}
 
-        #dateMsg{color: #FF5C4D;}
+        #dateMsg, #timeMsg{color: #FF5C4D;}
     </style>
 </head>
 <body>
@@ -28,6 +28,7 @@
                 <div class="container" >
                     <p id="dateMsg"></p>
                     <input class="form-control" name="theDate" id="theDate" type="date"><br>
+                    <p id="timeMsg"></p>
                     <input class="form-control" name="theTime" id="theTime" type="time"><br><br>
 
                     <button id="confirmDateBtn" class="btn btn-success float-right" type="button" data-dismiss="modal">
@@ -45,22 +46,40 @@
     $(function(){
 
         $("#theDate").change(function(){
-            checkDeadline();
+            checkDate();
         })
 
-        function checkDeadline()
-        {
+        $("#theTime").change(function(){
+            checkTime();
+        })
+
+        //check if date is entered and is not in the past
+        function checkDate() {
             //Get input date and current date
             let inputDate = $("#theDate").val();
             let currentDate = getCurrentDate();
 
-            //Check if input date isn't set in the past
-            if(inputDate < currentDate){
+            if(inputDate==""){
+                $("#dateMsg").html("Please enter a date!");
+                $("#confirmDateBtn").prop("disabled", true); //Keep confirm btn disabled
+            }else if(inputDate < currentDate){//Check if input date isn't set in the past
                 $("#dateMsg").html("Due deadline has already passed!");
-                $("#confirmDateBtn").prop("disabled", true); //Keep btn disabled
-            }
-            else{
+                $("#confirmDateBtn").prop("disabled", true); //Keep confirm btn disabled
+            }else{
                 $("#dateMsg").html("");
+                $("#confirmDateBtn").prop("disabled", false);
+            }
+        }
+
+        //Check if time input is entered
+        function checkTime(){
+            let inputTime = $("#theTime").val();
+
+            if(inputTime == ""){//if input incomplete
+                $("#timeMsg").html("Please enter a time for the deadline!");
+                $("#confirmDateBtn").prop("disabled", true); //Keep confirm btn disabled
+            }else{
+                $("#timeMsg").html("");
                 $("#confirmDateBtn").prop("disabled", false);
             }
         }

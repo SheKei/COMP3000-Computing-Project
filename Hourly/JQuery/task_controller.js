@@ -1,39 +1,29 @@
 $(function(){
 
 
-    //Check if all fields have been filled in
-    $(".taskInput").change(function(){
 
-        $("#requiredMessageTask").html("")
+    $('#taskName').on('keypress', function() {
+        checkTaskName();
+    })
 
-        let taskName = $("#taskName").val();
-        let dueDate = $("#dueDate").val();
-        let dueTime = $("#dueTime").val();
-
-        //If user set a deadline, check deadline
-        if($("#setDeadline").is(':checked') == true)
-        {
-            console.log("here");
-            checkTaskName();
-            checkDeadline();
-        }
-        else{
-            console.log("else");
-            checkTaskName();
-        }
-
-    });
-
+    $('#taskName').on('keydown', function() {
+        checkTaskName();
+    })
 
     function checkTaskName(taskName)
     {
-        if(taskName == "")
+        taskName = $("#taskName").val();
+
+        console.log(taskName.length);
+
+        if(taskName.length == 0)
         {
-            $("#requiredMessageTask").html("All fields are required to assign a task!");
+            $("#taskMsg").html("Give a name for this task!");
             $("#addTaskBtn").prop("disabled", true); //Keep btn disabled
         }
         else
         {
+            $("#taskMsg").html("");
             $("#addTaskBtn").prop("disabled", false); //Enable create btn
         }
     }

@@ -15,6 +15,8 @@
 
         #categoryLabel{padding:10px;}
 
+        #taskMsg{color: #FF5C4D;}
+
         .deadline{
             margin:10px;
         }
@@ -40,9 +42,10 @@
 
                         <!-- INPUT TASK NAME -->
                         <div class="form-group row">
-                            <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p></label>
+
+                            <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p><p id="taskMsg"></p></label>
                             <div class="col-10">
-                                <input class="form-control userInput taskInput" type="text" name="taskName" id="taskName" maxlength="150">
+                                <input class="form-control userInput taskInput" type="text" name="taskName" id="taskName" maxlength="150" required>
                             </div>
                         </div>
 
@@ -110,7 +113,6 @@
                             </div>
                         </div>
 
-                            <p id="requiredMessageTask"></p>
                             <input type="submit" class="btn btn-primary" id="addTaskBtn" name="addTaskBtn" value="Create Task" disabled>
                         </form>
                     </div>

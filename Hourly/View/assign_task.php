@@ -15,11 +15,12 @@
 
         #categoryLabel{padding:10px;}
 
+
         .hidden{display: none;}
     </style>
 </head>
 <body>
-    <div class="modal fade" id="taskModal">
+    <div class="modal fade" id="taskModal" style='font-family: "Century Gothic", "Century", "Century Schoolbook"'>
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
 
@@ -31,6 +32,9 @@
                 <div class="modal-body">
                     <div class="container" id="moduleContainer">
                         <form method="post" action="../Controller/taskController.php">
+
+
+
                         <!-- INPUT TASK NAME -->
                         <div class="form-group row">
                             <label for="taskName" class="col-form-label">Task Name: <p id="taskNameChars"></p></label>
@@ -40,10 +44,13 @@
                         </div>
 
                         <!-- ASSIGN TO MODULE -->
-                        <div class="form-row">
+                        <div class="form-group row">
                             <div class="form-group row">
-                                <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
-                                        <div class="col-auto">
+
+                                        <div class="col-2">
+                                            <label for="moduleCode" id="moduleLabel" class="col-form-label">Assign to Module: <label>
+                                        </div>
+                                        <div class="col-6">
                                             <select class="form-control" name="moduleCode" id="moduleCode">
                                                 <?php
                                                 $controller = new Task_Controller("dummy");
@@ -54,15 +61,33 @@
                             </div>
 
                             <!-- CATEGORISE TASK -->
-                            <div class="form-group row">
-                                <label for="taskCategory" id="categoryLabel" class="col-form-label">Task Category: <label>
-                                    <div class="col-auto">
+                            <div class="form-group row" id="categoryDiv">
+
+                                    <div class="col-3">
+                                        <label for="taskCategory" id="categoryLabel" class="col-form-label">Task Category: </label>
+                                    </div>
+                                    <div class="col-6">
                                         <select class="form-control" name="taskCategory" id="taskCategory">
                                             <option value="General">General</option>
                                             <option value="Revision">Revision</option>
                                             <option value="Coursework">Coursework</option>
                                         </select>
                                     </div>
+                            </div>
+
+                            <!-- ASSIGN A PRIORITY LEVEL (DEFAULT: LOW) -->
+                            <div class="form-group row" id="priorityDiv">
+
+                                <div class="col-3">
+                                    <label class="col-form-label">Priority Level: <label>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-control" name="priorityOptions" id="priorityOptions">
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
@@ -87,6 +112,7 @@
 
                         <!-- OPTIONAL TO SET DEADLINE -->
                         <div class="form-group row">
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setDateTimeModal">Set Deadline</button>
                             <label class="col-form-label">Due Deadline: <label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="dueDeadline" id="dueAnytime" value="dueAnytime" checked>
@@ -127,8 +153,12 @@
             </div>
         </div>
     </div>
-
+<?php
+include_once 'set_datetime.php' //POP UP PAGE TO CHANGE DEADLINE DATETIME
+?>
 </body>
 </html>
+
+
 
 

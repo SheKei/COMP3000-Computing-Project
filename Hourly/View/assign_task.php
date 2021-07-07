@@ -159,6 +159,16 @@ include_once 'set_datetime.php' //POP UP PAGE TO CHANGE DEADLINE DATETIME
 </body>
 </html>
 
+<script>
+    $(function(){
+
+        $("#confirmDateBtn").click(function(){
+            let theDate = $("#theDate").val();
+            let theTime = $("#theTime").val();
+        });
+    });
+</script>
+
 
 
 

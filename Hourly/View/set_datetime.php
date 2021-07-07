@@ -27,7 +27,8 @@
                     <input class="form-control" name="theDate" id="theDate" type="date"><br>
                     <input class="form-control" name="theTime" id="theTime" type="time"><br><br>
 
-                    <button class="btn btn-success float-right" type="button">Confirm New Date</button>
+                    <button id="confirmDateBtn" class="btn btn-success float-right" type="button" data-dismiss="modal">
+                        Confirm New Date</button>
                 </div>
             </div>
 

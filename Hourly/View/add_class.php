@@ -106,7 +106,7 @@
                             <label for="minutes">minute(s)</label>
                         </div>
                     </div>
-                    <button class="btn btn-primary" id="classBtn" name="classBtn" type="submit">Add Class</button>
+                    <button style="font-size:20px" class="btn btn-primary float-right" id="classBtn" name="classBtn" type="submit">Add Class</button>
                     </form>
                 </div>
             </div>

@@ -15,6 +15,9 @@
 
         #categoryLabel{padding:10px;}
 
+        .deadline{
+            margin:10px;
+        }
 
         .hidden{display: none;}
     </style>
@@ -25,7 +28,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Assign a Task</h4>
+                    <h4 class="modal-title" style="font-family:'Century Gothic'">Assign a Task</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -77,7 +80,6 @@
 
                             <!-- ASSIGN A PRIORITY LEVEL (DEFAULT: LOW) -->
                             <div class="form-group row" id="priorityDiv">
-
                                 <div class="col-3">
                                     <label class="col-form-label">Priority Level: <label>
                                 </div>
@@ -91,61 +93,23 @@
                             </div>
                         </div>
 
-                        <!-- ASSIGN A PRIORITY LEVEL (DEFAULT: MEDIUM) -->
-                        <div class="form-group row">
-                            <label class="col-form-label">Priority Level: <label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="priorityOptions" id="lowRadio" value="Low">
-                                    <label class="form-check-label" for="priorityOptions">Low</label>
-                                </div>
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="priorityOptions" id="mediumRadio" value="Medium" checked>
-                                    <label class="form-check-label" for="priorityOptions">Medium</label>
-                                </div>
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="priorityOptions" id="highRadio" value="High">
-                                    <label class="form-check-label" for="priorityOptions">High</label>
-                                </div>
-                        </div>
 
                         <!-- OPTIONAL TO SET DEADLINE -->
                         <div class="form-group row">
-                            <input class="form-control" id="deadlineInput" name="deadlineInput" readonly>
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setDateTimeModal">Set Deadline</button>
-                            <button type="button" class="btn btn-dark" id="dueAnytimeBtn">Due Anytime</button>
-                            <label class="col-form-label">Due Deadline: <label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="dueDeadline" id="dueAnytime" value="dueAnytime" checked>
-                                    <label class="form-check-label taskInput" for="dueDeadline">Due Anytime</label>
-                                </div>
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input taskInput" type="radio" name="dueDeadline" id="setDeadline" value="dueDeadline">
-                                    <label class="form-check-label" for="dueDeadline">Set a Deadline</label>
-                                </div>
+                            <div class="col-form-2 deadline">
+                                <label class="form-check-label">Deadline Date:</label>
+                            </div>
+                            <div class="col-form-4 deadline">
+                                <input class="form-control" id="deadlineInput" name="deadlineInput" readonly>
+                            </div>
+                            <div class="col-form-2 deadline">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#setDateTimeModal">Set Deadline</button>
+                            </div>
+                            <div class="col-form-2 deadline">
+                                <button type="button" class="btn btn-dark" id="dueAnytimeBtn">Due Anytime</button>
+                            </div>
                         </div>
 
-                        <!-- SET THE DATE OF DEADLINE -->
-                        <section class="deadline hidden">
-                            <div class="form-group row">
-                                <label for="dueDate" class="col-form-label">Due Date: </label>
-                                <div class="col-auto">
-                                    <input class="form-control" type="date" id="dueDate" name="dueDate">
-                                    <p id="deadlineMessage"></p>
-                                </div>
-
-                            </div>
-                            <!-- SET THE TIME OF DEADLINE -->
-                            <div class="form-group row">
-                                <label for="dueTime" class="col-form-label">Due Time: </label>
-                                <div class="col-auto">
-                                    <input class="form-control" type="time" id="dueTime" name="dueTime">
-                                    <p id="timeMessage"></p>
-                                </div>
-                            </div>
-                        </section>
                             <p id="requiredMessageTask"></p>
                             <input type="submit" class="btn btn-primary" id="addTaskBtn" name="addTaskBtn" value="Create Task" disabled>
                         </form>
@@ -163,7 +127,10 @@ include_once 'set_datetime.php' //POP UP PAGE TO CHANGE DEADLINE DATETIME
 
 <script>
     $(function(){
+        //DEFAULT VALUE FOR DEADLINE INPUT = "Due Anytime"
+        $("#deadlineInput").val("Due Anytime");
 
+        //Transfer deadline date to input field once pop up page closes
         $("#confirmDateBtn").click(function(){
             let theDate = $("#theDate").val();
             let theTime = $("#theTime").val();
@@ -171,6 +138,7 @@ include_once 'set_datetime.php' //POP UP PAGE TO CHANGE DEADLINE DATETIME
             $("#deadlineInput").val(theDate + " " + theTime);
         });
 
+        //Change deadline to "due anytime"
         $("#dueAnytimeBtn").click(function(){
             $("#deadlineInput").val("Due Anytime");
         });

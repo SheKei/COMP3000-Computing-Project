@@ -36,6 +36,7 @@ class Time_Controller
     //Output array of time logs spent on a task as paragraphs
     public function outputTimes($times){
         echo '<section id="timings">';
+        echo '<h3 style="font-family: \'Century Gothic\'">Study Logs</h3>';
         foreach($times as $time){
             $btn = '<button class="btn deleteTime" id="'.$time->getTimeId().'"><i class="fas fa-times"></i></button>';
             echo '<p id="id'.$time->getTimeId().'">'.$btn.$time->getDuration().' hrs - '.'<i>'.$time->getDescription().' - </i> <b>'.$time->getTimestamp().'</b></p>';

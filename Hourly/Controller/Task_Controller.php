@@ -258,12 +258,12 @@ class Task_Controller
                 $due = $task->getDueDate().' - '.$task->getDueTime();
             }
             echo '<div class="row">';
-            echo'<div class="col"><input id="currentDue" type="text" size="50" class="form-control" value="'.$due.'" readonly></div>';
+            echo'<div class="col"><input id="currentDue" name="currentDue" type="text" size="50" class="form-control" value="'.$due.'" readonly></div>';
             echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline" data-toggle="modal" data-target="#changeDateTimeModal">Edit Deadline</button></div>';
             echo '</div>';
             echo '</div>';
 
-            echo '<div class="row"><button type="submit" class="btn btn-dark" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
+            echo '<div style="margin-left: 60%" class="row"><button type="submit" class="btn btn-dark" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
             echo //DELETE TASK BTN
                 '<button style="margin-left:20px;" type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
             echo //COMPLETE TASK BTN

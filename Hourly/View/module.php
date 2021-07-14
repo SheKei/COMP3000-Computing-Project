@@ -17,6 +17,7 @@ if(isset($_GET['code']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://kit.fontawesome.com/20c7401107.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JQuery/complete_task.js"></script>
@@ -55,7 +56,7 @@ if(isset($_GET['code']))
         </div><br>
 
         <!--IMPORT HTML TO VIEW ONGOING TASKS-->
-            <div id="ongoingTasksDiv">
+            <div id="ongoingTasksDiv" class="w3-animate-zoom">
                 <?php include_once 'ongoing_tasks.php';?>
                 <script>
                     $(function(){
@@ -64,7 +65,7 @@ if(isset($_GET['code']))
                 </script>
             </div>
         <!-- IMPORT HTML TO VIEW COMPLETED TASKS -->
-        <div id="completedTasksDiv">
+        <div id="completedTasksDiv" class="hidden w3-animate-zoom">
             <?php include_once 'completed_tasks.php'; ?>
             <script>
                 $(function(){

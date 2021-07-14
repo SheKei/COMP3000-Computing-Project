@@ -27,7 +27,7 @@
 <body>
     <div class="modal fade" id="taskModal" style='font-family: "Century Gothic", "Century", "Century Schoolbook"'>
         <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
+            <div class="modal-content"  style="font-size: 15px;">
 
                 <div class="modal-header">
                     <h4 class="modal-title" style="font-family:'Century Gothic'">Assign a Task</h4>
@@ -111,7 +111,7 @@
                             </div>
                         </div>
 
-                            <input type="submit" class="btn btn-primary" id="addTaskBtn" name="addTaskBtn" value="Create Task" disabled>
+                            <input type="submit" class="btn btn-primary float-right" id="addTaskBtn" name="addTaskBtn" value="Create Task" disabled>
                         </form>
                     </div>
                 </div>

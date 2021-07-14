@@ -93,14 +93,14 @@
                             <label>Class Duration:</label>
                         </div>
                         <div class="col-sm-2">
-                            <input name="hour" id="hour" min="0" max="23" type="number" class="form-control" required>
+                            <input name="hour" id="hour" min="0" max="23" type="number" class="form-control" placeholder="2" required>
                         </div>
                         <div class="col-sm-1">
                             <label for="hour">hour(s)</label>
                         </div>
 
                         <div class="col-sm-2">
-                            <input name="minutes" id="minutes" min="0" max="59" type="number" class="form-control" required>
+                            <input name="minutes" id="minutes" min="0" max="59" type="number" class="form-control" placeholder="30" required>
                         </div>
                         <div class="col-sm-1">
                             <label for="minutes">minute(s)</label>

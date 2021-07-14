@@ -29,10 +29,10 @@
                     <!-- Form to add a reminder -->
                     <form method="post" action="../Controller/reminderController.php">
                         <label for="reminder">
-                            <textarea id="reminder" name="reminder" class="form-control" cols="60" rows="7" placeholder="Jot your thoughts down here..."></textarea>
+                            <textarea id="reminder" name="reminder" class="form-control" cols="60" rows="7" placeholder="Jot your thoughts down here..." required></textarea>
                         </label>
 
-                        <button type="submit" class="btn btn-success" name="addReminder" id="addReminder">Add Reminder</button>
+                        <button type="submit" class="btn btn-success float-right" name="addReminder" id="addReminder">Add Reminder</button>
                     </form>
 
                 </div>

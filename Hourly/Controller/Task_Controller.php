@@ -259,31 +259,18 @@ class Task_Controller
             }
             echo '<div class="row">';
             echo'<div class="col"><input id="currentDue" type="text" size="50" class="form-control" value="'.$due.'" readonly></div>';
-            echo '<input type="text" name="date" id="date" class="hidden">';
-            echo '<input type="text" name="time" id="time" class="hidden">';
-            echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline">Edit Deadline</button></div>';
+            echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline" data-toggle="modal" data-target="#changeDateTimeModal">Edit Deadline</button></div>';
             echo '</div>';
             echo '</div>';
-
-            //SECTION TO EDIT DEADLINE
-            echo '
-            <section id="newDeadline" class="hide">
-            <div class="form-group row">
-            <label for="newDate">New Date:</label>
-            <input type="date" id="newDate" name="newDate" class="form-control newDue">
-            <label for="newTime">New Time:</label>
-            <input type="time" name="newTime" id="newTime" class="form-control newDue">
-            </div>
-            </section>
-            ';
 
             echo '<div class="row"><button type="submit" class="btn btn-dark" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
             echo //DELETE TASK BTN
                 '<button style="margin-left:20px;" type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
             echo //COMPLETE TASK BTN
                 '<button style="margin-left:20px;" type="button" class="btn btn-success completeTask" id="'.$task->getTaskId().'">Complete Task</button></div><br><br>';
+
+            //JQUERY EVENTS RELATED TO DYNAMIC FIELDS ABOVE
             echo '<script>
-                
                 //BTN to delete task
                 $(".deleteTask").click(function(){
                     let delTaskId = this.id; //Get id of task
@@ -296,23 +283,6 @@ class Task_Controller
                     window.location.href = "../Controller/taskController.php?completeTaskId="+completeTaskId; //Send to controller 
                 });
                 
-                $("#changeDeadline").click(function(){
-                    $("#newDeadline").removeClass("hide");
-                });
-                
-                $(".newDue").change(function(){
-                    let dueId = this.id;
-                    let date = $("#newDate").val();
-                    let time = $("#newTime").val();
-                    
-                    if(dueId == "newDate"){
-                        $("#date").val(date);
-                    }else{
-                        $("#time").val(time);
-                    }
-                    
-                    $("#currentDue").val(date + " - " + time);
-                });
                 </script>';
         }
     }

@@ -23,6 +23,7 @@ if(isset($_GET['code']))
     <script src="../JQuery/complete_task.js"></script>
     <script src="../JQuery/module_controller.js"></script>
     <script src="../JQuery/validating_input.js"></script>
+    <?php include_once './edit_deadline.php' //POP UP PAGE TO EDIT DEADLINES ?>
 
     <style>
         #buttonDisplay{
@@ -131,5 +132,16 @@ if(isset($_GET['code']))
             $(btn2).addClass("btn-dark");
             $(btn2).removeClass("btn-secondary");
         }
+
+        $("#confirmBtn").click(function(){
+            let theDate = $("#dateInput").val();
+            let theTime = $("#timeInput").val();
+            $("#currentDue").val(theDate + " " + theTime);
+            console.log(theDate + " " + theTime);
+        });
+
+        $("#removeDateBtn").click(function(){
+           $("#currentDue").val("Due Anytime");
+        });
     });
 </script>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../JQuery/validating_input.js"></script>
     <style>
         .modal-header{
             letter-spacing: 3px;
@@ -29,7 +30,8 @@
                     <!-- Form to add a reminder -->
                     <form method="post" action="../Controller/reminderController.php">
                         <label for="reminder">
-                            <textarea id="reminder" name="reminder" class="form-control" cols="60" rows="7" placeholder="Jot your thoughts down here..." required></textarea>
+                            <p id="reminderMsg"></p>
+                            <textarea id="reminder" maxlength="150" name="reminder" class="form-control userInput" cols="60" rows="7" placeholder="Jot your thoughts down here..." required></textarea>
                         </label>
 
                         <button type="submit" class="btn btn-success float-right" name="addReminder" id="addReminder">Add Reminder</button>

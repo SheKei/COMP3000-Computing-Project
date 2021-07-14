@@ -42,6 +42,8 @@ if(isset($_GET['code']))
             color: black;
         }
 
+        #errorMsg{color: #FF5C4D;}
+
         #heading{font-size: 25px; font-family: "Century Gothic", "Century", "Century Schoolbook"}
 
     </style>

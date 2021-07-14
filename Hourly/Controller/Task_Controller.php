@@ -83,7 +83,7 @@ class Task_Controller
 
                 //For marking a task complete
                 $checkbox = ' <input class="complete" type="checkbox" value="'.$task->getTaskId().'" id="'.$task->getTaskId().'">';
-
+                $checkbox = '<button type="button" class="complete btn btn-success" id="'.$task->getTaskId().'"><i class="far fa-check-square"></i></button>';
                 $jQuery = "";
 
                 //Output task under a category box

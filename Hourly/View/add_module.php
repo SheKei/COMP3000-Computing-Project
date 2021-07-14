@@ -1,3 +1,8 @@
+<?php
+include_once '../Controller/Module_Controller.php';
+$controller = new Module_Controller('dummy');
+$modules = $controller->getListOfExistingModules();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +22,8 @@
         #red, #redC{color:#FF5C4D;}
 
         #thisColour{display: none;}
+
+        #moduleMsg{color: #FF5C4D;}
     </style>
 </head>
 <body>
@@ -39,6 +46,7 @@
                                 <div class="form-group row">
 
                                     <div class="col-2">
+                                        <p id="moduleMsg"></p>
                                         <label>Module Code: <p id="codeChars"></p> </label>
                                     </div>
                                     <div class="col-10">
@@ -103,5 +111,27 @@
 
 </body>
 </html>
+
+<script>
+    let existingModules= [<?php echo $controller->getListOfExistingModules() ?>] ;
+
+    $(function(){
+
+        //Check if module code already exists
+        $("#moduleCode").on('keyup', function(){
+            let currentModuleInput = $("#moduleCode").val();
+            for (let i = 0; i < existingModules.length; i++) {
+                if(currentModuleInput == existingModules[i]){
+                    $("#moduleMsg").html("Module "+ currentModuleInput + " already exists!");
+                    $("#addModuleBtn").prop("disabled", true);
+                    break; //STOP FOR LOOP IF FOUND SAME ELEMENT
+                }else{
+                    $("#moduleMsg").html("");
+                    $("#addModuleBtn").prop("disabled", false);
+                }
+            }
+        });
+    });
+</script>
 
 

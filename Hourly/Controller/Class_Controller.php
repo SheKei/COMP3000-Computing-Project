@@ -144,10 +144,10 @@ class Class_Controller
                 echo '<label for="time">Start Time:</label><input type="time" class="form-control" name="time" id="name" value="'.$row['start_time'].'">';
 
                 //CLASS DURATION
-                echo '<label for="duration">Class Duration:</label><input type="text" id="duration" class="form-control" name="duration" value="'.$row['class_duration'].'">';
+                echo '<label for="duration">Class Duration:</label><input type="text" id="duration" class="form-control" name="duration" value="'.$row['class_duration'].'"><br>';
             }
             //SUBMIT BTN
-            echo '<button class="btn btn-default" type="submit" name="editClassBtn" id="editClassBtn">Save Edit</button></form>';
+            echo '<button class="btn btn-success float-right" type="submit" name="editClassBtn" id="editClassBtn">Save Edit</button></form>';
 
             //DELETE BTN
             echo '<button class="btn btn-danger classDeleteBtn" type="button" id="'.$row['class_id'].'">Delete Class</button>';

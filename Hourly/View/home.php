@@ -129,7 +129,7 @@ include_once "../Public/side_navbar.php";
 
 <script>
     $(function(){
-        //If user clicks on a task
+        //If user clicks on a class name to view details
         $(".viewClassBtn").click(function(){
 
             //Get the id of the task being viewed

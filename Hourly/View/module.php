@@ -29,12 +29,17 @@ if(isset($_GET['code']))
         }
         #moduleCodeCurrent{display:none;}
 
+        #ongoingBtn, #completedBtn{font-size: 20px;}
+
         #modulePanel{
             margin-left: 20%;
             margin-top: 5%;
         }
-
         body{background-color: rgb(255, 253, 247);}
+
+        .hidden{
+            display: none;
+        }
 
     </style>
 </head>
@@ -43,23 +48,32 @@ if(isset($_GET['code']))
     <div id="modulePanel">
         <?php include_once'view_module.php'; ?> <!--IMPORT HTML POP-UP PAGE FOR VIEWING MODULE DETAILS -->
 
-        <?php include_once 'ongoing_tasks.php';?> <!--IMPORT HTML TO VIEW ONGOING TASKS-->
-        <script>
-            $(function(){
-                <?php $taskControl->sortTasks($_GET['code']); ?>
-            });
-        </script>
+        <!--TOGGLE VIEWING BETWEEN ONGOING OR COMPLETED TASKS-->
+        <div class="text-center">
+            <button type="button" class="btn btn-dark" id="ongoingBtn">View Ongoing</button>
+            <button type="button" class="btn btn-dark" id="completedBtn">View Completed</button>
+        </div><br>
 
-        <?php include_once 'completed_tasks.php'; ?> <!-- IMPORT HTML TO VIEW COMPLETED TASKS -->
+        <!--IMPORT HTML TO VIEW ONGOING TASKS-->
+            <div id="ongoingTasksDiv">
+                <?php include_once 'ongoing_tasks.php';?>
+                <script>
+                    $(function(){
+                        <?php $taskControl->sortTasks($_GET['code']); ?>
+                    });
+                </script>
+            </div>
+        <!-- IMPORT HTML TO VIEW COMPLETED TASKS -->
+        <div id="completedTasksDiv">
+            <?php include_once 'completed_tasks.php'; ?>
+            <script>
+                $(function(){
+                    <?php $taskControl->displayCompletedTasks($_GET['code']); ?>
+                });
+            </script>
+        </div>
+
     </div>
-
-
-
-    <script>
-        $(function(){
-            <?php $taskControl->displayCompletedTasks($_GET['code']); ?>
-        });
-    </script>
 
     <script src="../JQuery/complete_task.js"></script><!--IMPORT JQUERY TO MARK A TASK COMPLETE-->
 
@@ -95,5 +109,26 @@ if(isset($_GET['code']))
                 }
             }
         });
+
+        //TOGGLE VIEWING BETWEEN COMPLETED OR ONGOING TASKS
+        $("#ongoingBtn").click(function(){
+            $("#ongoingTasksDiv").removeClass("hidden");
+            $("#completedTasksDiv").addClass("hidden");
+            adjustBtnDisplay("#ongoingBtn", "#completedBtn");
+        });
+
+        $("#completedBtn").click(function(){
+            $("#completedTasksDiv").removeClass("hidden");
+            $("#ongoingTasksDiv").addClass("hidden");
+            adjustBtnDisplay("#completedBtn", "#ongoingBtn");
+        });
+
+        //Adjust button appearance to signal which one was clicked
+        function adjustBtnDisplay(btn1, btn2){
+            $(btn1).addClass("btn-secondary");
+            $(btn1).removeClass("btn-dark");
+            $(btn2).addClass("btn-dark");
+            $(btn2).removeClass("btn-secondary");
+        }
     });
 </script>

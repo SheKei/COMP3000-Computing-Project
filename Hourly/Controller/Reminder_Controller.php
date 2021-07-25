@@ -15,7 +15,7 @@ class Reminder_Controller
 
     //Collect description input to add a reminder
     public function addReminder($description){
-        $this->database->addReminder($this->user, $description);
+        $this->database->addReminder($this->user, $description, date("Y-m-d"));
     }
 
     //Return array of reminders
@@ -24,7 +24,7 @@ class Reminder_Controller
         $reminders = [];
         if($result){
             foreach($result as $row){
-                $reminder = new Reminder($row['reminder_id'], $row['description']);
+                $reminder = new Reminder($row['reminder_id'], $row['description'], $row['datestamp']);
                 $reminders[] = $reminder;
             }
         }
@@ -38,8 +38,8 @@ class Reminder_Controller
             foreach ($reminders as $reminder){
                 echo "<p>"
                     ."<i class='far fa-times-circle' id='".$reminder->getReminderId()."'></i>"
-                    .$reminder->getDescription().
-                    "</p>";
+                    .$reminder->getDescription()." - <strong>".$reminder->getDatestamp().
+                    "</strong></p>";
             }
         }
     }

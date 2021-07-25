@@ -24,7 +24,7 @@ CREATE TABLE COMP3000_STong.reminder(
 	user_id VARCHAR(20) NOT NULL,
 	reminder_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	description VARCHAR(150) NOT NULL,
-	deadline DATETIME,
+	datestamp DATE,
 	FOREIGN KEY (user_id) REFERENCES COMP3000_STong.user(user_id)
 );
 

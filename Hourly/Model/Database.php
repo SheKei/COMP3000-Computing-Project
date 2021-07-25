@@ -202,8 +202,8 @@ class Database
     }
 
     //Add a reminder
-    public function addReminder($username, $description){
-        $sql = $this->procedure."add_reminder('".$username."','".$description."')";
+    public function addReminder($username, $description, $datestamp){
+        $sql = $this->procedure."add_reminder('".$username."','".$description."','".$datestamp."')";
         $this->executeStatementNoOutput($sql);
     }
 

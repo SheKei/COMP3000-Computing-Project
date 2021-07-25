@@ -143,15 +143,15 @@ class Task_Controller
         return $style = '<i style="color:'.$colour.'" class="fas fa-exclamation"></i> ';
     }
 
-    //Return details of a task
-    public function getTaskDetails($task_id){
+    //Return details of a task and pass on the page name from where it was requested
+    public function getTaskDetails($task_id, $theLocation){
         $result = $this->database->getTaskDetails($task_id);
         if($result){
             foreach($result as $row){
                 $task = new Task($task_id, $row['task_name'], $row['task_category'], $row['due_date'], $row['due_time'], $row['priority_level']);
             }
         }
-        $this->displayTaskDetails($task);
+        $this->displayTaskDetails($task, $theLocation);
     }
 
 
@@ -165,6 +165,7 @@ class Task_Controller
         $this->database->deleteTask($taskId);
     }
 
+    //Display names of completed tasks and categorise them
     public function displayCompletedTasks($module){
         $results = $this->database->getModuleCompletedTasks($this->username,$module);
         if($results){
@@ -197,7 +198,7 @@ class Task_Controller
     }
 
     //Display details of a task on a pop-up page when a task name is clicked on
-    public function displayTaskDetails($task){
+    public function displayTaskDetails($task, $location){
         if($task){
             echo '<form method="post" action="../Controller/taskController.php">';
 
@@ -216,7 +217,6 @@ class Task_Controller
          <label for="module" id="moduleLabel" class="col-form-label">Assign to Module: <label>
          <div class="col-auto">
          <select class="form-control" name="module" id="module">';
-            echo '<option value="COMP3000">'.'COMP3000'.'</option>';
             $this->displayModuleChoices();
             echo '</select></div></div>';
 
@@ -258,8 +258,17 @@ class Task_Controller
                 $due = $task->getDueDate().' - '.$task->getDueTime();
             }
             echo '<div class="row">';
-            echo'<div class="col"><input id="currentDue" name="currentDue" type="text" size="50" class="form-control" value="'.$due.'" readonly></div>';
-            echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline" data-toggle="modal" data-target="#changeDateTimeModal">Edit Deadline</button></div>';
+
+            //Change id of date field and pop up page depending on from current web page
+            if($location == "Module Page"){
+                $fieldId = "currentDue";
+                $popUp = "changeDateTimeModal";
+            }else{
+                $fieldId = "currentDate";
+                $popUp = "changeDateTimeModalFromHome";
+            }
+            echo'<div class="col"><input id="'.$fieldId.'" name="currentDue" type="text" size="50" class="currentDue form-control" value="'.$due.'" readonly></div>';
+            echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline" data-toggle="modal" data-target="#'.$popUp.'">Edit Deadline</button></div>';
             echo '</div>';
             echo '</div>';
 

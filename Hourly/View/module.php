@@ -106,7 +106,7 @@ if(isset($_GET['code']))
                     xmlhttp.send();
                 }
                 else{
-                    xmlhttp.open("GET","../Controller/taskController.php?taskId="+theId,true);
+                    xmlhttp.open("GET","../Controller/taskController.php?taskIdModule="+theId,true);
                     xmlhttp.send();
                 }
             }
@@ -136,8 +136,7 @@ if(isset($_GET['code']))
         $("#confirmBtn").click(function(){
             let theDate = $("#dateInput").val();
             let theTime = $("#timeInput").val();
-            $("#currentDue").val(theDate + " " + theTime);
-            console.log(theDate + " " + theTime);
+            $("#currentDue").val(theDate + " " + theTime)
         });
 
         $("#removeDateBtn").click(function(){

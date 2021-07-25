@@ -38,7 +38,7 @@ if(isset($_POST['editTaskBtn'])){
         $due_date = $split[0];
         $due_time = $split[1];
     }
-
+    echo $_POST['id']; echo " "; echo $_POST['module'];
     $controller->editTask($_POST['id'], $_POST['module'], $_POST['tName'], $_POST['category'], $due_date, $due_time, $_POST['priority']);
 
     //Go to module page once created
@@ -57,10 +57,16 @@ if(isset($_GET['delTaskId'])){
     header('Location: ../View/home.php');
 }
 
-//GET request to view task details and time spent on a pop-up page
-if(isset($_GET['taskId'])){
-    $controller->getTaskDetails($_GET['taskId']);
-    $timeController->outputTimes($timeController->getTaskTime($_GET['taskId']));
+//GET request to view task details and time spent FROM VIEW MODULE PAGE
+if(isset($_GET['taskIdModule'])){
+    $controller->getTaskDetails($_GET['taskIdModule'], "Module Page");
+    $timeController->outputTimes($timeController->getTaskTime($_GET['taskIdModule']));
+}
+
+//GET request to view task details and time spent FROM HOME PAGE
+if(isset($_GET['taskIdHome'])){
+    $controller->getTaskDetails($_GET['taskIdHome'], "Home Page");
+    $timeController->outputTimes($timeController->getTaskTime($_GET['taskIdHome']));
 }
 
 //GET request to view task details and time spent on a pop-up page

@@ -93,10 +93,10 @@ include_once "../Public/side_navbar.php";
 <div id="homePanel">
     <div class="row">
         <div class="panel col-lg-8" id="classPanel">
-            <?php $classController->showTodaysClasses(); ?>
+            <?php $classController->showTodaysClasses(); //SHOW TODAY CLASSES TO ATTEND ?>
         </div>
         <div class="panel col-lg-3" id="goalPanel">
-            <?php $goalController->displayOverallHours(); ?>
+            <?php $goalController->displayOverallHours(); //DISPLAY HOURS WORKED THIS WEEK ?>
         </div>
     </div>
 
@@ -105,7 +105,8 @@ include_once "../Public/side_navbar.php";
         <div class="panel" id="upcomingDeadlines">
             <h3 class="title">Upcoming Deadlines</h3><br>
             <?php
-                $deadlineController->displayDeadlines();
+                $deadlineController->displayDeadlines(); //DISPLAY UPCOMING DEADLINES
+                include_once 'edit_deadline_from_home.php'; //SLOT POP-UP PAGE TO EDIT DEADLINES FROM HOME PAGE
             ?>
         </div>
 
@@ -116,13 +117,13 @@ include_once "../Public/side_navbar.php";
                 </button>
                 Reminders
             </h3>
-            <?php $reminderController->displayReminders(); ?>
+            <?php $reminderController->displayReminders(); //DISPLAY REMINDERS WRITTEN ?>
         </div>
     </div>
 </div>
 
-<?php include_once'view_class.php'; ?>
-<?php include_once 'add_reminder.php'; ?>
+<?php include_once'view_class.php'; //POP UP PAGE TO DISPLAY CLASS DETAILS ON TO FOR VIEWING ?>
+<?php include_once 'add_reminder.php'//POP UP PAGE TO ADD A REMINDER; ?>
 
 </body>
 </html>
@@ -152,16 +153,14 @@ include_once "../Public/side_navbar.php";
 
         //If user logs attendance for a class
         $(".logAttendance").click(function(){
-            //Get the id of the class attended
-            let theId = event.target.id;
-            window.location.href = "../Controller/classController.php?attendanceClassId="+theId;
+            let theId = event.target.id;//Get the id of the class attended
+            window.location.href = "../Controller/classController.php?attendanceClassId="+theId; //log attendance
         });
 
-        //If user logs attendance for a class
+        //If user wants to delete a reminder
         $(".fa-times-circle").click(function(){
-            //Get the id of the reminder
-            let theId = event.target.id;
-            window.location.href = "../Controller/reminderController.php?reminderID="+theId;
+            let theId = event.target.id; //Get the id of the reminder
+            window.location.href = "../Controller/reminderController.php?reminderID="+theId; //Delete reminder
         });
 
         //If user clicks on a deadline to view further details
@@ -179,9 +178,21 @@ include_once "../Public/side_navbar.php";
                     }
                 }
 
-                xmlhttp2.open("GET","../Controller/taskController.php?taskId="+theId,true);
+                xmlhttp2.open("GET","../Controller/taskController.php?taskIdHome="+theId,true);
                 xmlhttp2.send();
             }
+        });
+
+        //Confirm deadline change btn pressed
+        $("#confBtn").click(function(){
+            let theDate = $("#theDateInput").val();
+            let theTime = $("#theTimeInput").val();
+            $("#currentDate").val(theDate + " " + theTime) //Change field to new deadline
+        });
+
+        //Remove a deadline btn clicked
+        $("#removeBtn").click(function(){
+            $("#currentDate").val("Due Anytime");
         });
 
     });

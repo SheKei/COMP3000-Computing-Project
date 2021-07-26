@@ -219,6 +219,18 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //Update contents of existing reminder
+    public function editReminder($id, $description, $datestamp){
+        $sql = $this->procedure."edit_reminder(".$id.",'".$description."','".$datestamp."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Return a reminder using reminder id
+    public function getOneReminder($reminderID){
+        $sql = $this->procedure."get_reminder(".$reminderID.")";
+        return $this->executeStatement($sql);
+    }
+
     //PROCEDURES TO GET TIME CALCULATIONS FOR TIME SPENT ON MODULE/MODULES
 
     //The total hours spent on ONE module both class and tasks OVERALL
@@ -309,7 +321,7 @@ class Database
 
         $sql = $this->procedure."delete_module_classes('".$moduleCode."','".$username."')";//Delete classes
         $this->executeStatementNoOutput($sql);
-        
+
         $sql = ($this->procedure."delete_module('".$username."','".$moduleCode."')");//Delete module itself
         $this->executeStatementNoOutput($sql);
 

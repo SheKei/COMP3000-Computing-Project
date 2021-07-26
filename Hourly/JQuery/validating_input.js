@@ -34,6 +34,9 @@ $(function(){
             case "reminder":
                 $("#reminderMsg").html(message);
                 break;
+            case "editDescription":
+                $("#editReminderMsg").html(message);
+                break;
 
         }
     });

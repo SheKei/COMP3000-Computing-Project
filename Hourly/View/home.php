@@ -80,6 +80,15 @@ $goalController = new Goal_Controller('dummy');
             font-size: 20px;
         }
 
+        .theReminder:hover{
+            cursor: pointer;
+            color: darkgrey;
+        }
+
+        #addReminderBtn:hover{
+            background-color: mediumseagreen;
+        }
+
     </style>
 
 </head>
@@ -112,7 +121,7 @@ include_once "../Public/side_navbar.php";
 
         <div class="panel" id="reminders">
             <h3 class="title">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#reminderModal">
+                <button id="addReminderBtn" class="btn btn-dark" data-toggle="modal" data-target="#reminderModal">
                     <i class="far fa-plus-square"></i>
                 </button>
                 Reminders
@@ -122,8 +131,13 @@ include_once "../Public/side_navbar.php";
     </div>
 </div>
 
-<?php include_once'view_class.php'; //POP UP PAGE TO DISPLAY CLASS DETAILS ON TO FOR VIEWING ?>
-<?php include_once 'add_reminder.php'//POP UP PAGE TO ADD A REMINDER; ?>
+<?php
+include_once'view_class.php';     //POP UP PAGE TO DISPLAY CLASS DETAILS ON TO FOR VIEWING
+include_once 'add_reminder.php';  //POP UP PAGE TO ADD A REMINDER;
+include_once 'edit_reminder.php'; //POP UP PAGE TO EDIT A REMINDER;
+
+
+?>
 
 </body>
 </html>
@@ -180,6 +194,24 @@ include_once "../Public/side_navbar.php";
 
                 xmlhttp2.open("GET","../Controller/taskController.php?taskIdHome="+theId,true);
                 xmlhttp2.send();
+            }
+        });
+
+        //Confirm deadline change btn pressed
+        $(".theReminder").click(function(){
+            let reminderID = event.target.id;//Get the id of clicked reminder
+            reminderID = reminderID.slice(2,reminderID.length); //Remove the string 'id' to get just the number for the actual id of the reminder E.G. id2 --> 2
+            if(reminderID!=""){
+                let xmlhttp3 = new XMLHttpRequest();
+                //Wait for response
+                xmlhttp3.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        $("#editReminderForm").html(this.responseText); //Output details of clicked reminder
+                    }
+                }
+
+                xmlhttp3.open("GET","../Controller/reminderController.php?editReminderID="+reminderID,true);
+                xmlhttp3.send();
             }
         });
 

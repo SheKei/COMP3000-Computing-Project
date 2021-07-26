@@ -64,8 +64,8 @@ class Module_Controller
     }
 
     //Delete module and all tasks assigned to the module
-    public function deleteModule($moduleCode){
-        $this->database->deleteModule($this->username, $moduleCode);
+    public function deleteEverythingInModule($moduleCode){
+        $this->database->deleteEverythingInModule($moduleCode, $this->username);
     }
 
 

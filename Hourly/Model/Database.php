@@ -299,4 +299,32 @@ class Database
         $sql = $this->procedure."get_deadlines('".$username."')";
         return $this->executeStatement($sql);
     }
+
+    //Delete all classes, tasks tied to a module and then module itself
+    public function deleteEverythingInModule($moduleCode, $username){
+        $this->getTimeLogIdsToDelete($username, $moduleCode);//Delete time logs first
+
+        $sql = $this->procedure."delete_module_tasks('".$moduleCode."','".$username."')";//Delete tasks
+        $this->executeStatementNoOutput($sql);
+
+        $sql = $this->procedure."delete_module_classes('".$moduleCode."','".$username."')";//Delete classes
+        $this->executeStatementNoOutput($sql);
+        
+        $sql = ($this->procedure."delete_module('".$username."','".$moduleCode."')");//Delete module itself
+        $this->executeStatementNoOutput($sql);
+
+    }
+
+    //Delete the child records (time logs) of task table first
+    public function getTimeLogIdsToDelete($user, $module){
+        $sql = $this->procedure."get_time_log_ids('".$module."','".$user."')";
+        $result = $this->executeStatement($sql);
+        if($result){
+            echo "if";
+            foreach ($result as $row){
+                $sql = $this->procedure."delete_task_time(".$row['time_id'].")"; //Delete time log
+                $this->executeStatementNoOutput($sql);
+            }
+        }
+    }
 }

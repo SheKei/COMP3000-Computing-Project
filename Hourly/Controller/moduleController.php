@@ -30,7 +30,6 @@ if(isset($_POST['saveModuleBtn'])) {
 
 //GET request to delete module
 if(isset($_GET['module'])){
-    $controller->deleteModule($_GET['module']);
-    //Return to home page
-    header('Location: ../View/home.php');
+    $controller->deleteEverythingInModule($_GET['module']);
+    header('Location: ../View/home.php');//Return to home page
 }

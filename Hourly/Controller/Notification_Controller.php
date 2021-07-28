@@ -10,7 +10,7 @@ class Notification_Controller
     {
     }
 
-    public function displayNotification($msg){
+    public function displayNotification($msg, $hrefLink){
         echo
         '<div class="alert alert-warning alert-dismissible fade show" role="alert">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -18,7 +18,11 @@ class Notification_Controller
         </div>';
     }
 
-    public function displayReminderDeletionNotification(){
-        $this->displayNotification("Reminder Deleted");
+    public function displayReminderDeletionNotification($undoID){
+        $this->displayNotification("Reminder Deleted", "../Controller/undoController.php?undoDelReminder=".$undoID);
     }
+
+    //public function displayClassDeletionNotification(){
+        //$this->displayNotification("Class Deleted");
+    //}
 }

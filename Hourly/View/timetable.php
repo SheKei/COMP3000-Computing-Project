@@ -1,6 +1,8 @@
 <?php
 include_once '../Controller/Class_Controller.php';
 $classController = new Class_Controller('dummy');
+include_once '../Controller/Notification_Controller.php';
+$notificationController = new Notification_Controller();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +49,11 @@ include_once '../Public/side_navbar.php';
 ?>
 
 <div id="timetable" >
+    <?php
+     if (isset($_GET['deleteClass'])){
+         $notificationController->displayClassDeletionNotification($_GET['deleteClass']);
+     }
+    ?>
     <h1 style="font-family: 'Century Gothic';letter-spacing: 2px;font-size: 35px;">Timetable</h1><br>
     <?php $classController->displayModuleSections(); ?>
     <script>

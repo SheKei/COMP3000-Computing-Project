@@ -170,10 +170,6 @@ class Class_Controller
         ';
     }
 
-    public function undoDeleteClass($classID){
-        
-    }
-
     public function returnDayOfWeek($num){
         switch ($num){
             case 0:

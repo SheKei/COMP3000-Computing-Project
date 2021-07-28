@@ -30,7 +30,7 @@ if (isset($_POST['editClassBtn'])) {
 //GET request to delete class
 if(isset($_GET['deleteClassId'])){
     $controller->deleteClass($_GET['deleteClassId']);
-    header('Location: ../View/timetable.php');
+    header('Location: ../View/timetable.php?deleteClass='.$_GET['deleteClassId']);
 }
 
 //GET request to update attendance log for a class

@@ -351,4 +351,16 @@ class Database
     public function undoDeleteReminder($reminderID){
         $this->executeStatementNoOutput($this->procedure."undo_delete_reminder(".$reminderID.")");
     }
+
+    //Check if archived deleted reminder still exists
+    public function checkArchiveClass($classID){
+        if(empty($this->executeStatement($this->procedure."check_archive_class(".$classID.")"))==false){
+            $this->undoDeleteClass($classID); //If archived reminder exists, move back to reminder table
+        }
+    }
+
+    //Undo deleting of a reminder
+    public function undoDeleteClass($classID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_class(".$classID.")");
+    }
 }

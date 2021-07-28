@@ -19,4 +19,9 @@ class Undo_Controller
     public function undoDeleteReminder($reminderID){
         $this->database->checkArchiveReminder($reminderID);
     }
+
+    //Check archived class exists before moving back to class table
+    public function undoDeleteClass($classID){
+        $this->database->checkArchiveClass($classID);
+    }
 }

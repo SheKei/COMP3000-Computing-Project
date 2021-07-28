@@ -91,6 +91,18 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Get all modules that have tasks assigned to them
+    public function getAllModulesWithTasks($user){
+        $sql = $this->procedure."dropdown_menu_modules('".$user."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get all tasks assigned to one module
+    public function getAllModuleTasks($user, $moduleCode){
+        $sql = $this->procedure."dropdown_menu_tasks('".$user."','".$moduleCode."')";
+        return $this->executeStatement($sql);
+    }
+
     //Insert time for a task
     public function addTime($user,$taskId, $theDuration, $theDescription, $theTimeStamp){
         $sql = $this->procedure."add_time(".$taskId.",'".$theDuration."','".$theDescription."','".$theTimeStamp."','".$user."')";

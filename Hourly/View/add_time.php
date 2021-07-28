@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php include_once '../Controller/Task_Controller.php';?>
+<?php
+include_once '../Controller/Task_Controller.php';
+include_once '../Controller/Dropdown_Menu_Controller.php';
+$dropdown = new Dropdown_Menu_Controller('dummy');
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,6 +40,31 @@
                                                 ?>
                                             </select>
                                         </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div style="margin-left: 3px;" class="form-group row">
+                                <div class="col-auto">
+                                    <label for="moduleChoice" class="col-form-label">Module: <label>
+                                </div>
+                                <div class="col-auto">
+                                    <select class="form-control" name="moduleChoice" id="moduleChoice">
+                                        <?php
+                                        $firstChoice = $dropdown->displayModuleDropDown();
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="taskChoice">Task:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <select class="form-control" name="taskChoice" id="taskChoice">
+                                    <?php
+                                      $dropdown->displayModuleTasks($firstChoice);
+                                    ?>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
@@ -97,6 +126,23 @@
 </html>
 <script>
     $(function(){
+        $("#moduleChoice").change(function(){
+            //alert($("#moduleChoice").val());
+
+            if($("#moduleChoice").val()){
+                let xmlhttpMenu = new XMLHttpRequest();
+                //Wait for response
+                xmlhttpMenu.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        $("#taskChoice").html(this.responseText); //Output details of clicked class
+                    }
+                }
+
+                //Send class id to retrieve details
+                xmlhttpMenu.open("GET","../Controller/dropdownMenuController.php?moduleCodeMenu="+$("#moduleChoice").val(),true);
+                xmlhttpMenu.send();
+            }
+        });
 
         //Change date input field to today's date
         $("#btnToday").click(function(){

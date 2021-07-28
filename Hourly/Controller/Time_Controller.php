@@ -69,4 +69,14 @@ class Time_Controller
     public function deleteTime($timeId){
         $this->database->deleteTime($timeId);
     }
+
+    //Delete all time logs first before a task is deleted
+    public function deleteTaskTime($taskId){
+        $result = $this->database->getTaskTime($taskId);
+        if($result){
+            foreach($result as $row){
+                $this->database->deleteTime($row['time_id']);
+            }
+        }
+    }
 }

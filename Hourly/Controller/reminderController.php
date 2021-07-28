@@ -11,7 +11,8 @@ if (isset($_POST['addReminder'])) {
 //GET REQUEST to delete reminder
 if (isset($_GET['reminderID'])) {
     $controller->deleteReminder($_GET['reminderID']);
-    header('Location: ../View/home.php');                               //Redirect to home page
+    //Redirect with reminder id back to home page in case user wishes to undo delete
+    header('Location: ../View/home.php?deleteReminder='.$_GET['reminderID']);
 }
 
 //AJAX REQUEST to view/edit a reminder

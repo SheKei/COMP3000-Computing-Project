@@ -1,6 +1,7 @@
 <?php
 include_once '../Model/Database.php';
 include_once '../Model/Task.php';
+include_once '../Controller/Time_Controller.php';
 
 class Task_Controller
 {
@@ -14,6 +15,7 @@ class Task_Controller
     {
         $this->username = $user;
         $this->database = new Database();
+
     }
 
     public function displayModuleChoices()

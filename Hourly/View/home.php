@@ -1,20 +1,25 @@
-<?php
+<?php //IMPORT CONTROLLERS
 include_once'../Controller/Class_Controller.php';
 include_once '../Controller/Reminder_Controller.php';
 include_once '../Controller/Deadline_Controller.php';
 include_once '../Controller/Goal_Controller.php';
+include_once '../Controller/Notification_Controller.php';
+
 include_once '../View/view_task.php'; //POP UP PAGE TO VIEW DEADLINE DETAILS
 
 $classController = new Class_Controller('dummy');
 $reminderController = new Reminder_Controller('dummy');
 $deadlineController = new Deadline_Controller('dummy');
 $goalController = new Goal_Controller('dummy');
+$notificationController = new Notification_Controller();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <title>Home</title>
 
     <style>
@@ -100,6 +105,14 @@ include_once "../Public/side_navbar.php";
 ?>
 
 <div id="homePanel">
+
+    <?php //NOTIFICATION DISPLAY HERE
+        if(isset($_GET['deleteReminder'])){
+            $notificationController->displayReminderDeletionNotification(); //Notify user if deletion successful
+        }
+    ?>
+
+
     <div class="row">
         <div class="panel col-lg-8" id="classPanel">
             <?php $classController->showTodaysClasses(); //SHOW TODAY CLASSES TO ATTEND ?>
@@ -135,8 +148,6 @@ include_once "../Public/side_navbar.php";
 include_once'view_class.php';     //POP UP PAGE TO DISPLAY CLASS DETAILS ON TO FOR VIEWING
 include_once 'add_reminder.php';  //POP UP PAGE TO ADD A REMINDER;
 include_once 'edit_reminder.php'; //POP UP PAGE TO EDIT A REMINDER;
-
-
 ?>
 
 </body>

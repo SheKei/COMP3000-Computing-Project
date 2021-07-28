@@ -9,10 +9,14 @@ class Undo_Controller
     /**
      * Undo_Controller constructor.
      */
-    public function __construct($username, $database)
+    public function __construct($username)
     {
         $this->username = $username;
         $this->database = new Database();
     }
-        
+
+    //Check archive record exists first before moving back to record table
+    public function undoDeleteReminder($reminderID){
+        $this->database->checkArchiveReminder($reminderID);
+    }
 }

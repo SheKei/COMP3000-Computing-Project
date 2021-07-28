@@ -14,7 +14,7 @@ class Notification_Controller
         echo
         '<div class="alert alert-warning alert-dismissible fade show" role="alert">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        '.$msg.'<a href="#" class="alert-link"> Undo </a> 
+        '.$msg.'<a href="'.$hrefLink.'" class="alert-link"> Undo </a> 
         </div>';
     }
 

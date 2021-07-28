@@ -339,4 +339,16 @@ class Database
             }
         }
     }
+
+    //Check if archived deleted reminder still exists
+    public function checkArchiveReminder($reminderID){
+        if(empty($this->executeStatement($this->procedure."check_archive_reminder(".$reminderID.")"))==false){
+            $this->undoDeleteReminder($reminderID); //If archived reminder exists, move back to reminder table
+        }
+    }
+
+    //Undo deleting of a reminder
+    public function undoDeleteReminder($reminderID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_reminder(".$reminderID.")");
+    }
 }

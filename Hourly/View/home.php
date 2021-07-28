@@ -108,7 +108,7 @@ include_once "../Public/side_navbar.php";
 
     <?php //NOTIFICATION DISPLAY HERE
         if(isset($_GET['deleteReminder'])){
-            $notificationController->displayReminderDeletionNotification(); //Notify user if deletion successful
+            $notificationController->displayReminderDeletionNotification($_GET['deleteReminder']); //Notify user if deletion successful
         }
     ?>
 

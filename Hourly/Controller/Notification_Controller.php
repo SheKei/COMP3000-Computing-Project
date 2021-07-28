@@ -22,7 +22,7 @@ class Notification_Controller
         $this->displayNotification("Reminder Deleted", "../Controller/undoController.php?undoDelReminder=".$undoID);
     }
 
-    //public function displayClassDeletionNotification(){
-        //$this->displayNotification("Class Deleted");
-    //}
+    public function displayClassDeletionNotification($undoID){
+        $this->displayNotification("Class Deleted", "../Controller/undoController.php?undoDelClass=".$undoID);
+    }
 }

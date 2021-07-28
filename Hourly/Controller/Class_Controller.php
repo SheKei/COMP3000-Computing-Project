@@ -84,6 +84,7 @@ class Class_Controller
         }
     }
 
+    //Sort timetable classes BY MODULE
     public function sortTimetableClasses(){
         $classes = $this->getTimetable();
         if($classes){ //Button to bring pop-up page for class details
@@ -155,17 +156,22 @@ class Class_Controller
         }
     }
 
+    //JQUERY SCRIPT to delete a class when btn clicked
     public function echoJquery(){
         echo '
         <script>
             $(function(){
                 $(".classDeleteBtn").click(function(){
-                   let classId = this.id;
+                   let classId = this.id;   //Find the ID of which class was selected
                    window.location.href = "../Controller/classController.php?deleteClassId="+classId;
                 });
             });
         </script>
         ';
+    }
+
+    public function undoDeleteClass($classID){
+        
     }
 
     public function returnDayOfWeek($num){

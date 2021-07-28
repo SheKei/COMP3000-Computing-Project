@@ -1,5 +1,5 @@
 DELIMITER //
-CREATE PROCEDURE COMP3000_STong.undo_delete_reminder(IN reminderID INT)
+CREATE PROCEDURE COMP3000_STong.undo_delete_class(IN classID INT)
 	BEGIN
 		INSERT INTO COMP3000_STong.reminder
 		SELECT * FROM COMP3000_STong.archive_reminder

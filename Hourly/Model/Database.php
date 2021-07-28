@@ -147,9 +147,15 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
-    //Get all timetabled classes
+    //Get all timetabled classes SORTED BY MODULES
     public function getTimetable($user){
         $sql = $this->procedure."get_all_classes('".$user."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get all timetabled classes SORTED BY DAY
+    public function getTimetableByDays($user){
+        $sql = $this->procedure."get_classes_by_day('".$user."')";
         return $this->executeStatement($sql);
     }
 

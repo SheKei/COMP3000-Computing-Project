@@ -119,7 +119,7 @@ include_once "../Public/side_navbar.php";
                 <button type="button" class="btn btn-success" id="startBtn">Start</button>
                 <button type="button" class="btn btn-danger" id="pauseBtn">Pause</button>
                 <button type="button" class="btn btn-dark" id="resetBtn">Reset</button>
-                <button type="button" class="btn btn-default" id="testBtn">Test</button>
+                <button type="button" class="btn btn-default" id="testBtn">SKIP!</button>
             </div><br>
             <p class="text-center hidden" id="finishedMsg">POMODORO SESSION COMPLETED - GOOD WORK!</p>
         </div>

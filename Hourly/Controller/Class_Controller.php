@@ -42,9 +42,18 @@ class Class_Controller
         $this->database->updateAttendance($this->user, $classId);
     }
 
-    //Return array of timetabled classes
-    public function getTimetable(){
-        $result = $this->database->getTimetable($this->user);
+    //Return array of class objects BY MODULE
+    public function getTimetableByModule(){
+        return $this->getTimetable($this->database->getTimetable($this->user));
+    }
+
+    //Return array of class objects by DAY
+    public function getTimetableByDay(){
+        return $this->getTimetable($this->database->getTimetableByDays($this->user));
+    }
+
+    //Return array of timetabled class objects
+    public function getTimetable($result){
         $classes = [];
         if($result){
             foreach($result as $row){
@@ -69,6 +78,7 @@ class Class_Controller
         return $modules;
     }
 
+    //Display section titles by module names
     public function displayModuleSections(){
         $modules = $this->getModules();
         if($modules){
@@ -86,10 +96,23 @@ class Class_Controller
 
     //Sort timetable classes BY MODULE
     public function sortTimetableClasses(){
-        $classes = $this->getTimetable();
+        $classes = $this->getTimetableByModule();
         if($classes){ //Button to bring pop-up page for class details
             foreach($classes as $class){
                 echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes classNames\">'.$class->getClassDay()." - ".date("H:i",strtotime($class->getStartTime())).
+                    ' - <button data-toggle=\"modal\" data-target=\"#viewClass\" class=\"btn viewClassBtn\" id=\"'.$class->getClassId().'\">'
+                    .$class->getClassName().'</p></p>");';
+            }
+        }
+    }
+
+    //Sort timetable BY DAY
+    public function sortTimeTableByDay(){
+        $classes = $this->getTimetableByDay();
+        if($classes){
+            foreach($classes as $class){
+                echo '$("#'.$class->getClassDay().'").append("<p class=\"classes classNames\">'.date("H:i",strtotime($class->getStartTime()))
+                    ." - ".$class->getModuleCode().
                     ' - <button data-toggle=\"modal\" data-target=\"#viewClass\" class=\"btn viewClassBtn\" id=\"'.$class->getClassId().'\">'
                     .$class->getClassName().'</p></p>");';
             }

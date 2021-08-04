@@ -393,4 +393,14 @@ class Database
     public function undoDeleteClass($classID){
         $this->executeStatementNoOutput($this->procedure."undo_delete_class(".$classID.")");
     }
+
+    //Archive task before deletion
+    public function archiveTask($taskID){
+        $this->executeStatementNoOutput($this->procedure.'archive_task('.$taskID.")");
+    }
+
+    //Archive time before deletion
+    public function archiveTime($timeID){
+        $this->executeStatementNoOutput($this->procedure.'archive_time_log('.$timeID.")");
+    }
 }

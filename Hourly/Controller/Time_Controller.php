@@ -74,7 +74,8 @@ class Time_Controller
     public function deleteTaskTime($taskId){
         $result = $this->database->getTaskTime($taskId);
         if($result){
-            foreach($result as $row){
+            foreach($result as $row){ //Archive before delete
+                $this->database->archiveTime($row['time_id']);
                 $this->database->deleteTime($row['time_id']);
             }
         }

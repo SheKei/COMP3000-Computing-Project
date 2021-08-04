@@ -164,6 +164,7 @@ class Task_Controller
 
     //Delete a task and time spent on it
     public function deleteTask($taskId){
+        $this->database->archiveTask($taskId);
         $this->database->deleteTask($taskId);
     }
 

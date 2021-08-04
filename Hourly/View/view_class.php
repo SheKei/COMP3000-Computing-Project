@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
+        h4, label{
+            font-family: "Century Gothic", "Century", "Century Schoolbook";
+        }
+
     </style>
 </head>
 <body>
@@ -16,7 +20,7 @@ include_once '../Public/side_navbar.php';
 ?>
 
 <div class="modal fade" id="viewClass">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
 
             <div class="modal-body">

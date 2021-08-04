@@ -137,44 +137,55 @@ class Class_Controller
     public function getClassDetails($classId){
         $result = $this->database->getClass($classId);
         if($result){
+
             echo '<form method="post" action="../Controller/classController.php">';
             foreach($result as $row){
+                echo "<h4 class='text-center'>Times Attended: ".$row['times_attended']."</h4>";
+                echo "<h4 class='text-center'>Last Attendance: ".date("d/m/Y", strtotime($row['last_attendance']))."</h4><br>";
                 //CLASS ID - HIDDEN
                 echo '<input class="form-control hidden"  name="idClass" value="'.$row['class_id'].'" readonly>';
 
                 //MODULE ASSIGNED TO
-                echo '<label for="moduleAssigned">Module:</label>
-                <select class="form-control" id="moduleAssigned" name="moduleAssigned">';
+                echo '<div class="form-group row"><div class="col-3"><label for="moduleAssigned">Module:</label></div>';
+                echo '<div class="col-6"><select class="form-control" id="moduleAssigned" name="moduleAssigned">';
                 echo "<option value='" . $row['module_code'] . "'>" . $row['module_code'] . " - " . $row['module_name'] . "</option>";
                 $this->controller->displayModuleChoices();
-                echo '</select>';
+                echo '</select></div></div>';
 
                 //CLASS NAME
-                echo '<label for="theClassName">Class Name:</label><input type="text" class="form-control" name="theClassName" id="theClassName" value="'.$row['class_name'].'">';
+                echo '<div class="form-group row"><div class="col-3"><label for="theClassName">Class Name:</label></div>';
+                echo '<div class="col-6"><input type="text" class="form-control" name="theClassName" id="theClassName" value="'.$row['class_name'].'"></div></div>';
 
-                //CLASS ROOM
-                echo '<label for="room">Location</label><input type="text" class="form-control" name="room" id="room" value="'.$row['class_room'].'">';
+                //CLASS LOCATION
+                echo '<div class="form-group row"><div class="col-3"><label for="room">Location:</label></div>';
+                echo '<div class="col-6"><input type="text" class="form-control" name="room" id="room" value="'.$row['class_room'].'"></div></div>';
 
                 //CLASS DAY
                 $weekday = $this->returnDayOfWeek($row['class_day']);
-                echo '<label for="day">Day:</label>';
-                echo '<select class="form-control" id="day" name="day">
-                <option value="'.$row['class_day'].'">'.$weekday.'</option>';
+                echo '<div class="form-group row"><div class="col-3"><label for="day">Day:</label></div>';
+                echo '<div class="col-6"><select class="form-control" id="day" name="day"><option value="'.$row['class_day'].'">'.$weekday.'</option>';
+                echo '<option value="'.$row['class_day'].'">'.$weekday.'</option>';
                 $this->outputDayDropDownMenu();
-                echo '</select>';
-
+                echo '</select></div></div>';
 
                 //START TIME
-                echo '<label for="time">Start Time:</label><input type="time" class="form-control" name="time" id="name" value="'.$row['start_time'].'">';
+                echo '<div class="form-group row"><div class="col-3"><label for="time">Start Time:</label></div>';
+                echo '<div class="col-6"><input type="time" class="form-control" name="time" id="name" value="'.$row['start_time'].'"></div></div>';
 
                 //CLASS DURATION
-                echo '<label for="duration">Class Duration:</label><input type="text" id="duration" class="form-control" name="duration" value="'.$row['class_duration'].'"><br>';
+                echo '<div class="form-group row"><div class="col-3"><label for="duration">Class Duration:</label></div>';
+                echo '<div class="col-2"><input type="number" name="theHour" class="form-control"
+                      min="0" max="23" value="'.date('H', strtotime($row['class_duration'])).'" required></div>';
+                echo '<div class="col-2"><label> hour(s)</label></div>';
+                echo '<div class="col-2"><input type="number" name="theMinutes" class="form-control"
+                      min="0" max="59" value="'.date('i', strtotime($row['class_duration'])).'" required></div>';
+                echo '<div class="col-1"><label> minutes</label></div></div>';
             }
             //SUBMIT BTN
-            echo '<button class="btn btn-success float-right" type="submit" name="editClassBtn" id="editClassBtn">Save Edit</button></form>';
+            echo '<button class="btn btn-success float-left" type="submit" name="editClassBtn" id="editClassBtn">Save Edit</button></form>';
 
             //DELETE BTN
-            echo '<button class="btn btn-danger classDeleteBtn" type="button" id="'.$row['class_id'].'">Delete Class</button>';
+            echo '<button class="btn btn-danger float-right classDeleteBtn" type="button" id="'.$row['class_id'].'">Delete Class</button>';
             $this->echoJquery();
         }
     }

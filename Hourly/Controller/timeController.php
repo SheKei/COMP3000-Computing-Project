@@ -18,7 +18,7 @@ if(isset($_POST['saveTimeBtn'])){
     $duration = $hour.":".$minutes;
     $timeStamp = date("Y-m-d");
                                                     //ADD TO DB THEN REFRESH PAGE
-    $controller->add_time($_POST['taskName'], $duration, $_POST['description'], $timeStamp);
+    $controller->add_time($_POST['theTaskChoice'], $duration, $_POST['description'], $timeStamp);
     header('Location: ../View/pomodoro.php');
 }
 

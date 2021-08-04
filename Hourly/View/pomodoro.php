@@ -1,6 +1,6 @@
 <?php
-//include_once '../Controller/Task_Controller.php';
-//$taskController = new Task_Controller('dummy');
+include_once '../Controller/Dropdown_Menu_Controller.php';
+$dropdown = new Dropdown_Menu_Controller('dummy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,16 +42,16 @@
         #addTimePanel{
 
         }
-
-        .text-center{
+        .text-center,label,button{
             font-family: "Century Gothic", "Century", "Century Schoolbook";
             letter-spacing: 3px;
         }
-         label,button{
-             font-family: "Century Gothic", "Century", "Century Schoolbook";
+
+        .text-center{
+             letter-spacing: 3px;
          }
 
-         #taskSelection, .col-form-label, .col-auto{
+         #taskSelection, .col-form-label{
              margin-left: auto;
              margin-right: auto;
          }
@@ -75,6 +75,14 @@
              display: none;
          }
 
+         .choice{
+             text-align: right;
+         }
+
+         .col-3,.col-6{
+             left: 10%;
+         }
+
     </style>
 
 </head>
@@ -91,17 +99,31 @@ include_once "../Public/side_navbar.php";
         <h2 class="text-center">Pomodoro</h2>
 
         <form method="POST" action="../Controller/timeController.php">
-        <div class="form-group row" id="taskSelection">
-            <label for="taskName" class="col-form-label">Task: <label>
-                    <div class="col-auto">
-                        <select class="form-control" name="taskName" id="taskName">
-                            <?php
-                            $controller = new Task_Controller('dummy');
-                            $controller->displayOngoingTasks();
-                            ?>
-                        </select>
-                    </div>
-        </div>
+            <div class="form-group row" >
+                <div class="col-3">
+                    <label for="theModuleChoice" class="choice">Module Choice: <label>
+                </div>
+                <div class="col-6">
+                    <select class="form-control" name="theModuleChoice" id="theModuleChoice">
+                        <?php
+                        $firstChoice = $dropdown->displayModuleDropDown();
+                        ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label for="theTaskChoice" class="choice">Task:</label>
+                </div>
+                <div class="col-6">
+                    <select class="form-control" name="theTaskChoice" id="theTaskChoice">
+                        <?php
+                        $dropdown->displayModuleTasks($firstChoice);
+                        ?>
+                    </select>
+                </div>
+            </div>
 
         <div id="buttons" class="text-center">
 
@@ -267,4 +289,24 @@ include_once "../Public/side_navbar.php";
         return quotient + ":" + remainder;
     }
 
+    $("#theModuleChoice").change(function(){
+        //alert($("#theModuleChoice").val());
+
+        if($("#theModuleChoice").val()){
+            let xmlhttpMenu = new XMLHttpRequest();
+            //Wait for response
+            xmlhttpMenu.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    $("#theTaskChoice").html(this.responseText); //Output details of clicked class
+                }
+            }
+
+            //Send class id to retrieve details
+            xmlhttpMenu.open("GET","../Controller/dropdownMenuController.php?moduleCodeMenu="+$("#theModuleChoice").val(),true);
+            xmlhttpMenu.send();
+        }
+    });
+
 </script>
+
+

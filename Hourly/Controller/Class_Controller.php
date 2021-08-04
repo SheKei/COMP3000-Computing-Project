@@ -125,10 +125,19 @@ class Class_Controller
         if($result){
             echo "<section><h1 class='title' id='classTitle'>Today's Classes</h1>";
             foreach($result as $row){
+                //Disable attendance button if class already attended today
+                $attendanceBtn = "";
+                if(date("Y/m/d")==date("Y/m/d", strtotime($row['last_attendance']))){
+                    $attendanceBtn = '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'"disabled>Log Attendance</button>';
+                }else{
+                    $attendanceBtn = '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'">Log Attendance</button>';
+                }
+
+                //Display today's timetable onto home page
                 echo '<p>'.$row['module_code'].' '.$row['module_name'].' - '.
-                    '<button class="btn viewClassBtn" data-toggle="modal" data-target="#viewClass" 
+                    '<button class="btn btn-light viewClassBtn" data-toggle="modal" data-target="#viewClass" 
                     id="'.$row['class_id'].'">'.$row['class_name'].'</button> - '.$row['start_time'].
-                    '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'">Log Attendance</button></p>';
+                    $attendanceBtn.'</p>';
             }
             echo '</section>';
         }

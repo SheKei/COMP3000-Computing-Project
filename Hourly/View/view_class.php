@@ -10,6 +10,10 @@
             font-family: "Century Gothic", "Century", "Century Schoolbook";
         }
 
+        .hidden{
+            display: none;
+        }
+
     </style>
 </head>
 <body>

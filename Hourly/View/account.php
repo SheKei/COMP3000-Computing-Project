@@ -1,7 +1,9 @@
 <?php
 include_once '../Controller/Account_Controller.php';
 include_once '../Controller/Goal_Controller.php';
+include_once '../Controller/Deadline_Controller.php';
 $goalController = new Goal_Controller('dummy');
+$deadlineController = new Deadline_Controller('dummy');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +56,7 @@ include_once '../Public/side_navbar.php';
     <div class="panel" id="deadlineContainer">
         <div class="container">
             <h3>Adjust the Deadline Period</h3>
-            <p>Show tasks ___ days before the deadline date</p>
+            <?php $deadlineController->getDeadlinePeriod(); ?>
         </div>
     </div>
 </div>

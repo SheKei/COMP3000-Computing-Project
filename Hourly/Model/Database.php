@@ -326,7 +326,7 @@ class Database
 
     //Get the number of days when to alert tasks are due
     public function getDeadlinePeriod($username){
-        $sql = $this->procedure.'get_deadline_period("'.$this->username.'")';
+        $sql = $this->procedure.'get_deadline_period("'.$username.'")';
         return $this->executeStatement($sql);
     }
 

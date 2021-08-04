@@ -42,5 +42,28 @@ class Deadline_Controller extends Task_Controller //Inherit priority sorting fun
         return $due;
     }
 
+    //Display the deadline period when tasks are alerted n days before deadline
+    public function displayDeadlinePeriod($deadlinePeriod){
+        echo "<form method='POST' action='../Controller/deadlineController.php'>";
+        echo "<div class='form-group row'><div class='col-auto'><p>Show tasks </p></div>";
+        echo "<div class='col-auto'>
+              <input class='form-control' name='deadlinePeriod' id='deadlinePeriod' type='number' 
+              min='1' max='40' value='".$deadlinePeriod."' required></div>";
+        echo "<div class='col-auto'><p> days before the deadline date</p></div><br>";
+        echo "<button class='btn btn-success' name='updateGoal' type='submit'>Change Deadline Period</button>";
+
+    }
+
+    public function getDeadlinePeriod(){
+        $result = $this->database->getDeadlinePeriod($this->username);
+        $deadlinePeriod = "";
+        if($result){
+            foreach($result as $row){
+                $deadlinePeriod = $row['deadline_period'];
+            }
+            $this->displayDeadlinePeriod($deadlinePeriod);
+        }
+    }
+
 
 }

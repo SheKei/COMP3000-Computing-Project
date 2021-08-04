@@ -121,7 +121,14 @@ class Task_Controller
             $due = "<br>".$icon." Anytime";
         }else
         {
-            $due = "<br> ".$icon." ".date("d/m h:m", strtotime($date." ".$time));
+            $today = date("Y/m/d");
+            $theDate = date("Y/m/d", strtotime($date." ".$time));
+            if($theDate<$today){
+                $icon = '<span class="overdue"><i class="far fa-calendar-alt"> OVERDUE: </i>';
+            }else{
+                $icon = '<span><i class="far fa-calendar-alt"></i>';
+            }
+            $due = "<br> ".$icon." ".date("d/m h:m", strtotime($date." ".$time)).'</span>';
         }
 
         return $due;

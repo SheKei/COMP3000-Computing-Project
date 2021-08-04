@@ -28,6 +28,7 @@ if(isset($_GET['code']))
     <?php include_once './edit_deadline.php' //POP UP PAGE TO EDIT DEADLINES ?>
 
     <style>
+
         #buttonDisplay{
             margin-left: 20%;
         }
@@ -43,6 +44,11 @@ if(isset($_GET['code']))
 
         .hidden{
             display: none;
+        }
+
+        .overdue{
+            color: #FF5C4D;
+            font-family: "Century Gothic", "Century", "Century Schoolbook";
         }
 
     </style>

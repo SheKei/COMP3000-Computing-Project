@@ -25,4 +25,8 @@ class Notification_Controller
     public function displayClassDeletionNotification($undoID){
         $this->displayNotification("Class Deleted", "../Controller/undoController.php?undoDelClass=".$undoID);
     }
+
+    public function displayTaskDeletionNotification($undoID){
+        $this->displayNotification("Task Deleted", "../Controller/undoController.php?undoDelTask=".$undoID);
+    }
 }

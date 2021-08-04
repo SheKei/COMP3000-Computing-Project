@@ -1,7 +1,9 @@
 <?php
 include_once '../Controller/Task_Controller.php';
+include_once '../Controller/Notification_Controller.php';
 include_once 'view_task.php'; //Pop-up page for viewing task details
 $taskControl = new Task_Controller('dummy');
+$notif = new Notification_Controller();
 
 if(isset($_GET['code']))
 {
@@ -48,7 +50,12 @@ if(isset($_GET['code']))
 <body style="font-family: 'Century Gothic'">
 
     <div id="modulePanel">
+
         <?php include_once'view_module.php'; ?> <!--IMPORT HTML POP-UP PAGE FOR VIEWING MODULE DETAILS -->
+
+        <?php //NOTIFICATION TO UNDO TASK DELETION
+        if (isset($_GET['delTaskNotif'])){$notif->displayTaskDeletionNotification($_GET['delTaskNotif']);}
+        ?>
 
         <!--TOGGLE VIEWING BETWEEN ONGOING OR COMPLETED TASKS-->
         <div class="text-center">

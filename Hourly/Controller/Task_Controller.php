@@ -165,7 +165,9 @@ class Task_Controller
     //Delete a task and time spent on it
     public function deleteTask($taskId){
         $this->database->archiveTask($taskId);
+        $moduleCode = $this->database->getModuleCodeFromTaskID($taskId);
         $this->database->deleteTask($taskId);
+        return $moduleCode; //For returning to the correct page after deletion
     }
 
     //Display names of completed tasks and categorise them

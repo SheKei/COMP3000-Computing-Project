@@ -24,4 +24,10 @@ class Undo_Controller
     public function undoDeleteClass($classID){
         $this->database->checkArchiveClass($classID);
     }
+
+    public function undoDeleteTask($taskID){
+        $moduleCode = $this->database->getModuleCodeFromTaskID($taskID);
+        $this->database->checkArchiveTask($taskID);
+        return $moduleCode;
+    }
 }

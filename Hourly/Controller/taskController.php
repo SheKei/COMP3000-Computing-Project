@@ -54,8 +54,8 @@ if(isset($_GET['task'])){
 //GET request to delete task and the times recorded for it
 if(isset($_GET['delTaskId'])){
     $timeController->deleteTaskTime($_GET['delTaskId']);
-    $controller->deleteTask($_GET['delTaskId']);
-    header('Location: ../View/home.php');
+    $moduleCode = $controller->deleteTask($_GET['delTaskId']);
+    header('Location: ../View/module.php?code='.$moduleCode.'&delTaskNotif='.$_GET['delTaskId']);
 }
 
 //GET request to view task details and time spent FROM VIEW MODULE PAGE

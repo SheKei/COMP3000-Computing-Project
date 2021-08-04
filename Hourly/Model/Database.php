@@ -399,8 +399,51 @@ class Database
         $this->executeStatementNoOutput($this->procedure.'archive_task('.$taskID.")");
     }
 
+    //Check if archived deleted reminder still exists
+    public function checkArchiveTask($taskID){
+        //If archived task still exists
+        if(empty($this->executeStatement($this->procedure."check_archive_task(".$taskID.")"))==false){
+            $this->undoDeleteTask($taskID);//Undo task deletion first (the parent record)
+            //Check if archived timings still exist for task as well
+            $result = $this->executeStatement($this->procedure."check_archive_time(".$taskID.")");
+            if(empty($result)==false){
+                foreach($result as $row){
+                    $this->undoDeleteTime($row['time_id']);//Then undo the children records (i.e. task time logs)
+                }
+            }
+            $this->deleteArchiveTask($taskID);
+        }
+    }
+
     //Archive time before deletion
     public function archiveTime($timeID){
-        $this->executeStatementNoOutput($this->procedure.'archive_time_log('.$timeID.")");
+        $this->executeStatementNoOutput($this->procedure.'archive_time('.$timeID.")");
     }
+
+    //Undo deleting of a task by moving back to task table instead of archive task table
+    public function undoDeleteTask($taskID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_task(".$taskID.")");
+    }
+
+    //Delete the archived task
+    public function deleteArchiveTask($taskID){
+        $this->executeStatementNoOutput($this->procedure."delete_archive_task(".$taskID.")");
+    }
+
+    //Undo deleting of a task time by moving back to time table instead of archive time table
+    public function undoDeleteTime($timeID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_time(".$timeID.")");
+    }
+
+    public function getModuleCodeFromTaskID($taskID){
+        $result = $this->executeStatement($this->procedure."get_module_from_task(".$taskID.")");
+        $moduleCode = "";
+        if($result){
+            foreach($result as $row){
+                $moduleCode = $row['module_code'];
+            }
+        }
+        return $moduleCode;
+    }
+
 }

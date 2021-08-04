@@ -330,6 +330,12 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Update the timeframe to alert deadlines
+    public function updateDeadlinePeriod($username, $newDeadlinePeriod){
+        $sql = $this->procedure.'update_deadline_period("'.$username.'",'.$newDeadlinePeriod.')';
+        $this->executeStatementNoOutput($sql);
+    }
+
     //Get upcoming deadlines for the next seven days
     public function getDeadlines($username){
         $sql = $this->procedure."get_deadlines('".$username."')";

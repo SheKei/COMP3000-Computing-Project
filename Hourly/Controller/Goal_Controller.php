@@ -90,7 +90,7 @@ class Goal_Controller
         echo "<form method='POST' action='../Controller/goalController.php'>";
         echo "<label>Week: </label><input class='form-control col-lg-2' name='weekly' type='number' min='1' max='99' value='".$this->weekly."'>";
         echo "<label>Daily: </label><input class='form-control col-lg-2' name='daily' type='number' min='1' max='23' value='".$this->daily."'>";
-        echo "<button class='btn btn-success' name='updateGoal' type='submit'>Change Goals</button>";
+        echo "<button class='btn btn-success' name='updateGoal' type='submit'>Change Goals</button></form>";
     }
 
 }

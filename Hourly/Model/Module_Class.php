@@ -9,8 +9,10 @@ class Module_Class extends Module_Assignment //Inherit module code and module na
     protected $classDay;
     protected $startTime;
     protected $classDuration;
+    protected $lastAttendance;
+    protected $timesAttended;
 
-    public function __construct($moduleCode, $moduleName, $classId, $className, $classRoom, $classDay, $startTime, $classDuration)
+    public function __construct($moduleCode, $moduleName, $classId, $className, $classRoom, $classDay, $startTime, $classDuration, $lastAttendance, $timesAttended)
     {
         $this->moduleCode = $moduleCode;
         $this->moduleName = $moduleName;
@@ -20,6 +22,8 @@ class Module_Class extends Module_Assignment //Inherit module code and module na
         $this->classDay = $classDay;
         $this->startTime = $startTime;
         $this->classDuration = $classDuration;
+        $this->lastAttendance = $lastAttendance;
+        $timesAttended = $timesAttended;
     }
 
     public function getClassId()
@@ -51,6 +55,18 @@ class Module_Class extends Module_Assignment //Inherit module code and module na
     {
         return $this->classDuration;
     }
+
+    public function getLastAttendance()
+    {
+        return $this->lastAttendance;
+    }
+
+    public function getTimesAttended()
+    {
+        return $this->timesAttended;
+    }
+
+
 
 
 

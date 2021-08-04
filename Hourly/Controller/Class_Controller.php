@@ -57,7 +57,7 @@ class Class_Controller
         $classes = [];
         if($result){
             foreach($result as $row){
-                $class = new Module_Class($row['module_code'], $row['module_name'], $row['class_id'], $row['class_name'], $row['class_room'], $this->returnDayOfWeek($row['class_day']), $row['start_time'], $row['class_duration']);
+                $class = new Module_Class($row['module_code'], $row['module_name'], $row['class_id'], $row['class_name'], $row['class_room'], $this->returnDayOfWeek($row['class_day']), $row['start_time'], $row['class_duration'], $row['last_attendance'], $row['times_attended']);
                 $classes[] = $class;
             }
         }

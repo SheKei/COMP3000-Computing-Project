@@ -28,21 +28,6 @@ $dropdown = new Dropdown_Menu_Controller('dummy');
 
                     <form method="post" action="../Controller/timeController.php">
 
-                        <!-- DROP DOWN MENU TO SELECT ONGOING TASK-->
-                        <div class="form-row">
-                            <div style="margin-left: 3px;" class="form-group row">
-                                <label for="taskName" class="col-form-label">Task: <label>
-                                        <div class="col-auto">
-                                            <select class="form-control" name="taskName" id="taskName">
-                                                <?php
-                                                $controller = new Task_Controller('dummy');
-                                                $controller->displayOngoingTasks();
-                                                ?>
-                                            </select>
-                                        </div>
-                            </div>
-                        </div>
-
                         <div class="form-row">
                             <div style="margin-left: 3px;" class="form-group row">
                                 <div class="col-auto">

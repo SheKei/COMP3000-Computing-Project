@@ -45,8 +45,17 @@ include_once '../Public/side_navbar.php';
     </div><br>
 
     <div class="panel" id="goalContainer">
-        <h3>Number of hours to achieve per... </h3>
-        <?php $goalController->displayGoals(); ?>
+        <div class="container">
+            <h3>Number of hours to achieve per... </h3>
+            <?php $goalController->displayGoals(); ?>
+        </div>
+    </div>
+
+    <div class="panel" id="deadlineContainer">
+        <div class="container">
+            <h3>Adjust the Deadline Period</h3>
+            <p>Show tasks ___ days before the deadline date</p>
+        </div>
     </div>
 </div>
 

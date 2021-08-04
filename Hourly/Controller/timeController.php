@@ -5,7 +5,7 @@ $controller = new Time_Controller('dummy');
 //POST request add time to a task
 if(isset($_POST['addTimeBtn'])){
     $duration = $_POST['hour'].":".$_POST['minute'];
-    $controller->add_time($_POST['taskName'], $duration, $_POST['description'], $_POST['date']);
+    $controller->add_time($_POST['taskChoice'], $duration, $_POST['description'], $_POST['date']);
     header('Location: ../View/home.php');
 }
 

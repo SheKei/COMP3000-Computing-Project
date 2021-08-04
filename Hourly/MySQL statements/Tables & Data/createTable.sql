@@ -66,3 +66,8 @@ CREATE TABLE COMP3000_STong.time_log(
 
 INSERT INTO `user` (`user_id`, `password`, `email`, `birth_date`, `daily_goal`, `weekly_goal`, `weekly_hours`, `daily_hours`, `report_subscription`) 
 VALUES ('dummy', 'password', 'email@email.com', '1999-10-12', '0', '0', '36', '7', '0');
+
+CREATE TABLE COMP3000_STong.archive_task like COMP3000_STong.task
+CREATE TABLE COMP3000_STong.archive_time_log LIKE COMP3000_STong.time_log
+CREATE TABLE COMP3000_STong.archive_class LIKE COMP3000_STong.class
+CREATE TABLE COMP3000_STong.archive_reminder LIKE COMP3000_STong

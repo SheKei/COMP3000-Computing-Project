@@ -324,6 +324,12 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
+    //Get the number of days when to alert tasks are due
+    public function getDeadlinePeriod($username){
+        $sql = $this->procedure.'get_deadline_period("'.$this->username.'")';
+        return $this->executeStatement($sql);
+    }
+
     //Get upcoming deadlines for the next seven days
     public function getDeadlines($username){
         $sql = $this->procedure."get_deadlines('".$username."')";

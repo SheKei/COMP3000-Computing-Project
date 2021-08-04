@@ -51,7 +51,7 @@ if(isset($_GET['task'])){
     header('Location: ../View/home.php');
 }
 
-//GET request to delete task
+//GET request to delete task and the times recorded for it
 if(isset($_GET['delTaskId'])){
     $timeController->deleteTaskTime($_GET['delTaskId']);
     $controller->deleteTask($_GET['delTaskId']);

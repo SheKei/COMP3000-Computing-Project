@@ -9,52 +9,40 @@ $timeController = new Time_Controller('dummy');
 //Collect inputs to assign a task to module
 if(isset($_POST['addTaskBtn'])){
 
-    $task_name = $_POST['taskName'];
-    $module_code = $_POST['moduleCode'];
-    $task_category = $_POST['taskCategory'];
-    $priority = $_POST['priorityOptions'];
-
     //Check if user set a deadline
-    if($_POST['dueDeadline'] == "dueAnytime"){
+    if($_POST['deadlineInput'] == "Due Anytime"){
         $due_date = "9999-12-30"; //Set to an extreme date if no deadline
         $due_time = "";
     }
     else
     {
-        $due_date = $_POST['dueDate'];
-        $due_time = $_POST['dueTime'];
+        $split = explode(" ", $_POST['deadlineInput']);
+        $due_date = $split[0];
+        $due_time = $split[1];
     }
 
-    $controller->assignTask($module_code, $task_name, $task_category, $due_date, $due_time, $priority);
+    $controller->assignTask($_POST['moduleCode'], $_POST['taskName'], $_POST['taskCategory'], $due_date, $due_time, $_POST['priorityOptions']);
 
     //Go to module page once created
-    header('Location: ../View/module.php?code='.$module_code);
+    header('Location: ../View/module.php?code='.$_POST['moduleCode']);
 }
 
 //Edit details of an ongoing task
 if(isset($_POST['editTaskBtn'])){
 
-    $taskId = $_POST['id'];
-    $task = $_POST['tName'];
-    $module = $_POST['module'];
-    $category = $_POST['category'];
-    $priority = $_POST['priority'];
-
-    //Check if user set a deadline
-    if($_POST['date'] == ""){
+    if($_POST['currentDue']=="Due Anytime"){
         $due_date = "9999-12-30"; //Set to an extreme date if no deadline
         $due_time = "";
+    }else{
+        $split = explode(" ", $_POST['currentDue']);
+        $due_date = $split[0];
+        $due_time = $split[1];
     }
-    else
-    {
-        $due_date = $_POST['dueDate'];
-        $due_time = $_POST['dueTime'];
-    }
-
-    $controller->editTask($taskId, $module, $task, $category, $due_date, $due_time, $priority);
+    echo $_POST['id']; echo " "; echo $_POST['module'];
+    $controller->editTask($_POST['id'], $_POST['module'], $_POST['tName'], $_POST['category'], $due_date, $due_time, $_POST['priority']);
 
     //Go to module page once created
-    header('Location: ../View/module.php?code='.$module);
+    header('Location: ../View/module.php?code='.$_POST['module']);
 }
 
 //GET request to mark task complete
@@ -63,20 +51,33 @@ if(isset($_GET['task'])){
     header('Location: ../View/home.php');
 }
 
-//GET request to delete task
+//GET request to delete task and the times recorded for it
 if(isset($_GET['delTaskId'])){
-    $controller->deleteTask($_GET['delTaskId']);
-    header('Location: ../View/home.php');
+    $timeController->deleteTaskTime($_GET['delTaskId']);
+    $moduleCode = $controller->deleteTask($_GET['delTaskId']);
+    header('Location: ../View/module.php?code='.$moduleCode.'&delTaskNotif='.$_GET['delTaskId']);
 }
 
-//GET request to view task details and time spent on a pop-up page
-if(isset($_GET['taskId'])){
-    $controller->getTaskDetails($_GET['taskId']);
-    $timeController->outputTimes($timeController->getTaskTime($_GET['taskId']));
+//GET request to view task details and time spent FROM VIEW MODULE PAGE
+if(isset($_GET['taskIdModule'])){
+    $controller->getTaskDetails($_GET['taskIdModule'], "Module Page");
+    $timeController->outputTimes($timeController->getTaskTime($_GET['taskIdModule']));
+}
+
+//GET request to view task details and time spent FROM HOME PAGE
+if(isset($_GET['taskIdHome'])){
+    $controller->getTaskDetails($_GET['taskIdHome'], "Home Page");
+    $timeController->outputTimes($timeController->getTaskTime($_GET['taskIdHome']));
 }
 
 //GET request to view task details and time spent on a pop-up page
 if(isset($_GET['completedTaskId'])){
     $controller->displayCompletedTaskDetails($_GET['completedTaskId']);
     $timeController->outputTimes($timeController->getTaskTime($_GET['completedTaskId']));
+}
+
+//GET request to update task status to complete
+if(isset($_GET['completeTaskId'])){
+    $controller->completeTask($_GET['completeTaskId']);
+    header('Location: ../View/home.php');
 }

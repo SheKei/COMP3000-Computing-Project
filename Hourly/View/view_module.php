@@ -42,6 +42,8 @@ if(isset($_GET['code']))
             color: black;
         }
 
+        #errorMsg{color: #FF5C4D;}
+
         #heading{font-size: 25px; font-family: "Century Gothic", "Century", "Century Schoolbook"}
 
     </style>
@@ -62,7 +64,7 @@ if(isset($_GET['code']))
                     <!-- Form to create module -->
                     <form method="post" action="../Controller/moduleController.php">
                         <input class="form-control userInput moduleInput" type="text" name="moduleCodeCurrent" id="moduleCodeCurrent" maxlength="50" value="<?php echo $module->getModuleCode(); ?>"><br>
-                        <label>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $module->getModuleCode(); ?>"><br>
+                        <label><p id="errorMsg"></p>Module Code: <p id="editCodeChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="code" id="code" maxlength="50" value="<?php echo $module->getModuleCode(); ?>"><br>
                         <label>Module Name: <p id="editNameChars"></p> </label><input class="form-control userInput moduleInput viewModule" type="text" name="name" id="name" maxlength="50" value="<?php echo $module->getModuleName(); ?>"><br>
                         <label>Expected Hours: </label><input class="form-control userInput moduleInput viewModule" type="number" name="hour" id="hour" min="1" max="999" value="<?php echo $module->getExpectedHours(); ?>"><br>
 
@@ -98,3 +100,27 @@ if(isset($_GET['code']))
 
 </body>
 </html>
+<script>
+    let existModules= [<?php echo $controller->getListOfExistingModules() ?>] ;
+    let currentCode = <?php echo '"'.$module->getModuleCode().'"'?>;
+    $(function(){
+
+        //Check if module code already exists
+        $("#code").on('keyup', function(){
+            let currentModuleInput = $("#code").val();
+            for (let i = 0; i < existModules.length; i++) {
+                if(currentModuleInput == existModules[i]){ //If found a matched element
+
+                    if(currentModuleInput != currentCode){//if the matched element is not current code
+                        $("#errorMsg").html("Module "+ currentModuleInput + " already exists!");
+                        $("#saveModuleBtn").prop("disabled", true);
+                        break; //STOP FOR LOOP IF FOUND SAME ELEMENT
+                    }
+                }else{
+                    $("#errorMsg").html("");
+                    $("#saveModuleBtn").prop("disabled", false);
+                }
+            }
+        });
+    });
+</script>

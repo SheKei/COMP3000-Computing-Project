@@ -8,6 +8,7 @@
         .delete{display:none;}
 
         .hide{display: none;}
+
     </style>
 </head>
 <body>

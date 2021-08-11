@@ -24,7 +24,7 @@ CREATE TABLE COMP3000_STong.reminder(
 	user_id VARCHAR(20) NOT NULL,
 	reminder_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	description VARCHAR(150) NOT NULL,
-	deadline DATETIME,
+	datestamp DATE,
 	FOREIGN KEY (user_id) REFERENCES COMP3000_STong.user(user_id)
 );
 
@@ -54,13 +54,20 @@ CREATE TABLE COMP3000_STong.task(
 );
 
 CREATE TABLE COMP3000_STong.time_log(
+	user_id VARCHAR(20) NOT NULL,
 	task_id INT NOT NULL,
 	time_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	duration TIME NOT NULL,
 	description VARCHAR(150),
 	time_stamp DATE NOT NULL,
-	FOREIGN KEY (task_id) REFERENCES COMP3000_STong.task(task_id)
+	FOREIGN KEY (task_id) REFERENCES COMP3000_STong.task(task_id),
+	FOREIGN KEY (user_id) REFERENCES COMP3000_STong.user(user_id)
 );
 
 INSERT INTO `user` (`user_id`, `password`, `email`, `birth_date`, `daily_goal`, `weekly_goal`, `weekly_hours`, `daily_hours`, `report_subscription`) 
 VALUES ('dummy', 'password', 'email@email.com', '1999-10-12', '0', '0', '36', '7', '0');
+
+CREATE TABLE COMP3000_STong.archive_task like COMP3000_STong.task
+CREATE TABLE COMP3000_STong.archive_time_log LIKE COMP3000_STong.time_log
+CREATE TABLE COMP3000_STong.archive_class LIKE COMP3000_STong.class
+CREATE TABLE COMP3000_STong.archive_reminder LIKE COMP3000_STong

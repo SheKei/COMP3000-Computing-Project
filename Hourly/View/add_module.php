@@ -1,3 +1,8 @@
+<?php
+include_once '../Controller/Module_Controller.php';
+$controller = new Module_Controller('dummy');
+$modules = $controller->getListOfExistingModules();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,11 +22,13 @@
         #red, #redC{color:#FF5C4D;}
 
         #thisColour{display: none;}
+
+        #moduleMsg{color: #FF5C4D;}
     </style>
 </head>
 <body>
 
-    <div class="modal fade" id="moduleModal">
+    <div class="modal fade" id="moduleModal" style="font-family: "Century Gothic", "Century", "Century Schoolbook"">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
 
@@ -35,22 +42,64 @@
 
                         <!-- Form to create module -->
                         <form method="post" action="../Controller/moduleController.php">
+                            <div class="container">
+                                <div class="form-group row">
 
-                        <label>Module Code: <p id="codeChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleCode" id="moduleCode" size="50" maxlength="50" required><br>
-                        <label>Module Name: <p id="nameChars"></p> </label><input class="form-control userInput moduleInput addModule" type="text" name="moduleName" id="moduleName" maxlength="50" required><br>
-                        <label>Expected Hours: </label><input class="form-control moduleInput addModule" type="number" name="hours" id="hours" value="200" min="1" max="999" required><br>
-                        <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label><input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
-                            <div id="colourPicker">
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="blue"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="green"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="orange"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="purple"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="pink"></i></button>
-                                <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
+                                    <div class="col-2">
+                                        <p id="moduleMsg"></p>
+                                        <label>Module Code: <p id="codeChars"></p> </label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input class="form-control userInput moduleInput addModule" type="text" name="moduleCode"
+                                               id="moduleCode" size="50" maxlength="50" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+
+                                    <div class="col-2">
+                                        <label>Module Name: <p id="nameChars"></p> </label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input class="form-control userInput moduleInput addModule" type="text" name="moduleName"
+                                               id="moduleName" maxlength="50" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+
+                                    <div class="col-2">
+                                        <label>Module Colour: <i class="fas fa-circle" id="keyColour"></i></label>
+                                        <input type="text" class="form-control" name="thisColour" id="thisColour"><br><br>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div id="colourPicker">
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="red"></i></button>
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="blue"></i></button>
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="green"></i></button>
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="orange"></i></button>
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="purple"></i></button>
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="pink"></i></button>
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="yellow"></i></button>
+                                            <button type="button"  class="btn colourBtn"><i class="fas fa-circle fa-3x" id="black"></i></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <label>Expected Hours: </label>
+                                    </div>
+                                    <div class="col-2">
+                                        <input class="form-control moduleInput addModule" type="number" name="hours"
+                                               id="hours" value="200" min="1" max="999" required>
+                                    </div>
+                                </div>
+
                             </div>
+
+
                         <p id="requiredMessage"></p>
-                            <input type="submit" class="btn btn-primary submitBtn" name="addModuleBtn" id="addModuleBtn" disabled value="Add Module">
+                            <input style="font-size:20px" type="submit" class="btn btn-primary submitBtn float-right" name="addModuleBtn" id="addModuleBtn" disabled value="Add Module">
                         </form>
 
                     </div>
@@ -62,5 +111,27 @@
 
 </body>
 </html>
+
+<script>
+    let existingModules= [<?php echo $controller->getListOfExistingModules() ?>] ;
+
+    $(function(){
+
+        //Check if module code already exists
+        $("#moduleCode").on('keyup', function(){
+            let currentModuleInput = $("#moduleCode").val();
+            for (let i = 0; i < existingModules.length; i++) {
+                if(currentModuleInput == existingModules[i]){
+                    $("#moduleMsg").html("Module "+ currentModuleInput + " already exists!");
+                    $("#addModuleBtn").prop("disabled", true);
+                    break; //STOP FOR LOOP IF FOUND SAME ELEMENT
+                }else{
+                    $("#moduleMsg").html("");
+                    $("#addModuleBtn").prop("disabled", false);
+                }
+            }
+        });
+    });
+</script>
 
 

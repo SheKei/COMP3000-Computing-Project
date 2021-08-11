@@ -91,9 +91,21 @@ class Database
         return $this->executeStatement($sql);
     }
 
+    //Get all modules that have tasks assigned to them
+    public function getAllModulesWithTasks($user){
+        $sql = $this->procedure."dropdown_menu_modules('".$user."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get all tasks assigned to one module
+    public function getAllModuleTasks($user, $moduleCode){
+        $sql = $this->procedure."dropdown_menu_tasks('".$user."','".$moduleCode."')";
+        return $this->executeStatement($sql);
+    }
+
     //Insert time for a task
-    public function addTime($taskId, $theDuration, $theDescription, $theTimeStamp){
-        $sql = $this->procedure."add_time(".$taskId.",'".$theDuration."','".$theDescription."','".$theTimeStamp."')";
+    public function addTime($user,$taskId, $theDuration, $theDescription, $theTimeStamp){
+        $sql = $this->procedure."add_time(".$taskId.",'".$theDuration."','".$theDescription."','".$theTimeStamp."','".$user."')";
         $this->executeStatementNoOutput($sql);
     }
 
@@ -113,6 +125,7 @@ class Database
     //Mark an ongoing task as complete
     public function completeTask($user, $taskId)
     {
+        echo $user; echo $taskId;
         $sql = $this->procedure."complete_task('".$user."',".$taskId.")";
         $this->executeStatementNoOutput($sql);
     }
@@ -147,9 +160,15 @@ class Database
         $this->executeStatementNoOutput($sql);
     }
 
-    //Get all timetabled classes
+    //Get all timetabled classes SORTED BY MODULES
     public function getTimetable($user){
         $sql = $this->procedure."get_all_classes('".$user."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Get all timetabled classes SORTED BY DAY
+    public function getTimetableByDays($user){
+        $sql = $this->procedure."get_classes_by_day('".$user."')";
         return $this->executeStatement($sql);
     }
 
@@ -202,8 +221,8 @@ class Database
     }
 
     //Add a reminder
-    public function addReminder($username, $description){
-        $sql = $this->procedure."add_reminder('".$username."','".$description."')";
+    public function addReminder($username, $description, $datestamp){
+        $sql = $this->procedure."add_reminder('".$username."','".$description."','".$datestamp."')";
         $this->executeStatementNoOutput($sql);
     }
 
@@ -218,4 +237,214 @@ class Database
         $sql = $this->procedure."delete_reminder(".$id.")";
         $this->executeStatementNoOutput($sql);
     }
+
+    //Update contents of existing reminder
+    public function editReminder($id, $description, $datestamp){
+        $sql = $this->procedure."edit_reminder(".$id.",'".$description."','".$datestamp."')";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Return a reminder using reminder id
+    public function getOneReminder($reminderID){
+        $sql = $this->procedure."get_reminder(".$reminderID.")";
+        return $this->executeStatement($sql);
+    }
+
+    //PROCEDURES TO GET TIME CALCULATIONS FOR TIME SPENT ON MODULE/MODULES
+
+    //The total hours spent on ONE module both class and tasks OVERALL
+    public function overallModuleClassHours($moduleCode, $username){
+        $sql = $this->procedure."get_class_time_overall_hours('".$moduleCode."','".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+    public function overallModuleTaskHours($moduleCode, $username){
+        $sql = $this->procedure."get_module_tasks_overall_hours('".$moduleCode."','".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+
+    //The hours spent on ONE module in a WEEK
+    public function weeklyModuleClassHours($moduleCode, $username){
+        $sql = $this->procedure."get_module_class_weekly_hours('".$moduleCode."','".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+    public function weeklyModuleTaskHours($moduleCode, $username){
+        $sql = $this->procedure."get_module_task_weekly_hours('".$moduleCode."','".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+
+    //The OVERALL weekly hours spent attending classes and tasks
+    public function weeklyOverallModuleHours($username){
+        $sql = $this->procedure."get_overall_task_weekly_hours('".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+    public function weeklyOverallClassHours($username){
+        $sql = $this->procedure."get_overall_class_weekly_hours('".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+
+    //The hours spent working TODAY
+    public function todayModuleHours($username){
+        $sql = $this->procedure."get_today_class_hours('".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+    public function todayClassHours($username){
+        $sql = $this->procedure."get_today_task_hours('".$username."')";
+        return $this->extractArray($this->executeStatement($sql));
+    }
+
+    //Extract the time result from array
+    public function extractArray($result){
+        $theTime = "00:00";
+        if($result){
+            foreach($result as $row){
+                $theTime = $row['total_time'];
+                if($theTime === null){
+                    $theTime = "00:00"; //Set null value to 00:00
+                }
+            }
+        }
+        return $theTime;
+    }
+
+    //Get the current goal numbers set to achieve per week and day
+    public function getGoals($username){
+        $sql = $this->procedure."get_goals('".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+
+    //Update the goal number of hours to work in a day
+    public function updateDailyGoal($username, $newGoal){
+        $sql = $this->procedure."update_daily_goal('".$username."',".$newGoal.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Update the goal number of hours to work in a week
+    public function updateWeeklyGoal($username, $newGoal){
+        $sql = $this->procedure."update_weekly_goal('".$username."',".$newGoal.")";
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Get the number of days when to alert tasks are due
+    public function getDeadlinePeriod($username){
+        $sql = $this->procedure.'get_deadline_period("'.$username.'")';
+        return $this->executeStatement($sql);
+    }
+
+    //Update the timeframe to alert deadlines
+    public function updateDeadlinePeriod($username, $newDeadlinePeriod){
+        $sql = $this->procedure.'update_deadline_period("'.$username.'",'.$newDeadlinePeriod.')';
+        $this->executeStatementNoOutput($sql);
+    }
+
+    //Get upcoming deadlines for the next seven days
+    public function getDeadlines($username){
+        $sql = $this->procedure."get_deadlines('".$username."')";
+        return $this->executeStatement($sql);
+    }
+
+    //Delete all classes, tasks tied to a module and then module itself
+    public function deleteEverythingInModule($moduleCode, $username){
+        $this->getTimeLogIdsToDelete($username, $moduleCode);//Delete time logs first
+
+        $sql = $this->procedure."delete_module_tasks('".$moduleCode."','".$username."')";//Delete tasks
+        $this->executeStatementNoOutput($sql);
+
+        $sql = $this->procedure."delete_module_classes('".$moduleCode."','".$username."')";//Delete classes
+        $this->executeStatementNoOutput($sql);
+
+        $sql = ($this->procedure."delete_module('".$username."','".$moduleCode."')");//Delete module itself
+        $this->executeStatementNoOutput($sql);
+
+    }
+
+    //Delete the child records (time logs) of task table first
+    public function getTimeLogIdsToDelete($user, $module){
+        $sql = $this->procedure."get_time_log_ids('".$module."','".$user."')";
+        $result = $this->executeStatement($sql);
+        if($result){
+            echo "if";
+            foreach ($result as $row){
+                $sql = $this->procedure."delete_task_time(".$row['time_id'].")"; //Delete time log
+                $this->executeStatementNoOutput($sql);
+            }
+        }
+    }
+
+    //Check if archived deleted reminder still exists
+    public function checkArchiveReminder($reminderID){
+        if(empty($this->executeStatement($this->procedure."check_archive_reminder(".$reminderID.")"))==false){
+            $this->undoDeleteReminder($reminderID); //If archived reminder exists, move back to reminder table
+        }
+    }
+
+    //Undo deleting of a reminder
+    public function undoDeleteReminder($reminderID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_reminder(".$reminderID.")");
+    }
+
+    //Check if archived deleted reminder still exists
+    public function checkArchiveClass($classID){
+        if(empty($this->executeStatement($this->procedure."check_archive_class(".$classID.")"))==false){
+            $this->undoDeleteClass($classID); //If archived reminder exists, move back to reminder table
+        }
+    }
+
+    //Undo deleting of a reminder
+    public function undoDeleteClass($classID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_class(".$classID.")");
+    }
+
+    //Archive task before deletion
+    public function archiveTask($taskID){
+        $this->executeStatementNoOutput($this->procedure.'archive_task('.$taskID.")");
+    }
+
+    //Check if archived deleted reminder still exists
+    public function checkArchiveTask($taskID){
+        //If archived task still exists
+        if(empty($this->executeStatement($this->procedure."check_archive_task(".$taskID.")"))==false){
+            $this->undoDeleteTask($taskID);//Undo task deletion first (the parent record)
+            //Check if archived timings still exist for task as well
+            $result = $this->executeStatement($this->procedure."check_archive_time(".$taskID.")");
+            if(empty($result)==false){
+                foreach($result as $row){
+                    $this->undoDeleteTime($row['time_id']);//Then undo the children records (i.e. task time logs)
+                }
+            }
+            $this->deleteArchiveTask($taskID);
+        }
+    }
+
+    //Archive time before deletion
+    public function archiveTime($timeID){
+        $this->executeStatementNoOutput($this->procedure.'archive_time('.$timeID.")");
+    }
+
+    //Undo deleting of a task by moving back to task table instead of archive task table
+    public function undoDeleteTask($taskID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_task(".$taskID.")");
+    }
+
+    //Delete the archived task
+    public function deleteArchiveTask($taskID){
+        $this->executeStatementNoOutput($this->procedure."delete_archive_task(".$taskID.")");
+    }
+
+    //Undo deleting of a task time by moving back to time table instead of archive time table
+    public function undoDeleteTime($timeID){
+        $this->executeStatementNoOutput($this->procedure."undo_delete_time(".$timeID.")");
+    }
+
+    public function getModuleCodeFromTaskID($taskID){
+        $result = $this->executeStatement($this->procedure."get_module_from_task(".$taskID.")");
+        $moduleCode = "";
+        if($result){
+            foreach($result as $row){
+                $moduleCode = $row['module_code'];
+            }
+        }
+        return $moduleCode;
+    }
+
 }

@@ -1,11 +1,12 @@
 <?php
 include_once '../Model/Database.php';
 include_once '../Model/Task.php';
+include_once '../Controller/Time_Controller.php';
 
 class Task_Controller
 {
-    private $database;
-    private $username;
+    protected $database;
+    protected $username;
 
     /**
      * Task_Controller constructor.
@@ -14,6 +15,7 @@ class Task_Controller
     {
         $this->username = $user;
         $this->database = new Database();
+
     }
 
     public function displayModuleChoices()
@@ -83,7 +85,7 @@ class Task_Controller
 
                 //For marking a task complete
                 $checkbox = ' <input class="complete" type="checkbox" value="'.$task->getTaskId().'" id="'.$task->getTaskId().'">';
-
+                $checkbox = '<button type="button" class="complete btn btn-success" id="'.$task->getTaskId().'"><i class="far fa-check-square"></i></button>';
                 $jQuery = "";
 
                 //Output task under a category box
@@ -119,7 +121,14 @@ class Task_Controller
             $due = "<br>".$icon." Anytime";
         }else
         {
-            $due = "<br> ".$icon." ".date("d/m h:m", strtotime($date." ".$time));
+            $today = date("Y/m/d");
+            $theDate = date("Y/m/d", strtotime($date." ".$time));
+            if($theDate<$today){
+                $icon = '<span class="overdue"><i class="far fa-calendar-alt"> OVERDUE: </i>';
+            }else{
+                $icon = '<span><i class="far fa-calendar-alt"></i>';
+            }
+            $due = "<br> ".$icon." ".date("d/m h:m", strtotime($date." ".$time)).'</span>';
         }
 
         return $due;
@@ -143,15 +152,15 @@ class Task_Controller
         return $style = '<i style="color:'.$colour.'" class="fas fa-exclamation"></i> ';
     }
 
-    //Return details of a task
-    public function getTaskDetails($task_id){
+    //Return details of a task and pass on the page name from where it was requested
+    public function getTaskDetails($task_id, $theLocation){
         $result = $this->database->getTaskDetails($task_id);
         if($result){
             foreach($result as $row){
                 $task = new Task($task_id, $row['task_name'], $row['task_category'], $row['due_date'], $row['due_time'], $row['priority_level']);
             }
         }
-        $this->displayTaskDetails($task);
+        $this->displayTaskDetails($task, $theLocation);
     }
 
 
@@ -162,9 +171,13 @@ class Task_Controller
 
     //Delete a task and time spent on it
     public function deleteTask($taskId){
+        $this->database->archiveTask($taskId);
+        $moduleCode = $this->database->getModuleCodeFromTaskID($taskId);
         $this->database->deleteTask($taskId);
+        return $moduleCode; //For returning to the correct page after deletion
     }
 
+    //Display names of completed tasks and categorise them
     public function displayCompletedTasks($module){
         $results = $this->database->getModuleCompletedTasks($this->username,$module);
         if($results){
@@ -197,7 +210,7 @@ class Task_Controller
     }
 
     //Display details of a task on a pop-up page when a task name is clicked on
-    public function displayTaskDetails($task){
+    public function displayTaskDetails($task, $location){
         if($task){
             echo '<form method="post" action="../Controller/taskController.php">';
 
@@ -216,7 +229,6 @@ class Task_Controller
          <label for="module" id="moduleLabel" class="col-form-label">Assign to Module: <label>
          <div class="col-auto">
          <select class="form-control" name="module" id="module">';
-            echo '<option value="COMP3000">'.'COMP3000'.'</option>';
             $this->displayModuleChoices();
             echo '</select></div></div>';
 
@@ -258,52 +270,40 @@ class Task_Controller
                 $due = $task->getDueDate().' - '.$task->getDueTime();
             }
             echo '<div class="row">';
-            echo'<div class="col"><input id="currentDue" type="text" size="50" class="form-control" value="'.$due.'" readonly></div>';
-            echo '<input type="text" name="date" id="date" class="hidden">';
-            echo '<input type="text" name="time" id="time" class="hidden">';
-            echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline">Edit Deadline</button></div>';
+
+            //Change id of date field and pop up page depending on from current web page
+            if($location == "Module Page"){
+                $fieldId = "currentDue";
+                $popUp = "changeDateTimeModal";
+            }else{
+                $fieldId = "currentDate";
+                $popUp = "changeDateTimeModalFromHome";
+            }
+            echo'<div class="col"><input id="'.$fieldId.'" name="currentDue" type="text" size="50" class="currentDue form-control" value="'.$due.'" readonly></div>';
+            echo '<div class="col"><button type="button" class="btn btn-info" id="changeDeadline" data-toggle="modal" data-target="#'.$popUp.'">Edit Deadline</button></div>';
             echo '</div>';
             echo '</div>';
 
-            //SECTION TO EDIT DEADLINE
-            echo '
-            <section id="newDeadline" class="hide">
-            <div class="form-group row">
-            <label for="newDate">New Date:</label>
-            <input type="date" id="newDate" name="newDate" class="form-control newDue">
-            <label for="newTime">New Time:</label>
-            <input type="time" name="newTime" id="newTime" class="form-control newDue">
-            </div>
-            </section>
-            ';
-
-            echo '<div class="row"><button type="submit" class="btn btn-dark" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
+            echo '<div style="margin-left: 60%" class="row"><button type="submit" class="btn btn-dark" id="editTaskBtn" name="editTaskBtn">Update Task</button></form>';
             echo //DELETE TASK BTN
-                '<button style="margin-left:20px;" type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button></div><br><br>';
+                '<button style="margin-left:20px;" type="button" class="btn btn-danger deleteTask" id="'.$task->getTaskId().'">Delete Task</button>';
+            echo //COMPLETE TASK BTN
+                '<button style="margin-left:20px;" type="button" class="btn btn-success completeTask" id="'.$task->getTaskId().'">Complete Task</button></div><br><br>';
 
+            //JQUERY EVENTS RELATED TO DYNAMIC FIELDS ABOVE
             echo '<script>
+                //BTN to delete task
                 $(".deleteTask").click(function(){
                     let delTaskId = this.id; //Get id of task
                     window.location.href = "../Controller/taskController.php?delTaskId="+delTaskId; //Send to controller 
                 });
                 
-                $("#changeDeadline").click(function(){
-                    $("#newDeadline").removeClass("hide");
+                //BTN to change task status to complete
+                $(".completeTask").click(function(){
+                    let completeTaskId = this.id; //Get id of task
+                    window.location.href = "../Controller/taskController.php?completeTaskId="+completeTaskId; //Send to controller 
                 });
                 
-                $(".newDue").change(function(){
-                    let dueId = this.id;
-                    let date = $("#newDate").val();
-                    let time = $("#newTime").val();
-                    
-                    if(dueId == "newDate"){
-                        $("#date").val(date);
-                    }else{
-                        $("#time").val(time);
-                    }
-                    
-                    $("#currentDue").val(date + " - " + time);
-                });
                 </script>';
         }
     }

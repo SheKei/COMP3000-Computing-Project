@@ -1,6 +1,8 @@
 <?php
 include_once '../Controller/Class_Controller.php';
 $classController = new Class_Controller('dummy');
+include_once '../Controller/Notification_Controller.php';
+$notificationController = new Notification_Controller();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +25,10 @@ $classController = new Class_Controller('dummy');
             margin-left: 20px;
         }
 
+        .classNames{
+            font-size: 25px;
+        }
+
         .hidden{
             display: none;
         }
@@ -32,6 +38,7 @@ $classController = new Class_Controller('dummy');
         }
 
         .moduleTitle,h1{letter-spacing: 2px;}
+
 
     </style>
 </head>
@@ -43,13 +50,25 @@ include_once '../Public/side_navbar.php';
 ?>
 
 <div id="timetable" >
-    <h1 style="font-family: 'Century Gothic';letter-spacing: 2px;font-size: 35px;">Timetable</h1><br>
-    <?php $classController->displayModuleSections(); ?>
-    <script>
-        $(function(){
-            <?php $classController->sortTimetableClasses(); ?>
-        });
-    </script>
+    <?php
+     if (isset($_GET['deleteClass'])){
+         $notificationController->displayClassDeletionNotification($_GET['deleteClass']);//DELETE CLASS NOTIFICATION DISPLAY HERE
+     }
+    ?>
+    <div id="timetableHeader">
+        <h1 style="font-family: 'Century Gothic';letter-spacing: 2px;font-size: 35px;">Timetable</h1>
+        <div class="text-center">
+            <button class="btn btn-dark" id="sortByModule">Order By Module</button>
+            <button class="btn btn-dark" id="sortByDays">Order By Days</button><br>
+        </div>
+    </div>
+
+    <div id="byModule" class="w3-animate-zoom"><br>
+        <?php $classController->displayModuleSections(); ?>
+    </div>
+    <div id="byDay" class="w3-animate-zoom hidden">
+        <?php include_once 'timetable_by_days.php';?>
+    </div>
 </div>
 <?php include_once 'view_class.php';?> <!-- IMPORT POP-UP PAGE TO VIEW FURTHER CLASS DETAILS -->
 </body>
@@ -57,6 +76,12 @@ include_once '../Public/side_navbar.php';
 
 <script>
     $(function(){
+
+        <?php
+        $classController->sortTimetableClasses(); //DISPLAY CLASSES BY MODULES
+        $classController->sortTimeTableByDay();
+        ?>
+
         //If user clicks on a task
         $(".viewClassBtn").click(function(){
 
@@ -77,6 +102,27 @@ include_once '../Public/side_navbar.php';
                 xmlhttp.send();
             }
         });
+
+        //TOGGLE VIEWING BETWEEN COMPLETED OR ONGOING TASKS
+        $("#sortByModule").click(function(){
+            $("#byModule").removeClass("hidden");
+            $("#byDay").addClass("hidden");
+            adjustBtnDisplay("#sortByModule", "#sortByDays");
+        });
+
+        $("#sortByDays").click(function(){
+            $("#byDay").removeClass("hidden");
+            $("#byModule").addClass("hidden");
+            adjustBtnDisplay("#sortByDays", "#sortByModule");
+        });
+
+        //Adjust button appearance to signal which one was clicked
+        function adjustBtnDisplay(btn1, btn2){
+            $(btn1).addClass("btn-secondary");
+            $(btn1).removeClass("btn-dark");
+            $(btn2).addClass("btn-dark");
+            $(btn2).removeClass("btn-secondary");
+        }
     });
 </script>
 

@@ -17,7 +17,7 @@ class Time_Controller
 
     //Add time spent working on an ongoing task
     public function add_time($task, $duration, $description, $timeStamp){
-        $this->database->addTime($task, $duration, $description, $timeStamp);
+        $this->database->addTime($this->username,$task, $duration, $description, $timeStamp);
     }
 
     //Get time spent on a task
@@ -36,6 +36,7 @@ class Time_Controller
     //Output array of time logs spent on a task as paragraphs
     public function outputTimes($times){
         echo '<section id="timings">';
+        echo '<h3 style="font-family: \'Century Gothic\'">Study Logs</h3>';
         foreach($times as $time){
             $btn = '<button class="btn deleteTime" id="'.$time->getTimeId().'"><i class="fas fa-times"></i></button>';
             echo '<p id="id'.$time->getTimeId().'">'.$btn.$time->getDuration().' hrs - '.'<i>'.$time->getDescription().' - </i> <b>'.$time->getTimestamp().'</b></p>';
@@ -67,5 +68,16 @@ class Time_Controller
     //Delete time spent on a task
     public function deleteTime($timeId){
         $this->database->deleteTime($timeId);
+    }
+
+    //Delete all time logs first before a task is deleted
+    public function deleteTaskTime($taskId){
+        $result = $this->database->getTaskTime($taskId);
+        if($result){
+            foreach($result as $row){ //Archive before delete
+                $this->database->archiveTime($row['time_id']);
+                $this->database->deleteTime($row['time_id']);
+            }
+        }
     }
 }

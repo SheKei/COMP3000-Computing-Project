@@ -29,9 +29,23 @@ class Account_Controller
         $account = $this->getAccount();
         if($account){
             echo '<form method="post" action="../Controller/accountController.php">';
-            echo '<label for="email">Email Address: </label><input class="form-control col-sm-8" id="email" name="email" type="email" value="'.$account->getEmail().'">';
-            echo '<label for=birthdate>Date Of Birth: </label><input <input class="form-control col-sm-8" id="birthdate" name="birthdate" type="date" value="'.$account->getDateOfBirth().'">';
-            echo '<button type="submit" class="btn btn-primary" id="editAccountBtn" name="editAccountBtn">Save Edit</button>';
+            echo '<div class="form-group row">
+                        <div class="col-lg-4">';
+            echo '            <label for="email">Email Address: </label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input class="form-control col-sm-8" id="email" name="email" type="email" value="'.$account->getEmail().'">
+                        </div>
+                  </div>';
+            echo '<div class="form-group row">
+                        <div class="col-lg-4">
+                            <label for=birthdate>Date Of Birth: </label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input class="form-control col-sm-8" id="birthdate" name="birthdate" type="date" value="'.$account->getDateOfBirth().'">
+                        </div>
+                   </div>';
+            echo '<br><div class="text-center"><button type="submit" class="btn btn-primary" id="editAccountBtn" name="editAccountBtn">Save Edit</button></div>';
             echo '</form>';
         }
     }

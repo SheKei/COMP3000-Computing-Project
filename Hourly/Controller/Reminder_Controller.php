@@ -38,7 +38,7 @@ class Reminder_Controller
             foreach ($reminders as $reminder){
                 echo "<p>"
                     ."<i class='far fa-times-circle' id='".$reminder->getReminderId()."'></i><span data-toggle='modal' data-target='#editReminderModal' class='theReminder' id='id".$reminder->getReminderId()."'>"
-                    .$reminder->getDescription()." - <strong>".$reminder->getDatestamp().
+                    .$reminder->getDescription()."  <strong>".date("d/m/y", strtotime($reminder->getDatestamp())).
                     "</strong></span></p>";
             }
         }

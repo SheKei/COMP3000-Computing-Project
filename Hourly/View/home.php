@@ -20,6 +20,11 @@ $notificationController = new Notification_Controller();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/20c7401107.js" crossorigin="anonymous"></script>
     <title>Home</title>
 
     <style>
@@ -48,15 +53,12 @@ $notificationController = new Notification_Controller();
         }
 
 
-        #reminders{
-            margin-left:10%;
-            width: 30%;
+        #reminders,#upcomingDeadlines{
+            min-height: 300px;
+            margin:1%;
         }
 
-        #upcomingDeadlines{
-            margin-left: 2%;
-            width: 50%;
-        }
+
 
         .logAttendance{
             margin-left:10px;
@@ -66,8 +68,11 @@ $notificationController = new Notification_Controller();
             letter-spacing: 3px;
         }
 
-        .title{
+        .title, h4,h5{
             font-family: "Century Gothic", "Century", "Century Schoolbook";
+        }
+
+        .title{
             letter-spacing: 3px;
         }
 
@@ -94,6 +99,14 @@ $notificationController = new Notification_Controller();
             background-color: mediumseagreen;
         }
 
+        #classPanel{
+            min-height:250px;
+        }
+
+        .due, .taskBtn{
+            font-size: 20px;
+        }
+
     </style>
 
 </head>
@@ -114,17 +127,18 @@ include_once "../Public/side_navbar.php";
 
 
     <div class="row">
-        <div class="panel col-lg-8" id="classPanel">
+        <div class="panel col-lg-7" id="classPanel">
+            <section><h1 class='title' id='classTitle'>Today's Classes</h1></section><br>
             <?php $classController->showTodaysClasses(); //SHOW TODAY CLASSES TO ATTEND ?>
         </div>
-        <div class="panel col-lg-3" id="goalPanel">
+        <div class="panel col-lg-4" id="goalPanel">
             <?php $goalController->displayOverallHours(); //DISPLAY HOURS WORKED THIS WEEK ?>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="panel" id="upcomingDeadlines">
+        <div class="col-lg-7 panel" id="upcomingDeadlines">
             <h3 class="title">Upcoming Deadlines</h3><br>
             <?php
                 $deadlineController->displayDeadlines(); //DISPLAY UPCOMING DEADLINES
@@ -132,7 +146,7 @@ include_once "../Public/side_navbar.php";
             ?>
         </div>
 
-        <div class="panel" id="reminders">
+        <div class=" col-lg-4 panel" id="reminders">
             <h3 class="title">
                 <button id="addReminderBtn" class="btn btn-dark" data-toggle="modal" data-target="#reminderModal">
                     <i class="far fa-plus-square"></i>
@@ -149,7 +163,7 @@ include_once'view_class.php';     //POP UP PAGE TO DISPLAY CLASS DETAILS ON TO F
 include_once 'add_reminder.php';  //POP UP PAGE TO ADD A REMINDER;
 include_once 'edit_reminder.php'; //POP UP PAGE TO EDIT A REMINDER;
 ?>
-
+<br><br>
 </body>
 </html>
 

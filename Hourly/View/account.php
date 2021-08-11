@@ -23,6 +23,12 @@ $deadlineController = new Deadline_Controller('dummy');
             margin-top: 10%;
         }
 
+        h3,p,div.panel{
+            font-family: "Century Gothic", "Century", "Century Schoolbook";
+        }
+
+        p{font-size: 20px;}
+
         .panel{
             background-color: white;
             border-radius: 25px;
@@ -30,6 +36,12 @@ $deadlineController = new Deadline_Controller('dummy');
             padding: 20px;
             margin: 25px;
         }
+
+        .row{
+            margin: 1%;
+        }
+
+
     </style>
 </head>
 <body>
@@ -39,29 +51,28 @@ include_once '../Public/side_navbar.php';
 ?>
 
 <div id="overallContainer">
-    <div class="panel" id="accountContainer">
-        <?php
-        $accountController = new Account_Controller("dummy");
-        $accountController->displayAccountDetails();
-        ?>
-    </div><br>
 
-    <div class="panel" id="goalContainer">
-        <div class="container">
-            <h3>Number of hours to achieve per... </h3>
-            <?php $goalController->displayGoals(); ?>
+    <div class="row">
+        <div class="col-lg-10 panel" id="accountContainer">
+            <?php
+            $accountController = new Account_Controller("dummy");
+            $accountController->displayAccountDetails();
+            ?>
         </div>
     </div>
 
-    <div class="panel" id="deadlineContainer">
-        <div class="container">
-            <h3>Adjust the Deadline Period</h3>
-            <?php $deadlineController->getDeadlinePeriod(); ?>
+
+    <div class="row">
+        <div class="col-lg-4 panel" id="goalContainer">
+            <h3>Number of hours to achieve per... </h3><br>
+            <?php $goalController->displayGoals(); ?>
+        </div>
+
+        <div class="col-lg-6 panel" id="deadlineContainer">
+             <h3>Adjust the Deadline Period</h3><br><br>
+             <?php $deadlineController->getDeadlinePeriod(); ?>
         </div>
     </div>
 </div>
-
-
-
 </body>
 </html>

@@ -28,8 +28,8 @@ class Deadline_Controller extends Task_Controller //Inherit priority sorting fun
             foreach ($deadlines as $deadline){
                 $priorityIcon = $this->sortPriority($deadline->getPriorityLevel());
                 $deadlineDate = $this->formatStringDate($deadline->getDueDate(), $deadline->getDueTime());
-                echo "<p class='upcomingDeadline'>".$priorityIcon.'<button class="btn taskBtn" id="'.$deadline->getTaskId()
-                    .'" data-toggle="modal" data-target="#viewTask">'.$deadline->getTaskName()."</button> - ".$deadlineDate."</p>";
+                echo "<div class='row'><div class='col-1'><p class='upcomingDeadline'>".$priorityIcon.'</p></div><div class="col-5"><button class="btn btn-light taskBtn" id="'.$deadline->getTaskId()
+                    .'" data-toggle="modal" data-target="#viewTask">'.$deadline->getTaskName()."</button></div>".$deadlineDate."</div>";
             }
         }
     }
@@ -37,7 +37,17 @@ class Deadline_Controller extends Task_Controller //Inherit priority sorting fun
     //Return format date string to d/m h:m
     public function formatStringDate($date, $time){
         $icon = '<i class="far fa-calendar-alt"></i>'; //Calender icon
-        $due = $icon." ".date("d/m h:m", strtotime($date." ".$time));
+
+        //Calculate time remaining until deadline
+        $today = time();
+        $deadlineTime = strtotime($date." ".$time);
+        $difference = $deadlineTime - $today;
+        if ($difference < 0) {
+            $difference = 0;
+        }
+        $difference = round($difference/ (60 * 60 * 24));
+
+        $due = '<div class="col-6 due">'.$icon.' '.date("d/m h:m", strtotime($date." ".$time)).' '.$difference.' day(s) left</div>';
 
         return $due;
     }
@@ -47,15 +57,15 @@ class Deadline_Controller extends Task_Controller //Inherit priority sorting fun
         $this->database->updateDeadlinePeriod($this->username, $newDeadlinePeriod);
     }
 
-    //Display the deadline period when tasks are alerted n days before deadline
+    //Display the form to change deadline period when tasks are alerted n days before deadline
     public function displayDeadlinePeriod($deadlinePeriod){
         echo "<form method='POST' action='../Controller/deadlineController.php'>";
         echo "<div class='form-group row'><div class='col-auto'><p>Show tasks </p></div>";
         echo "<div class='col-auto'>
               <input class='form-control' name='deadlinePeriod' id='deadlinePeriod' type='number' 
               min='1' max='40' value='".$deadlinePeriod."' required></div>";
-        echo "<div class='col-auto'><p> days before the deadline date</p></div></div><br>";
-        echo "<button class='btn btn-success' name='updatePeriodBtn' type='submit'>Change Deadline Period</button></form>";
+        echo "<div class='col-auto'><p> days before the deadline date</p></div></div><br><br>";
+        echo "<div class='text-center'><button class='btn btn-success' name='updatePeriodBtn' type='submit'>Change Deadline Period</button></div></form>";
 
     }
 

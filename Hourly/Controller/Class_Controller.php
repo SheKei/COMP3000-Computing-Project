@@ -123,21 +123,21 @@ class Class_Controller
     public function showTodaysClasses(){
         $result = $this->database->getTodaysClasses($this->user);
         if($result){
-            echo "<section><h1 class='title' id='classTitle'>Today's Classes</h1>";
+            echo "";
             foreach($result as $row){
                 //Disable attendance button if class already attended today
                 $attendanceBtn = "";
                 if(date("Y/m/d")==date("Y/m/d", strtotime($row['last_attendance']))){
-                    $attendanceBtn = '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'"disabled>Log Attendance</button>';
+                    $attendanceBtn = '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'"disabled>Mark Attendance</button>';
                 }else{
-                    $attendanceBtn = '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'">Log Attendance</button>';
+                    $attendanceBtn = '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'">Mark Attendance</button>';
                 }
 
                 //Display today's timetable onto home page
-                echo '<p>'.$row['module_code'].' '.$row['module_name'].' - '.
-                    '<button class="btn btn-light viewClassBtn" data-toggle="modal" data-target="#viewClass" 
-                    id="'.$row['class_id'].'">'.$row['class_name'].'</button> - '.$row['start_time'].
-                    $attendanceBtn.'</p>';
+                echo '<div class="row"><div class="col-4"><p>'.$row['module_code'].' '.$row['module_name'].'</p></div>'.
+                    '<div class="col-3"><button class="btn btn-light viewClassBtn" data-toggle="modal" data-target="#viewClass" 
+                    id="'.$row['class_id'].'">'.$row['class_name'].'</button></div><div class="col-1"><p class="text-center">'.date("H:i",strtotime($row['start_time'])).'</p></div><div class="col-4">'.
+                    $attendanceBtn.'</div></div>';
             }
             echo '</section>';
         }

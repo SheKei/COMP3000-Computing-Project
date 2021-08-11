@@ -70,10 +70,10 @@ class Goal_Controller
     public function displayOverallHours(){
         $thisWeek = $this->getOverallWeeklyHours();
         $today = $this->getTodaysHours();
-        echo "<p>Should be working for ".$this->weekly." hours per week</p>";
-        echo "<p>This Week Currently: ".$thisWeek." hours</p>";
-        echo "<p>Should be working for ".$this->daily." hours per day</p>";
-        echo "<p>Today You Have Worked For: ".$today." hours</p>";
+        echo "<h4>Should be working for:<br> <strong>".$this->weekly."</strong> hours per week</h4>";
+        echo "<h4>This Week Currently:<br> <strong>".$thisWeek."</strong> hours</h4>";
+        echo "<h4>Should be working for<br> <strong>".$this->daily."</strong> hours per day</h4>";
+        echo "<h4>Today You Have Worked for:<br> <strong>".$today."</strong> hours</h4>";
     }
 
     //Display total and this week's hours spent on selected module
@@ -87,10 +87,24 @@ class Goal_Controller
     //Get the goals currently set for user and display
     public function displayGoals(){
 
-        echo "<form method='POST' action='../Controller/goalController.php'>";
-        echo "<label>Week: </label><input class='form-control col-lg-2' name='weekly' type='number' min='1' max='99' value='".$this->weekly."'>";
-        echo "<label>Daily: </label><input class='form-control col-lg-2' name='daily' type='number' min='1' max='23' value='".$this->daily."'>";
-        echo "<button class='btn btn-success' name='updateGoal' type='submit'>Change Goals</button></form>";
+        echo "<form method='POST' action='../Controller/goalController.php'>
+                    <div class='form-group row'>
+                        <div class='col-4'>";
+        echo "                <label>Week: </label>
+                        </div>
+                        <div class='col-4'>
+                            <input class='form-control' name='weekly' type='number' min='1' max='99' value='".$this->weekly."'>
+                        </div>
+                   </div>";
+        echo "<div class='form-group row'>
+                    <div class='col-4'>
+                        <label>Daily: </label>
+                    </div>
+                    <div class='col-4'>
+                        <input class='form-control' name='daily' type='number' min='1' max='23' value='".$this->daily."'>
+                   </div>
+                   </div>";
+        echo "<br><div class='text-center'><button class='btn btn-success' name='updateGoal' type='submit'>Change Goals</button></div></form>";
     }
 
 }

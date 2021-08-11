@@ -125,6 +125,7 @@ class Database
     //Mark an ongoing task as complete
     public function completeTask($user, $taskId)
     {
+        echo $user; echo $taskId;
         $sql = $this->procedure."complete_task('".$user."',".$taskId.")";
         $this->executeStatementNoOutput($sql);
     }

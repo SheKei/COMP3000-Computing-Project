@@ -6,7 +6,7 @@ It is different to other academic systems as these tend to focus on those in sec
 
 Hourly intends to encourage the practising of time management by keeping track of the hours spent on assignments and upcoming deadlines so that the students are aware on what to prioritise. 
 
-No registration or sign in required, a dummy account is used in [place](web.socem.plymouth.ac.uk/FYP/STong/Hourly/View/home.php)
+No registration or sign in required, a dummy account is used in [!place](web.socem.plymouth.ac.uk/FYP/STong/Hourly/View/home.php)
 
 ## Features
 * Module Creation

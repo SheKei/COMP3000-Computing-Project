@@ -28,7 +28,7 @@ class Module_Controller
         $result = $this->database->getModuleDetails($this->username, $moduleCode);
         if(isset($result))
         {
-            foreach($result as $row){
+            foreach($result as $row){ //For each result convert into a parameter to construct the object
                 $code = $row['module_code'];
                 $name = $row['module_name'];
                 $hours = $row['expected_hours'];

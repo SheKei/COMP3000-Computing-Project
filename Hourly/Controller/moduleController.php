@@ -5,7 +5,7 @@ include_once './Module_Controller.php';
 $user = "dummy";
 $controller = new Module_Controller($user);
 
-//If create module btn clicked
+//POST request If create module btn clicked
 if (isset($_POST['addModuleBtn'])) {
     $moduleCode = $_POST['moduleCode'];
     $moduleName = $_POST['moduleName'];
@@ -22,7 +22,7 @@ if (isset($_POST['addModuleBtn'])) {
     header('Location: ../View/module.php?code='.$moduleCode);
 }
 
-//If edit module btn clicked
+//POST request If edit module btn clicked
 if(isset($_POST['saveModuleBtn'])) {
     $controller->updateModuleDetails($_POST['code'], $_POST['name'], $_POST['theColour'], $_POST['hour'], $_POST['moduleCodeCurrent']);
     header('Location: ../View/module.php?code='.$_POST['code']);

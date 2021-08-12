@@ -9,4 +9,4 @@ CREATE PROCEDURE COMP3000_STong.update_deadline_period(IN username VARCHAR(20), 
 			user_id = username;
 	END //
 	
-DELIMITER
+DELIMITER  

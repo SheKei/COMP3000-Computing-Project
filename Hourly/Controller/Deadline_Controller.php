@@ -6,12 +6,12 @@ include_once 'Task_Controller.php';
 class Deadline_Controller extends Task_Controller //Inherit priority sorting function
 {
 
-    //Get upcoming task deadlines for the next seven days
+    //Get upcoming task deadlines for the next [n] day
     public function getDeadlines(){
         $result = $this->database->getDeadlines($this->username);
         $deadlines = [];
         if($result){
-            foreach ($result as $row){
+            foreach ($result as $row){ //For each result, convert to a deadline object
                 $deadline = new Deadline($row['module_code'], $row['task_id'], $row['task_name'], $row['due_date'], $row['due_time'], $row['priority_level']);
                 $deadlines[] = $deadline;
             }
@@ -25,9 +25,9 @@ class Deadline_Controller extends Task_Controller //Inherit priority sorting fun
     public function displayDeadlines(){
         $deadlines = $this->getDeadlines();
         if($deadlines){
-            foreach ($deadlines as $deadline){
-                $priorityIcon = $this->sortPriority($deadline->getPriorityLevel());
-                $deadlineDate = $this->formatStringDate($deadline->getDueDate(), $deadline->getDueTime());
+            foreach ($deadlines as $deadline){ //For each result, append to deadline dashboard in home page
+                $priorityIcon = $this->sortPriority($deadline->getPriorityLevel()); //Return priority
+                $deadlineDate = $this->formatStringDate($deadline->getDueDate(), $deadline->getDueTime()); //Format date
                 echo "<div class='row'><div class='col-1'><p class='upcomingDeadline'>".$priorityIcon.'</p></div><div class="col-5"><button class="btn btn-light taskBtn" id="'.$deadline->getTaskId()
                     .'" data-toggle="modal" data-target="#viewTask">'.$deadline->getTaskName()."</button></div>".$deadlineDate."</div>";
             }
@@ -69,6 +69,7 @@ class Deadline_Controller extends Task_Controller //Inherit priority sorting fun
 
     }
 
+    //Display the current value set for number of days before a deadline is classed as upcoming
     public function getDeadlinePeriod(){
         $result = $this->database->getDeadlinePeriod($this->username);
         $deadlinePeriod = "";

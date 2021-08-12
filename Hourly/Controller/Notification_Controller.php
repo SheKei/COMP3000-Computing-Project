@@ -18,14 +18,17 @@ class Notification_Controller
         </div>';
     }
 
+    //Display reminder that a reminder has been deleted and the option to undo
     public function displayReminderDeletionNotification($undoID){
         $this->displayNotification("Reminder Deleted", "../Controller/undoController.php?undoDelReminder=".$undoID);
     }
 
+    //Display a class has been deleted and the option to undo
     public function displayClassDeletionNotification($undoID){
         $this->displayNotification("Class Deleted", "../Controller/undoController.php?undoDelClass=".$undoID);
     }
 
+    //Display a task and its time spent have been delete with the option to undo
     public function displayTaskDeletionNotification($undoID){
         $this->displayNotification("Task Deleted", "../Controller/undoController.php?undoDelTask=".$undoID);
     }

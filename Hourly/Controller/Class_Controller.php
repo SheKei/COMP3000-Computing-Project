@@ -71,7 +71,7 @@ class Class_Controller
         $result = $this->database->getModuleCodes($this->user);
         $modules = [];
         if ($result) {
-            foreach ($result as $row) {
+            foreach ($result as $row) {//For each result, convert to a module object
                 $module = new Module($row['module_code'], $row['module_name'], 0, $row['colour_key']);
                 $modules[] = $module;
             }
@@ -99,7 +99,7 @@ class Class_Controller
     public function sortTimetableClasses(){
         $classes = $this->getTimetableByModule();
         if($classes){ //Button to bring pop-up page for class details
-            foreach($classes as $class){
+            foreach($classes as $class){//For each class append to the appropiate module section with option to view further details with pop up page
                 echo '$("#'.$class->getModuleCode().'").append("<p class=\"classes classNames\">'.$class->getClassDay()." - ".date("H:i",strtotime($class->getStartTime())).
                     ' - <button data-toggle=\"modal\" data-target=\"#viewClass\" class=\"btn viewClassBtn\" id=\"'.$class->getClassId().'\">'
                     .$class->getClassName().'</p></p>");';
@@ -111,7 +111,7 @@ class Class_Controller
     public function sortTimeTableByDay(){
         $classes = $this->getTimetableByDay();
         if($classes){
-            foreach($classes as $class){
+            foreach($classes as $class){ //For each class append to the appropiate day
                 echo '$("#'.$class->getClassDay().'").append("<p class=\"classes classNames\">'.date("H:i",strtotime($class->getStartTime()))
                     ." - ".$class->getModuleCode().
                     ' - <button data-toggle=\"modal\" data-target=\"#viewClass\" class=\"btn viewClassBtn\" id=\"'.$class->getClassId().'\">'
@@ -126,8 +126,7 @@ class Class_Controller
         if($result){
             echo "";
             foreach($result as $row){
-                //Disable attendance button if class already attended today
-                $attendanceBtn = "";
+                $attendanceBtn = "";  //Disable attendance button if class already attended today
                 if(date("Y/m/d")==date("Y/m/d", strtotime($row['last_attendance']))){
                     $attendanceBtn = '<button class="btn btn-dark logAttendance" id="'.$row['class_id'].'"disabled>Mark Attendance</button>';
                 }else{
@@ -144,6 +143,7 @@ class Class_Controller
         }
     }
 
+    //Dynamically display a popup page to display class details
     public function getClassDetails($classId){
         $result = $this->database->getClass($classId);
         if($result){

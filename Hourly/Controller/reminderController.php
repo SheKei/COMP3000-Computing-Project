@@ -2,7 +2,7 @@
 include_once 'Reminder_Controller.php';
 $controller = new Reminder_Controller('dummy');
 
-//Collect input when add reminder btn clicked
+//POST request Collect input when add reminder btn clicked
 if (isset($_POST['addReminder'])) {
     $controller->addReminder($_POST['reminder']);
     header('Location: ../View/home.php');                               //Redirect to home page

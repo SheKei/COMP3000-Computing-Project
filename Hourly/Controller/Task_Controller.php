@@ -18,10 +18,11 @@ class Task_Controller
 
     }
 
+    //Display modules as a drop down menu in assign tasks
     public function displayModuleChoices()
     {
         //Get all modules user has made
-        $modules = $this->database->getModuleCodes($this->username);
+        $modules = $this->database->getModuleCodes($this->username); //Call database to return modules made by user
 
         if ($modules) {
             foreach ($modules as $row) {
@@ -59,7 +60,7 @@ class Task_Controller
 
         if ($result) {
             $allTasks = [];
-            foreach ($result as $row) {
+            foreach ($result as $row) { //For each result convert to a task object
                 $task = new Task($row['task_id'], $row['task_name'], $row['task_category'], $row['due_date'], $row['due_time'], $row['priority_level']);
                 $allTasks[] = $task;
             }
@@ -123,7 +124,7 @@ class Task_Controller
         {
             $today = date("Y/m/d");
             $theDate = date("Y/m/d", strtotime($date." ".$time));
-            if($theDate<$today){
+            if($theDate<$today){//If deadline date is past today's date, display overdue label
                 $icon = '<span class="overdue"><i class="far fa-calendar-alt"> OVERDUE: </i>';
             }else{
                 $icon = '<span><i class="far fa-calendar-alt"></i>';

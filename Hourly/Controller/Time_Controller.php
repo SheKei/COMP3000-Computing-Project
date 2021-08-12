@@ -25,7 +25,7 @@ class Time_Controller
         $result = $this->database->getTaskTime($taskId);
         $times = [];
         if($result){
-            foreach($result as $row){
+            foreach($result as $row){//For each result, convert to a time object
                 $time = new Time($row['time_id'], $row['duration'], $row['description'], $row['time_stamp']);
                 $times[] = $time;
             }
@@ -74,7 +74,7 @@ class Time_Controller
     public function deleteTaskTime($taskId){
         $result = $this->database->getTaskTime($taskId);
         if($result){
-            foreach($result as $row){ //Archive before delete
+            foreach($result as $row){ //Archive before deleting in table
                 $this->database->archiveTime($row['time_id']);
                 $this->database->deleteTime($row['time_id']);
             }

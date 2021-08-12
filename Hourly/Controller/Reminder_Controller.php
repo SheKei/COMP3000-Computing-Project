@@ -20,10 +20,10 @@ class Reminder_Controller
 
     //Return array of reminders
     public function getReminders(){
-        $result = $this->database->getReminders($this->user);
+        $result = $this->database->getReminders($this->user);//Call database to return reminders made by user
         $reminders = [];
         if($result){
-            foreach($result as $row){
+            foreach($result as $row){//For each result convert to a reminder object
                 $reminder = new Reminder($row['reminder_id'], $row['description'], $row['datestamp']);
                 $reminders[] = $reminder;
             }
@@ -33,9 +33,9 @@ class Reminder_Controller
 
     //Display reminders on home page
     public function displayReminders(){
-        $reminders = $this->getReminders();
+        $reminders = $this->getReminders(); //Get array of reminder objects
         if($reminders){
-            foreach ($reminders as $reminder){
+            foreach ($reminders as $reminder){//For each result, append to reminders board
                 echo "<p>"
                     ."<i class='far fa-times-circle' id='".$reminder->getReminderId()."'></i><span data-toggle='modal' data-target='#editReminderModal' class='theReminder' id='id".$reminder->getReminderId()."'>"
                     .$reminder->getDescription()."  <strong>".date("d/m/y", strtotime($reminder->getDatestamp())).
@@ -44,14 +44,14 @@ class Reminder_Controller
         }
     }
 
-    //Display selected reminder in a form for editing
+    //Display selected reminder in a pop up form for editing
     public function displayReminderOnPopup($reminderID){
-        $result = $this->database->getOneReminder($reminderID);
+        $result = $this->database->getOneReminder($reminderID);//Get the details of selected reminder
         if($result){
             echo "<form method='post' action='../Controller/reminderController.php'>";
             echo "<input class='hidden' name='reminderID' value='".$reminderID."' readonly>";
             echo "<p id='editReminderMsg'></p>";
-            foreach($result as $row){
+            foreach($result as $row){ //Output onto pop up page
                 echo "<textarea 
                         id='editDescription' name='editDescription' class='form-control userInput' maxlength='150' 
                         cols='60' rows='7' required>".$row['description']
@@ -63,12 +63,12 @@ class Reminder_Controller
 
     //Save edit of reminder
     public function saveEditReminder($id, $description){
-        $this->database->editReminder($id, $description, date("Y-m-d"));
+        $this->database->editReminder($id, $description, date("Y-m-d")); //Call database to save changes
     }
 
     //Delete a reminder using id
     public function deleteReminder($reminderID){
-        $this->database->deleteReminder($reminderID);
+        $this->database->deleteReminder($reminderID);//Call database to delete reminder
     }
 
 

@@ -38,4 +38,4 @@ No registration or sign in required, a dummy account is used in [place](web.soce
   * Session time can be adjusted
   * When the timer has finished, log the details of what you did if you want 
 
-![Screenshot] (/Images/Screenshot73.png) 
+![Screenshot] (Hourly/Images/Screenshot73.png) 

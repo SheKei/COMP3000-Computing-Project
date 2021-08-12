@@ -25,6 +25,7 @@ class Class_Controller
     //Add a class to timetable
     public function addClass($module, $name, $room, $day, $time, $duration){
         $this->database->addClass($this->user, $module, $name, $room, $day, $time, $duration);
+        return $module; //For unit testing
     }
 
     //Save edit details of class

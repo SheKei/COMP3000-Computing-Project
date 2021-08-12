@@ -20,7 +20,7 @@ class Module_Test extends TestCase
     //Retrieving module's details
     public function test_get_module(){
         $moduleCode = "COMP3333";
-        $moduleName = "Test Module";
+        $moduleName = "ClassTest Module";
         $colour = "rgb(33, 37, 41)";
         $expectedHours = 300;
 
@@ -34,7 +34,7 @@ class Module_Test extends TestCase
 
         //ModuleTest if details match
         $this->assertEquals($module->getModuleCode(), "COMP3333");
-        $this->assertEquals($module->getModuleName(), "Test Module");
+        $this->assertEquals($module->getModuleName(), "ClassTest Module");
         $this->assertEquals($module->getColour(), "rgb(33, 37, 41)");
         $this->assertEquals($module->getExpectedHours(), 300);
     }
@@ -43,7 +43,7 @@ class Module_Test extends TestCase
     public function test_edit_module(){
         $moduleCode = "COMP3333";
         $newModuleCode = $moduleCode;
-        $newModuleName = "New Test Module";
+        $newModuleName = "New ClassTest Module";
         $colour = "rgb(33, 37, 41)";
         $expectedHours = 300;
 
@@ -56,7 +56,7 @@ class Module_Test extends TestCase
         $module = $this->controller->displayModulePage($moduleCode);
 
         //Check if updated
-        $this->assertEquals($module->getModuleName(), "New Test Module");
+        $this->assertEquals($module->getModuleName(), "New ClassTest Module");
     }
 
 }

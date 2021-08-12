@@ -25,7 +25,7 @@ class Time_Test extends TestCase
     public function test_get_time(){
         $taskId = 8;
         $duration = "1:00";
-        $description = "Test Description";
+        $description = "ClassTest Description";
         $timestamp = "2020-11-22";
 
         $this->start();
@@ -50,7 +50,7 @@ class Time_Test extends TestCase
         $this->start();
 
         //Get time id
-        $sql = "SELECT time_id FROM COMP3000_STong.time_log WHERE description='Test Description'";
+        $sql = "SELECT time_id FROM COMP3000_STong.time_log WHERE description='ClassTest Description'";
         $result = $this->db->executeStatement($sql);
         foreach($result as $row){
             $timeId = $row['time_id'];

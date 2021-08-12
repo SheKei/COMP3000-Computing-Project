@@ -46,7 +46,7 @@ class Task_Test extends TestCase
     }
 
 
-    //Test retrieval of task details
+    //ClassTest retrieval of task details
     public function test_get_task(){
         $this->start();
         $taskId = $this->returnId();
@@ -90,7 +90,7 @@ class Task_Test extends TestCase
     public function test_sort_priority(){
         $this->start();
 
-        //Test Priority
+        //ClassTest Priority
         $lowPriority = $this->task_controller->sortPriority("Low");
         $expectedStyle = '<i style="color:green" class="fas fa-exclamation"></i> ';
         $this->assertEquals($lowPriority, $expectedStyle);

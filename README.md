@@ -39,3 +39,8 @@ No registration or sign in required, a dummy account is used in [place](web.soce
   * When the timer has finished, log the details of what you did if you want 
 
 ![Screenshot](/Hourly/Images/Screenshot73.png) 
+![Screenshot](/Hourly/Images/Screenshot74.png) 
+![Screenshot](/Hourly/Images/Screenshot75.png) 
+![Screenshot](/Hourly/Images/Screenshot76.png) 
+![Screenshot](/Hourly/Images/Screenshot77.png) 
+![Screenshot](/Hourly/Images/Screenshot78.png) 
